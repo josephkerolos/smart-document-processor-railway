@@ -47,9 +47,7 @@ ENV NODE_ENV=production
 # Expose port
 EXPOSE $PORT
 
-# Health check endpoint
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-  CMD curl -f http://localhost:$PORT/health || exit 1
+# Remove healthcheck - Railway handles this differently
 
 # Start the application
 CMD ["./start.sh"]
