@@ -1,35 +1,45 @@
-# Multi-stage build for Smart Document Processor
-FROM node:18-alpine AS frontend-builder
+# Optimized multi-stage build for faster Railway deployments
+FROM python:3.11-slim AS python-deps
 
-# Build frontend
-WORKDIR /app/frontend
-COPY frontend/package*.json ./
-RUN npm ci --only=production
-COPY frontend/ ./
-RUN npm run build
-
-# Python backend stage
-FROM python:3.11-slim
-
-# Install system dependencies for PDF processing
-RUN apt-get update && apt-get install -y \
+# Install system dependencies and Python packages in parallel
+RUN apt-get update && apt-get install -y --no-install-recommends \
     poppler-utils \
     libpoppler-cpp-dev \
     build-essential \
-    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy and install Python requirements first (better caching)
+WORKDIR /app
+COPY backend/requirements.txt ./backend/
+RUN pip install --no-cache-dir -r backend/requirements.txt
+
+# Frontend builder stage (parallel)
+FROM node:18-alpine AS frontend-builder
+WORKDIR /app/frontend
+COPY frontend/package*.json ./
+RUN npm ci --only=production --silent
+COPY frontend/ ./
+RUN npm run build
+
+# Final stage - smaller image
+FROM python:3.11-slim
+
+# Copy system dependencies from python-deps
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    poppler-utils \
     && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
 WORKDIR /app
 
-# Copy Python requirements and install
-COPY backend/requirements.txt ./backend/
-RUN pip install --no-cache-dir -r backend/requirements.txt
+# Copy Python packages from deps stage
+COPY --from=python-deps /usr/local/lib/python3.11/site-packages /usr/local/lib/python3.11/site-packages
+COPY --from=python-deps /usr/local/bin /usr/local/bin
 
 # Copy backend code
 COPY backend/ ./backend/
 
-# Copy built frontend from previous stage
+# Copy built frontend from builder stage
 COPY --from=frontend-builder /app/frontend/build ./frontend/build
 
 # Create directories for processing
