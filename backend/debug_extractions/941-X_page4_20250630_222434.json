@@ -1,0 +1,67 @@
+{
+  "page": 4,
+  "schema": "941-X",
+  "timestamp": "20250630_222434",
+  "extracted_data": {
+    "form_941x": {
+      "header": {
+        "name_not_trade_name": "DAVID ANTHONY SALON LLC",
+        "employer_identification_number_ein": "73-1725071",
+        "correcting_quarter": "1",
+        "correcting_calendar_year_yyyy": "2021"
+      },
+      "part_3": {
+        "line_33a": {
+          "column_1": null,
+          "column_2": null,
+          "column_3": null
+        },
+        "line_33b": {
+          "column_1": null,
+          "column_2": null,
+          "column_3": null
+        },
+        "line_34": {
+          "column_1": null,
+          "column_2": null,
+          "column_3": null
+        },
+        "line_35": {
+          "column_1": null,
+          "column_2": null,
+          "column_3": null
+        },
+        "line_36": {
+          "column_1": null,
+          "column_2": null,
+          "column_3": null
+        },
+        "line_37": {
+          "column_1": null,
+          "column_2": null,
+          "column_3": null
+        },
+        "line_38": {
+          "column_1": null,
+          "column_2": null,
+          "column_3": null
+        },
+        "line_39": {
+          "column_1": null,
+          "column_2": null,
+          "column_3": null
+        },
+        "line_40": {
+          "column_1": null,
+          "column_2": null,
+          "column_3": null
+        }
+      },
+      "part_4": null,
+      "signature_section": null,
+      "paid_preparer_information": null
+    }
+  },
+  "field_count": 34,
+  "non_null_count": 4
+}

@@ -1,0 +1,82 @@
+{
+  "page": 3,
+  "schema": "941-X",
+  "timestamp": "20250616_030418",
+  "extracted_data": {
+    "refundableCredits": {
+      "refundableEmployeeRetention": {
+        "correctedAmount": 9479.33,
+        "originalAmount": 0.0,
+        "difference": 9479.33
+      }
+    },
+    "lines": {
+      "line22": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0,
+        "taxCorrection": 0.0
+      },
+      "line23": {
+        "taxCorrection": 0.0
+      },
+      "line24": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0,
+        "taxCorrection": 0.0
+      },
+      "line25": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0,
+        "taxCorrection": 0.0
+      },
+      "line26b": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0,
+        "taxCorrection": 0.0
+      },
+      "line26c": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0,
+        "taxCorrection": 0.0
+      },
+      "line27": {
+        "taxCorrection": -9479.33
+      },
+      "line28": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "line29": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "line30": {
+        "correctedAmount": 13541.9,
+        "originalAmount": 0.0,
+        "difference": 13541.9
+      },
+      "line31a": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "line31b": {
+        "checked": false
+      },
+      "line32": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      }
+    }
+  },
+  "field_count": 41,
+  "non_null_count": 41
+}

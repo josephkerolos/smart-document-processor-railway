@@ -1,0 +1,346 @@
+{
+  "extraction_timestamp": "2025-06-21T16:18:42.800572",
+  "total_documents": 1,
+  "documents": [
+    {
+      "filename": "cleaned_Midway Lumber 2021 Q1 941-X.pdf",
+      "data": {
+        "employerInfo": {
+          "ein": "52-0820181",
+          "name": "MIDWAY LUMBER CO, INC",
+          "tradeName": "",
+          "address": {
+            "street": "4400 NORTH POINT BLVD",
+            "city": "BALTIMORE",
+            "state": "MD",
+            "zipCode": "21219"
+          }
+        },
+        "correctionInfo": {
+          "quarter": 1,
+          "year": "2021"
+        },
+        "correctionType": {
+          "isAdjustedReturn": false,
+          "checkbox_X": true
+        },
+        "lines": {
+          "line1": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "line2": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "line3": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "line4": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "line5": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "line6": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "line7": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "line8": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "line9": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "line10": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "line11": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "line12": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "line13": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "line14": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "line15": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "line16": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "line17": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "line18a": {
+            "correctedAmount": 4475.22,
+            "originalAmount": 0.0,
+            "difference": 4475.22
+          },
+          "line18b": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "line18c": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "line18d": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "line19": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "line20": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "line21": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "line22": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0,
+            "column1": 0.0,
+            "column2": 0.0,
+            "column3": 0.0,
+            "column4": 0.0
+          },
+          "line23": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0,
+            "column4": -4475.22
+          },
+          "line24": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0,
+            "column1": 0.0,
+            "column2": 0.0,
+            "column3": 0.0,
+            "column4": 0.0
+          },
+          "line25": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0,
+            "column1": 0.0,
+            "column2": 0.0,
+            "column3": 0.0,
+            "column4": 0.0
+          },
+          "line26": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "line27": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0,
+            "column4": -35300.3
+          },
+          "line26a": {
+            "column4": -30825.08
+          },
+          "line26b": {
+            "column1": 0.0,
+            "column2": 0.0,
+            "column3": 0.0,
+            "column4": 0.0
+          },
+          "line26c": {
+            "column1": 0.0,
+            "column2": 0.0,
+            "column3": 0.0,
+            "column4": 0.0
+          },
+          "line28": {
+            "column1": 0.0,
+            "column2": 0.0,
+            "column3": 0.0
+          },
+          "line29": {
+            "column1": 0.0,
+            "column2": 0.0,
+            "column3": 0.0
+          },
+          "line30": {
+            "correctedAmount": 50429.0,
+            "originalAmount": 0.0,
+            "difference": 50429.0
+          },
+          "line31a": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "line31b": {
+            "isChecked": false
+          },
+          "line32": {
+            "column1": 0.0,
+            "column2": 0.0,
+            "column3": 0.0
+          }
+        },
+        "name": "MIDWAY LUMBER CO, INC",
+        "employerIdentificationNumber": "52-0820181",
+        "correctingQuarter": "1",
+        "correctingCalendarYear": "2021",
+        "refundableCredits": {
+          "refundableEmployeeRetention": {
+            "correctedAmount": 30825.08,
+            "originalAmount": 0.0,
+            "difference": 30825.08
+          }
+        },
+        "form_941x": {
+          "header": {
+            "name_not_your_trade_name": "MIDWAY LUMBER CO, INC",
+            "employer_identification_number_ein": "52-0820181",
+            "correcting_quarter": "1",
+            "correcting_calendar_year": "2021"
+          },
+          "part_3_continued": {
+            "line_33a": {
+              "column_1_total_corrected_amount": null,
+              "column_2_amount_originally_reported": null,
+              "column_3_difference": null
+            },
+            "line_33b": {
+              "column_1_total_corrected_amount": null,
+              "column_2_amount_originally_reported": null,
+              "column_3_difference": null
+            },
+            "line_34": {
+              "column_1_total_corrected_amount": null,
+              "column_2_amount_originally_reported": null,
+              "column_3_difference": null
+            },
+            "line_35": {
+              "column_1_total_corrected_amount": null,
+              "column_2_amount_originally_reported": null,
+              "column_3_difference": null
+            },
+            "line_36": {
+              "column_1_total_corrected_amount": null,
+              "column_2_amount_originally_reported": null,
+              "column_3_difference": null
+            },
+            "line_37": {
+              "column_1_total_corrected_amount": null,
+              "column_2_amount_originally_reported": null,
+              "column_3_difference": null
+            },
+            "line_38": {
+              "column_1_total_corrected_amount": null,
+              "column_2_amount_originally_reported": null,
+              "column_3_difference": null
+            },
+            "line_39": {
+              "column_1_total_corrected_amount": null,
+              "column_2_amount_originally_reported": null,
+              "column_3_difference": null
+            },
+            "line_40": {
+              "column_1_total_corrected_amount": null,
+              "column_2_amount_originally_reported": null,
+              "column_3_difference": null
+            }
+          },
+          "part_4": null,
+          "signature_section": null,
+          "paid_preparer_information": null
+        },
+        "name_not_trade_name": "MIDWAY LUMBER CO, INC",
+        "employer_identification_number_ein": "52-0820181",
+        "correcting_quarter": "1",
+        "correcting_calendar_year": "2021",
+        "part4_line41_checkbox": false,
+        "part4_line42_checkbox": false,
+        "part4_line43_explanation": "Amending 941-X return to apply for ERC Credits. Please send the refund check to address on file:\nMIDWAY LUMBER CO, INC\n4400 NORTH POINT BLVD\nBALTIMORE MD 21219",
+        "part5_sign_name_here": "",
+        "part5_sign_date": "",
+        "part5_print_name_here": "",
+        "part5_print_title_here": "",
+        "part5_best_daytime_phone": "",
+        "part5_self_employed_checkbox": false,
+        "paid_preparer_name": "Samuel Shu",
+        "paid_preparer_signature": null,
+        "paid_preparer_firm_name": "Pinnacle Minds, Inc.",
+        "paid_preparer_ptin": "P03113993",
+        "paid_preparer_date": "08/28/23",
+        "paid_preparer_ein": "27-0133034",
+        "paid_preparer_phone": "805-836-9009",
+        "paid_preparer_address": "350 N Lantana St. Suite #229",
+        "paid_preparer_city": "Camarillo",
+        "paid_preparer_state": "CA",
+        "paid_preparer_zip_code": "93010",
+        "_metadata": {
+          "filename": "cleaned_Midway Lumber 2021 Q1 941-X.pdf",
+          "total_pages": 5,
+          "extracted_pages": 5,
+          "selected_schema": "941-X",
+          "quality_score": 20.0,
+          "populated_fields": 41,
+          "total_fields": 205,
+          "expected_nulls": 0,
+          "math_validation_passed": false,
+          "processing_time": 47.42184805870056,
+          "extraction_method": "direct_pdf",
+          "pages_converted_to_images": 0
+        }
+      }
+    }
+  ]
+}

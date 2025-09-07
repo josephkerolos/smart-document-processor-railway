@@ -1,0 +1,30 @@
+.mode-selector {
+  background-color: #ffffff;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.mode-selector button {
+  padding: 10px 20px;
+  border: 1px solid #ddd;
+  background-color: #f8f9fa;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.mode-selector button:hover {
+  background-color: #e9ecef;
+}
+
+.mode-selector button.active {
+  background-color: #3498db;
+  color: white;
+  border-color: #3498db;
+}

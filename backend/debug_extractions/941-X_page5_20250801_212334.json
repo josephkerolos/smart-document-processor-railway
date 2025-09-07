@@ -1,0 +1,39 @@
+{
+  "page": 5,
+  "schema": "941-X",
+  "timestamp": "20250801_212334",
+  "extracted_data": {
+    "name_not_trade_name": "GOM HOLDINGS, INC.",
+    "employer_identification_number_ein": "26-4370619",
+    "correcting_quarter": "2",
+    "correcting_calendar_year": "2021",
+    "part_4": {
+      "line_41_checkbox": true,
+      "line_42_checkbox": false,
+      "line_43_explanation": "This is to applly for the Employee Retention Credit (ERC) Q2 2021.\nQualified under Alternative Gross Receipts test as the business lost more than 20% of their revenue in comparison to the same\nquarter in 2019."
+    },
+    "part_5": {
+      "sign_your_name_here": null,
+      "print_your_name_here": "",
+      "print_your_title_here": "",
+      "date_signed": "",
+      "paid_preparer_use_only": {
+        "preparer_name": "Ryan Parr",
+        "preparer_signature": null,
+        "firm_name_or_yours_if_self_employed": "Pinnacle Minds, Inc",
+        "preparer_address": "350 N Lantana St Suite #229",
+        "preparer_city": "Camarillo",
+        "preparer_state": "CA",
+        "preparer_zip_code": "93010",
+        "preparer_best_daytime_phone": "",
+        "preparer_self_employed_checkbox": false,
+        "preparer_ptin": "P0312471",
+        "preparer_date": "5/20/2024",
+        "preparer_ein": "27-0133034",
+        "preparer_phone": "(805) 836-9009"
+      }
+    }
+  },
+  "field_count": 24,
+  "non_null_count": 18
+}

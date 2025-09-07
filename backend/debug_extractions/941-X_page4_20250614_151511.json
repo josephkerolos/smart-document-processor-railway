@@ -1,0 +1,63 @@
+{
+  "page": 4,
+  "schema": "941-X",
+  "timestamp": "20250614_151511",
+  "extracted_data": {
+    "name_not_your_trade_name": "DAVID ANTHONY SALON LLC",
+    "employer_identification_number_ein": "73-1725071",
+    "correcting_quarter": "2",
+    "correcting_calendar_year": "2020",
+    "part_3_continued": {
+      "line_33a": {
+        "total_corrected_amount_col1": "3331.90",
+        "amount_originally_reported_col2": "0.0",
+        "difference_col3": "3331.90"
+      },
+      "line_33b": {
+        "total_corrected_amount_col1": "",
+        "amount_originally_reported_col2": "",
+        "difference_col3": ""
+      },
+      "line_34": {
+        "total_corrected_amount_col1": "",
+        "amount_originally_reported_col2": "",
+        "difference_col3": ""
+      },
+      "line_35": {
+        "total_corrected_amount_col1": "",
+        "amount_originally_reported_col2": "",
+        "difference_col3": ""
+      },
+      "line_36": {
+        "total_corrected_amount_col1": "",
+        "amount_originally_reported_col2": "",
+        "difference_col3": ""
+      },
+      "line_37": {
+        "total_corrected_amount_col1": "",
+        "amount_originally_reported_col2": "",
+        "difference_col3": ""
+      },
+      "line_38": {
+        "total_corrected_amount_col1": "",
+        "amount_originally_reported_col2": "",
+        "difference_col3": ""
+      },
+      "line_39": {
+        "total_corrected_amount_col1": "",
+        "amount_originally_reported_col2": "",
+        "difference_col3": ""
+      },
+      "line_40": {
+        "total_corrected_amount_col1": "",
+        "amount_originally_reported_col2": "",
+        "difference_col3": ""
+      }
+    },
+    "part_4": null,
+    "signature_section": null,
+    "paid_preparer_information": null
+  },
+  "field_count": 34,
+  "non_null_count": 7
+}

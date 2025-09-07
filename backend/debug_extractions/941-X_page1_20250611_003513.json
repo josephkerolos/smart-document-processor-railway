@@ -1,0 +1,64 @@
+{
+  "page": 1,
+  "schema": "941-X",
+  "timestamp": "20250611_003513",
+  "extracted_data": {
+    "form_941x_page_1": {
+      "form_info": {
+        "form_name": "Form 941-X: Adjusted Employer's QUARTERLY Federal Tax Return or Claim for Refund",
+        "revision_date": "Rev. April 2022",
+        "omb_number": "1545-0029"
+      },
+      "employer_info": {
+        "ein": "45-4202824",
+        "name": "Absolute Lawn and Landscape Management, LLC",
+        "trade_name": null,
+        "address": {
+          "number": "2230",
+          "street": "Pierce Road",
+          "suite_or_room_number": null,
+          "city": "Phenix City",
+          "state": "AL",
+          "zip_code": "36867",
+          "foreign_country_name": null,
+          "foreign_province_county": null,
+          "foreign_postal_code": null
+        }
+      },
+      "return_you_are_correcting": {
+        "type_of_return": {
+          "form_941": true,
+          "form_941_ss": false
+        },
+        "quarter_correcting": {
+          "q1_jan_feb_mar": false,
+          "q2_apr_may_jun": true,
+          "q3_jul_aug_sep": false,
+          "q4_oct_nov_dec": false
+        },
+        "calendar_year_correcting": "2020"
+      },
+      "date_errors_discovered": "09/15/2022",
+      "part_1_select_only_one_process": {
+        "line_1_adjusted_employment_tax_return": false,
+        "line_2_claim": true
+      },
+      "part_2_complete_certifications": {
+        "line_3_certify_w2_w2c_filed": true,
+        "line_4_if_checked_line_1": {
+          "line_4a_repaid_reimbursed_employee_tax": false,
+          "line_4b_adjustments_employer_share_only": false,
+          "line_4c_adjustment_not_withheld": false
+        },
+        "line_5_if_checked_line_2": {
+          "line_5a_repaid_reimbursed_employee_tax": false,
+          "line_5b_written_consent_employee_share": false,
+          "line_5c_claim_employer_share_only": true,
+          "line_5d_claim_not_withheld": false
+        }
+      }
+    }
+  },
+  "field_count": 33,
+  "non_null_count": 28
+}

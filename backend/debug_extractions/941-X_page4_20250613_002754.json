@@ -1,0 +1,64 @@
+{
+  "page": 4,
+  "schema": "941-X",
+  "timestamp": "20250613_002754",
+  "extracted_data": {
+    "form_941x_page_4": {
+      "header": {
+        "name_not_trade_name": "Absolute Lawn and Landscape Management, LLC",
+        "employer_identification_number_ein": "45-4202824",
+        "correcting_quarter": "2",
+        "correcting_calendar_year": "2020"
+      },
+      "part_3_continued": {
+        "line_33a": {
+          "column_1_total_corrected_amount": "",
+          "column_2_amount_originally_reported": "",
+          "column_3_difference": ""
+        },
+        "line_33b": {
+          "column_1_total_corrected_amount": "",
+          "column_2_amount_originally_reported": "",
+          "column_3_difference": ""
+        },
+        "line_34": {
+          "column_1_total_corrected_amount": "",
+          "column_2_amount_originally_reported": "",
+          "column_3_difference": ""
+        },
+        "line_35": {
+          "column_1_total_corrected_amount": "",
+          "column_2_amount_originally_reported": "",
+          "column_3_difference": ""
+        },
+        "line_36": {
+          "column_1_total_corrected_amount": "",
+          "column_2_amount_originally_reported": "",
+          "column_3_difference": ""
+        },
+        "line_37": {
+          "column_1_total_corrected_amount": "",
+          "column_2_amount_originally_reported": "",
+          "column_3_difference": ""
+        },
+        "line_38": {
+          "column_1_total_corrected_amount": "",
+          "column_2_amount_originally_reported": "",
+          "column_3_difference": ""
+        },
+        "line_39": {
+          "column_1_total_corrected_amount": "",
+          "column_2_amount_originally_reported": "",
+          "column_3_difference": ""
+        },
+        "line_40": {
+          "column_1_total_corrected_amount": "",
+          "column_2_amount_originally_reported": "",
+          "column_3_difference": ""
+        }
+      }
+    }
+  },
+  "field_count": 31,
+  "non_null_count": 4
+}

@@ -1,0 +1,64 @@
+{
+  "page": 4,
+  "schema": "941-X",
+  "timestamp": "20250710_234038",
+  "extracted_data": {
+    "form_941x": {
+      "header": {
+        "name_trade_name": "MIDWAY LUMBER CO, INC",
+        "ein": "52-0820181",
+        "correcting_quarter": "4",
+        "correcting_calendar_year": "2020"
+      },
+      "part_3": {
+        "line_33a": {
+          "col_1_total_corrected_amount": "",
+          "col_2_amount_originally_reported": "",
+          "col_3_difference": ""
+        },
+        "line_33b": {
+          "col_1_total_corrected_amount": "",
+          "col_2_amount_originally_reported": "",
+          "col_3_difference": ""
+        },
+        "line_34": {
+          "col_1_total_corrected_amount": "",
+          "col_2_amount_originally_reported": "",
+          "col_3_difference": ""
+        },
+        "line_35": {
+          "col_1_total_corrected_amount": "",
+          "col_2_amount_originally_reported": "",
+          "col_3_difference": ""
+        },
+        "line_36": {
+          "col_1_total_corrected_amount": "",
+          "col_2_amount_originally_reported": "",
+          "col_3_difference": ""
+        },
+        "line_37": {
+          "col_1_total_corrected_amount": "",
+          "col_2_amount_originally_reported": "",
+          "col_3_difference": ""
+        },
+        "line_38": {
+          "col_1_total_corrected_amount": "",
+          "col_2_amount_originally_reported": "",
+          "col_3_difference": ""
+        },
+        "line_39": {
+          "col_1_total_corrected_amount": "",
+          "col_2_amount_originally_reported": "",
+          "col_3_difference": ""
+        },
+        "line_40": {
+          "col_1_total_corrected_amount": "",
+          "col_2_amount_originally_reported": "",
+          "col_3_difference": ""
+        }
+      }
+    }
+  },
+  "field_count": 31,
+  "non_null_count": 4
+}

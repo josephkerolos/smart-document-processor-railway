@@ -1,0 +1,28 @@
+{
+  "page": 3,
+  "schema": "941-X",
+  "timestamp": "20250613_033536",
+  "extracted_data": {
+    "refundableCredits": {
+      "refundableEmployeeRetention": {
+        "correctedAmount": 4544.04,
+        "originalAmount": 0.0,
+        "difference": 4544.04
+      }
+    },
+    "lines": {
+      "line30": {
+        "correctedAmount": 17468.1,
+        "originalAmount": 0.0,
+        "difference": 17468.1
+      },
+      "line31a": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null
+      }
+    }
+  },
+  "field_count": 9,
+  "non_null_count": 6
+}

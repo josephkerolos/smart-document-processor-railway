@@ -1,0 +1,57 @@
+{
+  "page": 16,
+  "schema": "941-X",
+  "timestamp": "20250613_021149",
+  "extracted_data": {
+    "form_941x": {
+      "ein": "73-1725071",
+      "name_not_trade_name": "DAVID ANTHONY SALON LLC",
+      "trade_name": null,
+      "address": {
+        "number": "4025",
+        "street": "E CHANDLER BLVD",
+        "suite_or_room_number": "STE 9",
+        "city": "PHOENIX",
+        "state": "AZ",
+        "zip_code": "85048",
+        "foreign_country_name": null,
+        "foreign_province_county": null,
+        "foreign_postal_code": null
+      },
+      "return_you_are_correcting": {
+        "type_of_return": {
+          "form_941": true,
+          "form_941ss": false
+        },
+        "quarter_correcting": {
+          "q1_jan_feb_mar": false,
+          "q2_apr_may_jun": true,
+          "q3_jul_aug_sep": false,
+          "q4_oct_nov_dec": false
+        },
+        "calendar_year_correcting": "2020",
+        "date_errors_discovered": "05/15/2023"
+      },
+      "part_1_select_only_one_process": {
+        "line_1_adjusted_employment_tax_return": false,
+        "line_2_claim": true
+      },
+      "part_2_complete_certifications": {
+        "line_3_certify_w2_w2c_filed": true,
+        "line_4_if_line_1_checked": {
+          "a_repaid_reimbursed_employee_overcollected": false,
+          "b_adjustments_employer_share_only": false,
+          "c_adjustment_not_withheld_from_wages": false
+        },
+        "line_5_if_line_2_checked": {
+          "a_repaid_reimbursed_employee_overcollected": false,
+          "b_written_consent_from_employee": false,
+          "c_claim_employer_share_only": true,
+          "d_claim_not_withheld_from_wages": false
+        }
+      }
+    }
+  },
+  "field_count": 30,
+  "non_null_count": 26
+}

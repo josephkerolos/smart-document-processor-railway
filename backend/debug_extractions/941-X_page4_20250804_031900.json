@@ -1,0 +1,67 @@
+{
+  "page": 4,
+  "schema": "941-X",
+  "timestamp": "20250804_031900",
+  "extracted_data": {
+    "form_941x": {
+      "header": {
+        "name_not_your_trade_name": "GOM HOLDINGS, INC.",
+        "employer_identification_number_ein": "26-4370619",
+        "correcting_quarter": "1",
+        "correcting_calendar_year": "2021"
+      },
+      "part3": {
+        "line33a": {
+          "column1": null,
+          "column2": null,
+          "column3": null
+        },
+        "line33b": {
+          "column1": null,
+          "column2": null,
+          "column3": null
+        },
+        "line34": {
+          "column1": null,
+          "column2": null,
+          "column3": null
+        },
+        "line35": {
+          "column1": null,
+          "column2": null,
+          "column3": null
+        },
+        "line36": {
+          "column1": null,
+          "column2": null,
+          "column3": null
+        },
+        "line37": {
+          "column1": null,
+          "column2": null,
+          "column3": null
+        },
+        "line38": {
+          "column1": null,
+          "column2": null,
+          "column3": null
+        },
+        "line39": {
+          "column1": null,
+          "column2": null,
+          "column3": null
+        },
+        "line40": {
+          "column1": null,
+          "column2": null,
+          "column3": null
+        }
+      },
+      "part4": null,
+      "signature_section": null,
+      "paid_preparer_information": null
+    }
+  },
+  "field_count": 34,
+  "non_null_count": 4
+}

@@ -1,0 +1,331 @@
+{
+  "formMetadata": {
+    "formNumber": "941-X",
+    "formRevision": "April 2021",
+    "year": "2021",
+    "ombNumber": null
+  },
+  "correctionType": {
+    "isAdjustedReturn": false,
+    "isClaimForRefund": true
+  },
+  "employerInfo": {
+    "ein": "52-0820181",
+    "name": "MIDWAY LUMBER CO, INC",
+    "tradeName": "",
+    "address": {
+      "street": "4400 NORTH POINT BLVD",
+      "city": "BALTIMORE",
+      "state": "MD",
+      "zipCode": "21219",
+      "foreignCountry": null,
+      "foreignProvince": null,
+      "foreignPostalCode": null
+    }
+  },
+  "quarterBeingCorrected": {
+    "quarter": "1",
+    "year": "2021"
+  },
+  "dateErrorDiscovered": null,
+  "part2Certifications": {
+    "allCorrectionsListed": null,
+    "consentFromEmployees": null,
+    "filedOriginal941": null,
+    "overdueReturn": null
+  },
+  "part3Corrections": {
+    "line1": {
+      "numberOfEmployees": {
+        "correctedAmount": 0,
+        "originalAmount": 0,
+        "difference": 0
+      }
+    },
+    "line2": {
+      "wagesTipsCompensation": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      }
+    },
+    "line3": {
+      "federalIncomeTaxWithheld": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      }
+    },
+    "line5": {
+      "taxableSocialSecurityWages": {
+        "wages": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        },
+        "tax": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        }
+      }
+    },
+    "line6": {
+      "qualifiedSickLeaveWages": {
+        "wages": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        },
+        "tax": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        }
+      }
+    },
+    "line7": {
+      "qualifiedFamilyLeaveWages": {
+        "wages": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        },
+        "tax": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        }
+      }
+    },
+    "line8": {
+      "taxableSocialSecurityTips": {
+        "tips": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        },
+        "tax": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        }
+      }
+    },
+    "line9": {
+      "taxableMedicareWagesAndTips": {
+        "wagesAndTips": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        },
+        "tax": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        }
+      }
+    },
+    "line10": {
+      "additionalMedicareWagesAndTips": {
+        "wagesAndTips": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        },
+        "tax": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        }
+      }
+    },
+    "totalSocialSecurityAndMedicareTaxes": {
+      "correctedAmount": 0.0,
+      "originalAmount": 0.0,
+      "difference": 0.0
+    },
+    "section3121qTax": {
+      "correctedAmount": 0.0,
+      "originalAmount": 0.0,
+      "difference": 0.0
+    },
+    "totalTaxesBeforeAdjustments": {
+      "correctedAmount": 0.0,
+      "originalAmount": 0.0,
+      "difference": 0.0
+    },
+    "currentQuarterAdjustments": {
+      "fractionsOfCents": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "sickPay": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "tipsAndGroupTermLife": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      }
+    },
+    "totalTaxesAfterAdjustments": {
+      "correctedAmount": 0.0,
+      "originalAmount": 0.0,
+      "difference": 0.0
+    },
+    "nonrefundableCredits": {
+      "researchPayrollTaxCredit": null,
+      "nonrefundableSickLeave": {
+        "correctedAmount": 4475.22,
+        "originalAmount": 0.0,
+        "difference": 4475.22
+      },
+      "nonrefundableEmployeeRetention": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "nonrefundableFamilyLeave": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "cobraPremiumAssistance": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      }
+    },
+    "totalNonrefundableCredits": {
+      "correctedAmount": 0.0,
+      "originalAmount": 0.0,
+      "difference": 0.0
+    },
+    "totalTaxesAfterCredits": {
+      "correctedAmount": 0.0,
+      "originalAmount": 0.0,
+      "difference": 0.0
+    },
+    "totalDeposits": {
+      "correctedAmount": 0.0,
+      "originalAmount": 0.0,
+      "difference": 0.0
+    },
+    "refundableCredits": {
+      "refundableSickLeave": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "refundableEmployeeRetention": {
+        "correctedAmount": 30825.08,
+        "originalAmount": 0.0,
+        "difference": 30825.08
+      },
+      "refundableFamilyLeave": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "refundableCobraPremiumAssistance": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      }
+    },
+    "totalRefundableCredits": {
+      "correctedAmount": 0.0,
+      "originalAmount": 0.0,
+      "difference": 0.0
+    },
+    "totalDepositsAndRefundableCredits": {
+      "correctedAmount": 0.0,
+      "originalAmount": 0.0,
+      "difference": 0.0
+    },
+    "advancesFromForm7200": {
+      "correctedAmount": null,
+      "originalAmount": null,
+      "difference": null
+    },
+    "totalDepositsCreditsLessAdvances": {
+      "correctedAmount": null,
+      "originalAmount": null,
+      "difference": null
+    },
+    "balanceDue": {
+      "correctedAmount": null,
+      "originalAmount": null,
+      "difference": null
+    },
+    "overpayment": {
+      "correctedAmount": null,
+      "originalAmount": null,
+      "difference": null,
+      "applyToNextReturn": null,
+      "sendRefund": true
+    }
+  },
+  "part4Explanations": {
+    "corrections": [],
+    "detailedExplanation": "Amending 941-X return to apply for ERC Credits. Please send the refund check to address on file:\nMIDWAY LUMBER CO, INC\n4400 NORTH POINT BLVD\nBALTIMORE MD 21219"
+  },
+  "part5Signature": {
+    "signature": {
+      "name": "",
+      "title": "",
+      "date": null,
+      "phone": "",
+      "bestTimeToCall": null
+    },
+    "paidPreparer": {
+      "isSelfEmployed": false,
+      "name": "Samuel Shu",
+      "ptin": "P03113993",
+      "signature": null,
+      "date": "2023-08-28",
+      "firmName": "Pinnacle Minds, Inc.",
+      "firmEIN": "27-0133034",
+      "address": "350 N Lantana St. Suite #229",
+      "phone": "805-836-9009",
+      "city": "Camarillo",
+      "state": "CA",
+      "zipCode": "93010"
+    }
+  },
+  "supportingStatements": {
+    "qualifiedHealthPlanExpenses": null,
+    "employeeRetentionCredit": {
+      "qualifiedWages": {
+        "correctedAmount": 50429.0,
+        "originalAmount": 0.0,
+        "difference": 50429.0
+      },
+      "qualifiedHealthPlanExpenses": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      }
+    },
+    "sickLeaveAfterMarch": null,
+    "familyLeaveAfterMarch": null
+  },
+  "_metadata": {
+    "filename": "cleaned_Midway Lumber 2021 Q1 941-X.pdf",
+    "total_pages": 5,
+    "extracted_pages": 5,
+    "selected_schema": "941-X",
+    "quality_score": 17.647058823529413,
+    "populated_fields": 30,
+    "total_fields": 170,
+    "expected_nulls": 0,
+    "math_validation_passed": true,
+    "processing_time": 122.80889892578125,
+    "extraction_method": "direct_pdf",
+    "pages_converted_to_images": 0
+  }
+}

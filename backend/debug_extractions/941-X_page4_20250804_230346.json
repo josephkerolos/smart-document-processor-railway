@@ -1,0 +1,42 @@
+{
+  "page": 4,
+  "schema": "941-X",
+  "timestamp": "20250804_230346",
+  "extracted_data": {
+    "name_not_trade_name": "HAVEN OF HOPE INC",
+    "employer_identification_number": "77-0469172",
+    "correcting_quarter": "4",
+    "correcting_calendar_year": "2020",
+    "part3": {
+      "line33a_col1": null,
+      "line33a_col2": null,
+      "line33a_col3": null,
+      "line33b_col1": null,
+      "line33b_col2": null,
+      "line33b_col3": null,
+      "line34_col1": null,
+      "line34_col2": null,
+      "line34_col3": null,
+      "line35_col1": null,
+      "line35_col2": null,
+      "line35_col3": null,
+      "line36_col1": null,
+      "line36_col2": null,
+      "line36_col3": null,
+      "line37_col1": null,
+      "line37_col2": null,
+      "line37_col3": null,
+      "line38_col1": null,
+      "line38_col2": null,
+      "line38_col3": null,
+      "line39_col1": null,
+      "line39_col2": null,
+      "line39_col3": null,
+      "line40_col1": null,
+      "line40_col2": null,
+      "line40_col3": null
+    }
+  },
+  "field_count": 31,
+  "non_null_count": 4
+}

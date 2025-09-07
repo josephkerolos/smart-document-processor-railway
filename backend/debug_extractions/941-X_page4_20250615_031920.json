@@ -1,0 +1,64 @@
+{
+  "page": 4,
+  "schema": "941-X",
+  "timestamp": "20250615_031920",
+  "extracted_data": {
+    "form_941x": {
+      "header": {
+        "name_trade_name": "Omni Eye Care, Inc",
+        "ein": "46-0872603",
+        "correcting_quarter": "3",
+        "correcting_calendar_year": "2020"
+      },
+      "part3": {
+        "line33a": {
+          "column1": null,
+          "column2": null,
+          "column3": null
+        },
+        "line33b": {
+          "column1": null,
+          "column2": null,
+          "column3": null
+        },
+        "line34": {
+          "column1": null,
+          "column2": null,
+          "column3": null
+        },
+        "line35": {
+          "column1": null,
+          "column2": null,
+          "column3": null
+        },
+        "line36": {
+          "column1": null,
+          "column2": null,
+          "column3": null
+        },
+        "line37": {
+          "column1": null,
+          "column2": null,
+          "column3": null
+        },
+        "line38": {
+          "column1": null,
+          "column2": null,
+          "column3": null
+        },
+        "line39": {
+          "column1": null,
+          "column2": null,
+          "column3": null
+        },
+        "line40": {
+          "column1": null,
+          "column2": null,
+          "column3": null
+        }
+      }
+    }
+  },
+  "field_count": 31,
+  "non_null_count": 4
+}

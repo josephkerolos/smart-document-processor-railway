@@ -1,0 +1,92 @@
+{
+  "page": 3,
+  "schema": "941-X",
+  "timestamp": "20250613_032039",
+  "extracted_data": {
+    "name": "DAVID ANTHONY SALON LLC",
+    "employerIdentificationNumber": "73-1725071",
+    "correctingQuarter": 3,
+    "correctingCalendarYear": 2020,
+    "refundableCredits": {
+      "refundableEmployeeRetention": {
+        "correctedAmount": 1864.91,
+        "originalAmount": 0.0,
+        "difference": 1864.91
+      }
+    },
+    "lines": {
+      "line22": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null,
+        "taxCorrection": null
+      },
+      "line23": {
+        "taxCorrection": -6588.92
+      },
+      "line24": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null,
+        "taxCorrection": null
+      },
+      "line25": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null,
+        "taxCorrection": null
+      },
+      "line26a": {
+        "correctedAmount": 1864.91,
+        "originalAmount": 0.0,
+        "difference": 1864.91,
+        "taxCorrection": -1864.91
+      },
+      "line26b": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null,
+        "taxCorrection": null
+      },
+      "line26c": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null,
+        "taxCorrection": null
+      },
+      "line27": {
+        "taxCorrection": -8453.83
+      },
+      "line28": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null
+      },
+      "line29": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null
+      },
+      "line30": {
+        "correctedAmount": 16907.65,
+        "originalAmount": 0.0,
+        "difference": 16907.65
+      },
+      "line31a": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null
+      },
+      "line31b": {
+        "checked": false
+      },
+      "line32": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null
+      }
+    }
+  },
+  "field_count": 49,
+  "non_null_count": 17
+}

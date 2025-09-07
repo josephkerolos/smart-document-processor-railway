@@ -1,0 +1,64 @@
+{
+  "page": 4,
+  "schema": "941-X",
+  "timestamp": "20250611_003516",
+  "extracted_data": {
+    "form_941x_page_4": {
+      "header": {
+        "name_not_your_trade_name": "Absolute Lawn and Landscape Management, LLC",
+        "employer_identification_number_ein": "45-4202824",
+        "correcting_quarter": "2",
+        "correcting_calendar_year": "2020"
+      },
+      "part_3_continued": {
+        "line_33a_qualified_wages_paid_march_13_through_march_31_2020_for_employee_retention_credit": {
+          "column_1_total_corrected_amount": "",
+          "column_2_amount_originally_reported_or_previously_corrected": "",
+          "column_3_difference": ""
+        },
+        "line_33b_deferred_amount_of_employee_share_of_social_security_tax": {
+          "column_1_total_corrected_amount": "",
+          "column_2_amount_originally_reported_or_previously_corrected": "",
+          "column_3_difference": ""
+        },
+        "line_34_qualified_health_plan_expenses_allocable_to_wages_reported_on_form_941_or_941ss_line_24": {
+          "column_1_total_corrected_amount": "",
+          "column_2_amount_originally_reported_or_previously_corrected": "",
+          "column_3_difference": ""
+        },
+        "line_35_qualified_sick_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021": {
+          "column_1_total_corrected_amount": "",
+          "column_2_amount_originally_reported_or_previously_corrected": "",
+          "column_3_difference": ""
+        },
+        "line_36_qualified_health_plan_expenses_allocable_to_qualified_sick_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021": {
+          "column_1_total_corrected_amount": "",
+          "column_2_amount_originally_reported_or_previously_corrected": "",
+          "column_3_difference": ""
+        },
+        "line_37_amounts_under_certain_collectively_bargained_agreements_allocable_to_qualified_sick_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021": {
+          "column_1_total_corrected_amount": "",
+          "column_2_amount_originally_reported_or_previously_corrected": "",
+          "column_3_difference": ""
+        },
+        "line_38_qualified_family_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021": {
+          "column_1_total_corrected_amount": "",
+          "column_2_amount_originally_reported_or_previously_corrected": "",
+          "column_3_difference": ""
+        },
+        "line_39_qualified_health_plan_expenses_allocable_to_qualified_family_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021": {
+          "column_1_total_corrected_amount": "",
+          "column_2_amount_originally_reported_or_previously_corrected": "",
+          "column_3_difference": ""
+        },
+        "line_40_amounts_under_certain_collectively_bargained_agreements_allocable_to_qualified_family_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021": {
+          "column_1_total_corrected_amount": "",
+          "column_2_amount_originally_reported_or_previously_corrected": "",
+          "column_3_difference": ""
+        }
+      }
+    }
+  },
+  "field_count": 31,
+  "non_null_count": 4
+}

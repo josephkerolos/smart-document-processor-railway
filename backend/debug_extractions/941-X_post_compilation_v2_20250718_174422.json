@@ -1,0 +1,327 @@
+{
+  "stage": "post_compilation_v2",
+  "schema": "941-X",
+  "timestamp": "20250718_174422",
+  "data": {
+    "formMetadata": null,
+    "correctionType": {
+      "isAdjustedReturn": false,
+      "isClaimForRefund": true
+    },
+    "employerInfo": {
+      "ein": "35-1927009",
+      "name": "AIR TO GROUND SERVICES INC",
+      "tradeName": "",
+      "address": {
+        "street": "3401 FERN VALLEY ROAD",
+        "city": "LOUISVILLE",
+        "state": "KY",
+        "zipCode": "40213",
+        "foreignCountry": null,
+        "foreignProvince": null,
+        "foreignPostalCode": null
+      }
+    },
+    "quarterBeingCorrected": {
+      "quarter": "4",
+      "year": "2020"
+    },
+    "dateErrorDiscovered": "2024-02-27",
+    "part2Certifications": null,
+    "part3Corrections": {
+      "line1": {
+        "numberOfEmployees": {
+          "correctedAmount": 0,
+          "originalAmount": 0,
+          "difference": 0
+        }
+      },
+      "line2": {
+        "wagesTipsCompensation": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        }
+      },
+      "line3": {
+        "federalIncomeTaxWithheld": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        }
+      },
+      "line5": {
+        "taxableSocialSecurityWages": {
+          "wages": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "tax": null
+        }
+      },
+      "line6": {
+        "qualifiedSickLeaveWages": {
+          "wages": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "tax": null
+        }
+      },
+      "line7": {
+        "qualifiedFamilyLeaveWages": {
+          "wages": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "tax": null
+        }
+      },
+      "line8": {
+        "taxableSocialSecurityTips": {
+          "tips": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "tax": null
+        }
+      },
+      "line9": {
+        "taxableMedicareWagesAndTips": {
+          "wagesAndTips": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "tax": null
+        }
+      },
+      "line10": {
+        "additionalMedicareWagesAndTips": {
+          "wagesAndTips": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "tax": null
+        }
+      },
+      "totalSocialSecurityAndMedicareTaxes": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "section3121qTax": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "totalTaxesBeforeAdjustments": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "currentQuarterAdjustments": {
+        "fractionsOfCents": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        },
+        "sickPay": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        },
+        "tipsAndGroupTermLife": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        }
+      },
+      "totalTaxesAfterAdjustments": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "nonrefundableCredits": {
+        "researchPayrollTaxCredit": {
+          "correctedAmount": 85015.67,
+          "originalAmount": 0.0,
+          "difference": 85016.67
+        },
+        "nonrefundableSickLeave": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        },
+        "nonrefundableEmployeeRetention": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        },
+        "nonrefundableFamilyLeave": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        },
+        "cobraPremiumAssistance": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        }
+      },
+      "totalNonrefundableCredits": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "totalTaxesAfterCredits": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": -85015.67
+      },
+      "totalDeposits": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "refundableCredits": {
+        "refundableSickLeave": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        },
+        "refundableEmployeeRetention": {
+          "correctedAmount": 295976.06,
+          "originalAmount": 0.0,
+          "difference": 295976.06
+        },
+        "refundableFamilyLeave": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        },
+        "refundableCobraPremiumAssistance": null
+      },
+      "totalRefundableCredits": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "totalDepositsAndRefundableCredits": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": -380991.73
+      },
+      "advancesFromForm7200": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "totalDepositsCreditsLessAdvances": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": -380991.73
+      },
+      "balanceDue": null,
+      "overpayment": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": -295976.06,
+        "applyToNextReturn": false,
+        "sendRefund": true
+      }
+    },
+    "part4Explanations": {
+      "corrections": [],
+      "detailedExplanation": "Amending 941-X return to apply for ERC Credits. Please send the refund check to address on file:\nAIR TO GROUND SERVICES INC\n3401 FERN VALLEY ROAD\nLOUISVILLE KY 40213\nUnder 26 U.S.C. \u00a7 3134(c)(2)(A)(ii)(I), this business qualifies as partially suspended during calendar quarters in 2020 and 2021 due to orders from governmental authorities limiting commerce, travel, or group meetings due to the coronavirus disease 2019 (COVID-19)"
+    },
+    "part5Signature": {
+      "signature": {
+        "name": "Roger W. Graham",
+        "title": "President /CEO",
+        "date": "2024-02-27",
+        "phone": "(502)966-0364",
+        "bestTimeToCall": null
+      },
+      "paidPreparer": {
+        "isSelfEmployed": false,
+        "name": "Samuel Shu",
+        "ptin": "P03113993",
+        "signature": null,
+        "date": "2024-01-16",
+        "firmName": "Pinnacle Minds, Inc.",
+        "firmEIN": "27-0133034",
+        "address": "350 N Lantana St. Suite #229",
+        "phone": "805-836-9009",
+        "city": "Camarillo",
+        "state": "CA",
+        "zipCode": "93010"
+      }
+    },
+    "supportingStatements": {
+      "qualifiedHealthPlanExpenses": {
+        "sickLeaveBeforeApril": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        },
+        "familyLeaveBeforeApril": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        }
+      },
+      "employeeRetentionCredit": {
+        "qualifiedWages": {
+          "correctedAmount": 761983.46,
+          "originalAmount": 0.0,
+          "difference": 761983.46
+        },
+        "qualifiedHealthPlanExpenses": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        }
+      },
+      "sickLeaveAfterMarch": {
+        "qualifiedWages": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        },
+        "qualifiedHealthPlanExpenses": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        },
+        "collectivelyBargainedWages": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        }
+      },
+      "familyLeaveAfterMarch": {
+        "qualifiedWages": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        },
+        "qualifiedHealthPlanExpenses": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        },
+        "collectivelyBargainedWages": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        }
+      }
+    }
+  }
+}

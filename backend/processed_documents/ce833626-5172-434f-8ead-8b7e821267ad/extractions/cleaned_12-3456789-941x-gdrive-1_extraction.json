@@ -1,0 +1,252 @@
+{
+  "formMetadata": {
+    "formNumber": "941-X"
+  },
+  "correctionType": {
+    "isAdjustedReturn": false,
+    "isClaimForRefund": true
+  },
+  "employerInfo": {
+    "ein": "45-4202824",
+    "name": "Absolute Lawn and Landscape Management, LLC",
+    "tradeName": "",
+    "address": {
+      "street": "2230 Pierce Road",
+      "city": "Phenix City",
+      "state": "AL",
+      "zipCode": "36867",
+      "foreignCountry": null,
+      "foreignProvince": null,
+      "foreignPostalCode": null
+    }
+  },
+  "quarterBeingCorrected": {
+    "quarter": "2",
+    "year": "2020"
+  },
+  "dateErrorDiscovered": null,
+  "part2Certifications": {
+    "allCorrectionsListed": true,
+    "consentFromEmployees": false
+  },
+  "part3Corrections": {
+    "line6": {
+      "qualifiedSickLeaveWages": {
+        "wages": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        }
+      }
+    },
+    "line7": {
+      "qualifiedFamilyLeaveWages": {
+        "wages": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        }
+      }
+    },
+    "line8": {
+      "taxableSocialSecurityTips": {
+        "tips": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        }
+      }
+    },
+    "line9": {
+      "taxableMedicareWagesAndTips": {
+        "wagesAndTips": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        }
+      }
+    },
+    "line10": {
+      "additionalMedicareWagesAndTips": {
+        "wagesAndTips": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        }
+      }
+    },
+    "totalSocialSecurityAndMedicareTaxes": {
+      "correctedAmount": 0.0,
+      "originalAmount": 0.0,
+      "difference": 0.0
+    },
+    "section3121qTax": {
+      "correctedAmount": 0.0,
+      "originalAmount": 0.0,
+      "difference": 0.0
+    },
+    "totalTaxesBeforeAdjustments": {
+      "correctedAmount": 0.0,
+      "originalAmount": 0.0,
+      "difference": 0.0
+    },
+    "currentQuarterAdjustments": {
+      "fractionsOfCents": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "sickPay": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "tipsAndGroupTermLife": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      }
+    },
+    "totalTaxesAfterAdjustments": {
+      "correctedAmount": 0.0,
+      "originalAmount": 0.0,
+      "difference": 0.0
+    },
+    "nonrefundableCredits": {
+      "researchPayrollTaxCredit": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "nonrefundableSickLeave": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "nonrefundableEmployeeRetention": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "nonrefundableFamilyLeave": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "cobraPremiumAssistance": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      }
+    },
+    "totalNonrefundableCredits": {
+      "correctedAmount": 0.0,
+      "originalAmount": 0.0,
+      "difference": 0.0
+    },
+    "totalTaxesAfterCredits": {
+      "correctedAmount": 0.0,
+      "originalAmount": 0.0,
+      "difference": 0.0
+    },
+    "totalDeposits": {
+      "correctedAmount": 0.0,
+      "originalAmount": 0.0,
+      "difference": 0.0
+    },
+    "refundableCredits": {
+      "refundableSickLeave": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "refundableEmployeeRetention": {
+        "correctedAmount": 5107.23,
+        "originalAmount": 0.0,
+        "difference": 5107.23
+      },
+      "refundableFamilyLeave": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "refundableCobraPremiumAssistance": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      }
+    },
+    "totalRefundableCredits": {
+      "correctedAmount": 5107.23,
+      "originalAmount": 0.0,
+      "difference": 5107.23
+    },
+    "totalDepositsAndRefundableCredits": {
+      "correctedAmount": 0.0,
+      "originalAmount": 0.0,
+      "difference": 0.0
+    },
+    "advancesFromForm7200": {
+      "correctedAmount": 0.0,
+      "originalAmount": 0.0,
+      "difference": 0.0
+    },
+    "totalDepositsCreditsLessAdvances": {
+      "correctedAmount": 10214.46,
+      "originalAmount": 0.0,
+      "difference": 10214.46
+    },
+    "balanceDue": {
+      "correctedAmount": 0.0,
+      "originalAmount": 0.0,
+      "difference": 0.0
+    },
+    "overpayment": {
+      "correctedAmount": 0.0,
+      "originalAmount": 0.0,
+      "difference": 0.0,
+      "applyToNextReturn": false,
+      "sendRefund": false
+    }
+  },
+  "part4Explanations": {
+    "corrections": [],
+    "detailedExplanation": "This is to apply for the employee retention credit for Q2 2020"
+  },
+  "part5Signature": {
+    "signature": {
+      "name": "Traci Warner",
+      "title": "owner",
+      "date": "2022-10-31",
+      "phone": "706-464-7517"
+    },
+    "paidPreparer": {
+      "isSelfEmployed": true,
+      "name": "Neveen A Mansi",
+      "ptin": "P03007969",
+      "signature": null,
+      "date": "2022-10-27",
+      "firmName": "Neveen A Mansi",
+      "firmEIN": "",
+      "address": "369 Paseo De Playa #109",
+      "phone": "(805) 836-9009",
+      "city": "Ventura",
+      "state": "CA",
+      "zipCode": "93001"
+    }
+  },
+  "_metadata": {
+    "filename": "cleaned_12-3456789-941x-gdrive-1.pdf",
+    "total_pages": 5,
+    "extracted_pages": 5,
+    "selected_schema": "941-X",
+    "quality_score": 25.196850393700785,
+    "populated_fields": 32,
+    "total_fields": 127,
+    "expected_nulls": 0,
+    "math_validation_passed": true,
+    "processing_time": 118.67835283279419,
+    "extraction_method": "direct_pdf",
+    "pages_converted_to_images": 0
+  }
+}

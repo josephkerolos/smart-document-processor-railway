@@ -1,0 +1,250 @@
+{
+  "employerInfo": {
+    "ein": "26-4370619",
+    "name": "GOM HOLDINGS, INC.",
+    "tradeName": "VOLTA GUARD-O-MATIC",
+    "address": {
+      "street": "6020 N 55th Ave",
+      "city": "Glendale",
+      "state": "AZ",
+      "zipCode": "85301"
+    }
+  },
+  "correctionInfo": {
+    "quarter": 2,
+    "year": "2021"
+  },
+  "correctionType": {
+    "isAdjustedReturn": true,
+    "checkbox_X": true
+  },
+  "lines": {
+    "line6": {
+      "correctedAmount": 0.0,
+      "originalAmount": 0.0,
+      "difference": 0.0
+    },
+    "line7": {
+      "correctedAmount": 0.0,
+      "originalAmount": 0.0,
+      "difference": 0.0
+    },
+    "line8": {
+      "correctedAmount": 0.0,
+      "originalAmount": 0.0,
+      "difference": 0.0
+    },
+    "line9": {
+      "correctedAmount": 0.0,
+      "originalAmount": 0.0,
+      "difference": 0.0
+    },
+    "line10": {
+      "correctedAmount": 0.0,
+      "originalAmount": 0.0,
+      "difference": 0.0
+    },
+    "line11": {
+      "correctedAmount": 0.0,
+      "originalAmount": 0.0,
+      "difference": 0.0
+    },
+    "line12": {
+      "correctedAmount": 0.0,
+      "originalAmount": 0.0,
+      "difference": 0.0
+    },
+    "line13": {
+      "correctedAmount": 0.0,
+      "originalAmount": 0.0,
+      "difference": 0.0
+    },
+    "line14": {
+      "correctedAmount": 0.0,
+      "originalAmount": 0.0,
+      "difference": 0.0
+    },
+    "line15": {
+      "correctedAmount": 0.0,
+      "originalAmount": 0.0,
+      "difference": 0.0
+    },
+    "line16": {
+      "correctedAmount": 0.0,
+      "originalAmount": 0.0,
+      "difference": 0.0
+    },
+    "line17": {
+      "correctedAmount": 0.0,
+      "originalAmount": 0.0,
+      "difference": 0.0
+    },
+    "line18a": {
+      "correctedAmount": 21475.05,
+      "originalAmount": 0.0,
+      "difference": 21475.05
+    },
+    "line18b": {
+      "correctedAmount": 0.0,
+      "originalAmount": 0.0,
+      "difference": 0.0
+    },
+    "line18c": {
+      "correctedAmount": 0.0,
+      "originalAmount": 0.0,
+      "difference": 0.0
+    },
+    "line18d": {
+      "correctedAmount": 0.0,
+      "originalAmount": 0.0,
+      "difference": 0.0
+    },
+    "line19": {
+      "correctedAmount": 0.0,
+      "originalAmount": 0.0,
+      "difference": 0.0
+    },
+    "line20": {
+      "correctedAmount": 0.0,
+      "originalAmount": 0.0,
+      "difference": 0.0
+    },
+    "line21": {
+      "correctedAmount": 0.0,
+      "originalAmount": 0.0,
+      "difference": 0.0
+    },
+    "line22": {
+      "correctedAmount": null,
+      "originalAmount": null,
+      "difference": null,
+      "taxCorrection": null
+    },
+    "line23": {
+      "taxCorrection": -21475.05
+    },
+    "line24": {
+      "correctedAmount": null,
+      "originalAmount": null,
+      "difference": null,
+      "taxCorrection": null
+    },
+    "line25": {
+      "correctedAmount": null,
+      "originalAmount": null,
+      "difference": null,
+      "taxCorrection": null
+    },
+    "line26a": {
+      "correctedAmount": 57656.94,
+      "originalAmount": 0.0,
+      "difference": 57656.94,
+      "taxCorrection": -57656.94
+    },
+    "line26b": {
+      "correctedAmount": null,
+      "originalAmount": null,
+      "difference": null,
+      "taxCorrection": null
+    },
+    "line26c": {
+      "correctedAmount": null,
+      "originalAmount": null,
+      "difference": null,
+      "taxCorrection": null
+    },
+    "line27": {
+      "taxCorrection": -79131.99
+    },
+    "line28": {
+      "correctedAmount": null,
+      "originalAmount": null,
+      "difference": null
+    },
+    "line29": {
+      "correctedAmount": null,
+      "originalAmount": null,
+      "difference": null
+    },
+    "line30": {
+      "correctedAmount": 113045.7,
+      "originalAmount": 0.0,
+      "difference": 113045.7
+    },
+    "line31a": {
+      "correctedAmount": null,
+      "originalAmount": null,
+      "difference": null
+    },
+    "line31b": false,
+    "line32": {
+      "correctedAmount": null,
+      "originalAmount": null,
+      "difference": null
+    }
+  },
+  "name": "GOM HOLDINGS, INC.",
+  "employerIdentificationNumber": "26-4370619",
+  "correctingQuarter": 2,
+  "correctingCalendarYear": 2021,
+  "refundableCredits": {
+    "refundableEmployeeRetention": {
+      "correctedAmount": 57656.94,
+      "originalAmount": 0.0,
+      "difference": 57656.94
+    }
+  },
+  "name_not_your_trade_name": "GOM HOLDINGS, INC.",
+  "employer_identification_number_ein": "26-4370619",
+  "correcting_quarter": "2",
+  "correcting_calendar_year_yyyy": "2021",
+  "part3_33a_column1_total_corrected_amount_for_all_employees": null,
+  "part3_33a_column2_amount_originally_reported_or_as_previously_corrected_for_all_employees": null,
+  "part3_33a_column3_difference": null,
+  "part3_33b_column1_total_corrected_amount_for_all_employees": null,
+  "part3_33b_column2_amount_originally_reported_or_as_previously_corrected_for_all_employees": null,
+  "part3_33b_column3_difference": null,
+  "part3_34_column1_total_corrected_amount_for_all_employees": null,
+  "part3_34_column2_amount_originally_reported_or_as_previously_corrected_for_all_employees": null,
+  "part3_34_column3_difference": null,
+  "part3_35_column1_total_corrected_amount_for_all_employees": null,
+  "part3_35_column2_amount_originally_reported_or_as_previously_corrected_for_all_employees": null,
+  "part3_35_column3_difference": null,
+  "part3_36_column1_total_corrected_amount_for_all_employees": null,
+  "part3_36_column2_amount_originally_reported_or_as_previously_corrected_for_all_employees": null,
+  "part3_36_column3_difference": null,
+  "part3_37_column1_total_corrected_amount_for_all_employees": null,
+  "part3_37_column2_amount_originally_reported_or_as_previously_corrected_for_all_employees": null,
+  "part3_37_column3_difference": null,
+  "part3_38_column1_total_corrected_amount_for_all_employees": null,
+  "part3_38_column2_amount_originally_reported_or_as_previously_corrected_for_all_employees": null,
+  "part3_38_column3_difference": null,
+  "part3_39_column1_total_corrected_amount_for_all_employees": null,
+  "part3_39_column2_amount_originally_reported_or_as_previously_corrected_for_all_employees": null,
+  "part3_39_column3_difference": null,
+  "part3_40_column1_total_corrected_amount_for_all_employees": null,
+  "part3_40_column2_amount_originally_reported_or_as_previously_corrected_for_all_employees": null,
+  "part3_40_column3_difference": null,
+  "name_not_trade_name": "GOM HOLDINGS, INC.",
+  "correcting_calendar_year": "2021",
+  "line_41_checkbox": true,
+  "line_42_checkbox": false,
+  "line_43_explanation": "This is to applly for the Employee Retention Credit (ERC) Q2 2021.\nQualified under Alternative Gross Receipts test as the business lost more than 20% of their revenue in comparison to the same\nquarter in 2019.",
+  "sign_your_name_here": null,
+  "print_your_name_here": "",
+  "print_your_title_here": "",
+  "date_signed": "",
+  "best_daytime_phone": "",
+  "check_if_self_employed": false,
+  "preparers_name": "Ryan Parr",
+  "preparers_signature": null,
+  "ptin": "P0312471",
+  "date_preparer_signed": "5/20/2024",
+  "firms_name_or_yours_if_self_employed": "Pinnacle Minds, Inc",
+  "preparer_ein": "27-0133034",
+  "preparer_phone": "(805) 836-9009",
+  "preparer_address": "350 N Lantana St Suite #229",
+  "preparer_city": "Camarillo",
+  "preparer_state": "CA",
+  "preparer_zip_code": "93010"
+}

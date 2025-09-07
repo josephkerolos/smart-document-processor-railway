@@ -1,0 +1,12 @@
+{
+  "page": 6,
+  "schema": "941-X",
+  "timestamp": "20250616_040020",
+  "extracted_data": {
+    "form_name": "Form 941-X",
+    "revision_date": "4-2022",
+    "page_number": 6
+  },
+  "field_count": 3,
+  "non_null_count": 3
+}

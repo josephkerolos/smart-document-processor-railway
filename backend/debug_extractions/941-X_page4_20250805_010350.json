@@ -1,0 +1,42 @@
+{
+  "page": 4,
+  "schema": "941-X",
+  "timestamp": "20250805_010350",
+  "extracted_data": {
+    "name_not_your_trade_name": "GOM HOLDINGS, INC.",
+    "employer_identification_number_ein": "26-4370619",
+    "correcting_quarter": "1",
+    "correcting_calendar_year_yyyy": "2021",
+    "part_3_continued": {
+      "qualified_wages_paid_march_13_through_march_31_2020_for_the_employee_retention_credit_33a_column_1": "",
+      "qualified_wages_paid_march_13_through_march_31_2020_for_the_employee_retention_credit_33a_column_2": "",
+      "qualified_wages_paid_march_13_through_march_31_2020_for_the_employee_retention_credit_33a_column_3": "",
+      "deferred_amount_of_the_employee_share_of_social_security_tax_included_on_form_941_or_941_ss_line_13b_33b_column_1": "",
+      "deferred_amount_of_the_employee_share_of_social_security_tax_included_on_form_941_or_941_ss_line_13b_33b_column_2": "",
+      "deferred_amount_of_the_employee_share_of_social_security_tax_included_on_form_941_or_941_ss_line_13b_33b_column_3": "",
+      "qualified_health_plan_expenses_allocable_to_wages_reported_on_form_941_or_941_ss_line_24_34_column_1": "",
+      "qualified_health_plan_expenses_allocable_to_wages_reported_on_form_941_or_941_ss_line_24_34_column_2": "",
+      "qualified_health_plan_expenses_allocable_to_wages_reported_on_form_941_or_941_ss_line_24_34_column_3": "",
+      "qualified_sick_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021_35_column_1": "",
+      "qualified_sick_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021_35_column_2": "",
+      "qualified_sick_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021_35_column_3": "",
+      "qualified_health_plan_expenses_allocable_to_qualified_sick_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021_36_column_1": "",
+      "qualified_health_plan_expenses_allocable_to_qualified_sick_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021_36_column_2": "",
+      "qualified_health_plan_expenses_allocable_to_qualified_sick_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021_36_column_3": "",
+      "amounts_under_certain_collectively_bargained_agreements_allocable_to_qualified_sick_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021_37_column_1": "",
+      "amounts_under_certain_collectively_bargained_agreements_allocable_to_qualified_sick_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021_37_column_2": "",
+      "amounts_under_certain_collectively_bargained_agreements_allocable_to_qualified_sick_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021_37_column_3": "",
+      "qualified_family_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021_38_column_1": "",
+      "qualified_family_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021_38_column_2": "",
+      "qualified_family_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021_38_column_3": "",
+      "qualified_health_plan_expenses_allocable_to_qualified_family_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021_39_column_1": "",
+      "qualified_health_plan_expenses_allocable_to_qualified_family_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021_39_column_2": "",
+      "qualified_health_plan_expenses_allocable_to_qualified_family_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021_39_column_3": "",
+      "amounts_under_certain_collectively_bargained_agreements_allocable_to_qualified_family_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021_40_column_1": "",
+      "amounts_under_certain_collectively_bargained_agreements_allocable_to_qualified_family_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021_40_column_2": "",
+      "amounts_under_certain_collectively_bargained_agreements_allocable_to_qualified_family_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021_40_column_3": ""
+    }
+  },
+  "field_count": 31,
+  "non_null_count": 4
+}

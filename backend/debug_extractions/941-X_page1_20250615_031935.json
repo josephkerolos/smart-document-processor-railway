@@ -1,0 +1,28 @@
+{
+  "page": 1,
+  "schema": "941-X",
+  "timestamp": "20250615_031935",
+  "extracted_data": {
+    "employerInfo": {
+      "ein": "46-0872603",
+      "name": "Omni Eye Care, Inc",
+      "tradeName": "",
+      "address": {
+        "street": "554 E San Bernadino Rd, Ste 102",
+        "city": "Covina",
+        "state": "CA",
+        "zipCode": "91723"
+      }
+    },
+    "correctionInfo": {
+      "quarter": 3,
+      "year": "2020"
+    },
+    "correctionType": {
+      "isAdjustedReturn": false,
+      "checkbox_X": true
+    }
+  },
+  "field_count": 11,
+  "non_null_count": 10
+}

@@ -1,0 +1,28 @@
+{
+  "page": 1,
+  "schema": "941-X",
+  "timestamp": "20250621_155727",
+  "extracted_data": {
+    "employerInfo": {
+      "ein": "52-0820181",
+      "name": "MIDWAY LUMBER CO, INC",
+      "tradeName": "",
+      "address": {
+        "street": "4400 NORTH POINT BLVD",
+        "city": "BALTIMORE",
+        "state": "MD",
+        "zipCode": "21219"
+      }
+    },
+    "correctionInfo": {
+      "quarter": 4,
+      "year": "2020"
+    },
+    "correctionType": {
+      "isAdjustedReturn": false,
+      "checkbox_X": true
+    }
+  },
+  "field_count": 11,
+  "non_null_count": 10
+}

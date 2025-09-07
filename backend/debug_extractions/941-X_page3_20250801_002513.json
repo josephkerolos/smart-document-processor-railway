@@ -1,0 +1,90 @@
+{
+  "page": 3,
+  "schema": "941-X",
+  "timestamp": "20250801_002513",
+  "extracted_data": {
+    "name": "GOM HOLDINGS, INC.",
+    "ein": "26-4370619",
+    "correctingQuarter": 1,
+    "correctingCalendarYear": 2021,
+    "refundableCredits": {
+      "refundableEmployeeRetention": {
+        "correctedAmount": 21418.64,
+        "originalAmount": 0.0,
+        "difference": 21418.64
+      }
+    },
+    "lines": {
+      "line22": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0,
+        "taxCorrection": 0.0
+      },
+      "line23": {
+        "taxCorrection": -28794.13
+      },
+      "line24": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0,
+        "taxCorrection": 0.0
+      },
+      "line25": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0,
+        "taxCorrection": 0.0
+      },
+      "line26a": {
+        "correctedAmount": 21418.64,
+        "originalAmount": 0.0,
+        "difference": 21418.64,
+        "taxCorrection": -21418.64
+      },
+      "line26b": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0,
+        "taxCorrection": 0.0
+      },
+      "line26c": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0,
+        "taxCorrection": 0.0
+      },
+      "line27": {
+        "taxCorrection": -50212.77
+      },
+      "line28": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "line29": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "line30": {
+        "correctedAmount": 71732.52,
+        "originalAmount": 0.0,
+        "difference": 71732.52
+      },
+      "line31a": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "line31b": false,
+      "line32": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      }
+    }
+  },
+  "field_count": 49,
+  "non_null_count": 49
+}

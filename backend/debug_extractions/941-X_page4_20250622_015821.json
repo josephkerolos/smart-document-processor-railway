@@ -1,0 +1,64 @@
+{
+  "page": 4,
+  "schema": "941-X",
+  "timestamp": "20250622_015821",
+  "extracted_data": {
+    "form_941x_page4": {
+      "header": {
+        "name_trade_name": "MIDWAY LUMBER CO, INC",
+        "ein": "52-0820181",
+        "correcting_quarter": "4",
+        "correcting_calendar_year": "2020"
+      },
+      "part3_continued": {
+        "line33a": {
+          "qualified_wages_paid_march_13_to_march_31_2020_erc_col1": "",
+          "qualified_wages_paid_march_13_to_march_31_2020_erc_col2": "",
+          "qualified_wages_paid_march_13_to_march_31_2020_erc_col3": ""
+        },
+        "line33b": {
+          "deferred_employee_share_ss_tax_col1": "",
+          "deferred_employee_share_ss_tax_col2": "",
+          "deferred_employee_share_ss_tax_col3": ""
+        },
+        "line34": {
+          "qualified_health_plan_expenses_wages_reported_col1": "",
+          "qualified_health_plan_expenses_wages_reported_col2": "",
+          "qualified_health_plan_expenses_wages_reported_col3": ""
+        },
+        "line35": {
+          "qualified_sick_leave_wages_after_march_31_2021_col1": "",
+          "qualified_sick_leave_wages_after_march_31_2021_col2": "",
+          "qualified_sick_leave_wages_after_march_31_2021_col3": ""
+        },
+        "line36": {
+          "qualified_health_plan_expenses_sick_leave_wages_after_march_31_2021_col1": "",
+          "qualified_health_plan_expenses_sick_leave_wages_after_march_31_2021_col2": "",
+          "qualified_health_plan_expenses_sick_leave_wages_after_march_31_2021_col3": ""
+        },
+        "line37": {
+          "amounts_collectively_bargained_sick_leave_wages_after_march_31_2021_col1": "",
+          "amounts_collectively_bargained_sick_leave_wages_after_march_31_2021_col2": "",
+          "amounts_collectively_bargained_sick_leave_wages_after_march_31_2021_col3": ""
+        },
+        "line38": {
+          "qualified_family_leave_wages_after_march_31_2021_col1": "",
+          "qualified_family_leave_wages_after_march_31_2021_col2": "",
+          "qualified_family_leave_wages_after_march_31_2021_col3": ""
+        },
+        "line39": {
+          "qualified_health_plan_expenses_family_leave_wages_after_march_31_2021_col1": "",
+          "qualified_health_plan_expenses_family_leave_wages_after_march_31_2021_col2": "",
+          "qualified_health_plan_expenses_family_leave_wages_after_march_31_2021_col3": ""
+        },
+        "line40": {
+          "amounts_collectively_bargained_family_leave_wages_after_march_31_2021_col1": "",
+          "amounts_collectively_bargained_family_leave_wages_after_march_31_2021_col2": "",
+          "amounts_collectively_bargained_family_leave_wages_after_march_31_2021_col3": ""
+        }
+      }
+    }
+  },
+  "field_count": 31,
+  "non_null_count": 4
+}

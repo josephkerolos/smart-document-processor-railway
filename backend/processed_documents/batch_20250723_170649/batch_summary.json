@@ -1,0 +1,18 @@
+{
+  "batch_id": "8f2f3069-69de-4899-be6f-9ff5040be5f5",
+  "timestamp": "2025-07-23T17:06:49.410429",
+  "total_files": 3,
+  "successful_extractions": 3,
+  "company_names": [],
+  "form_types": [],
+  "session_ids": [
+    "8e9ccf15-3c9b-45d6-b233-b113745b31ac",
+    "f5100f21-1de6-43f4-8fc1-d607794ff295",
+    "42590319-8667-44b7-9d31-de0093d05f21"
+  ],
+  "files": [
+    "Unknown",
+    "Unknown",
+    "Unknown"
+  ]
+}

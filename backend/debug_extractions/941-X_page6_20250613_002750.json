@@ -1,0 +1,77 @@
+{
+  "page": 6,
+  "schema": "941-X",
+  "timestamp": "20250613_002750",
+  "extracted_data": {
+    "form_name": "Form 941-X",
+    "revision_date": "4-2022",
+    "page_number": 6,
+    "instructions_or_additional_data": {
+      "title": "Form 941-X: Which process should you use?",
+      "general_guidance": "Unless otherwise specified in the separate instructions, an underreported employment tax credit or social security tax deferral should be treated like an overreported tax amount. An overreported employment tax credit or social security tax deferral should be treated like an underreported tax amount. For more information, including which process to select on lines 1 and 2, see Correcting an employment tax credit or social security tax deferral in the separate instructions.",
+      "underreported_tax_amounts_only": {
+        "type_of_errors": "Underreported tax amounts ONLY",
+        "process_description": "Use the adjustment process to correct underreported tax amounts.",
+        "steps": [
+          "Check the box on line 1.",
+          "Pay the amount you owe from line 27 by the time you file Form 941-X."
+        ]
+      },
+      "overreported_tax_amounts_only": {
+        "type_of_errors": "Overreported tax amounts ONLY",
+        "process_depends_on_filing_time": "The process you use depends on when you file Form 941-X.",
+        "more_than_90_days_before_expiration": {
+          "condition": "If you're filing Form 941-X MORE THAN 90 days before the period of limitations on credit or refund for Form 941 or Form 941-SS expires...",
+          "action": "Choose either the adjustment process or the claim process to correct the overreported tax amounts.",
+          "adjustment_process_option": {
+            "description": "Choose the adjustment process if you want the amount shown on line 27 credited to your Form 941, Form 941-SS, or Form 944 for the period in which you file Form 941-X.",
+            "step": "Check the box on line 1."
+          },
+          "or_claim_process_option": {
+            "description": "OR Choose the claim process if you want the amount shown on line 27 refunded to you or abated.",
+            "step": "Check the box on line 2."
+          }
+        },
+        "within_90_days_of_expiration": {
+          "condition": "If you're filing Form 941-X WITHIN 90 days of the expiration of the period of limitations on credit or refund for Form 941 or Form 941-SS...",
+          "action": "You must use the claim process to correct the overreported tax amounts.",
+          "step": "Check the box on line 2."
+        }
+      },
+      "both_underreported_and_overreported_tax_amounts": {
+        "type_of_errors": "BOTH underreported and overreported tax amounts",
+        "process_depends_on_filing_time": "The process you use depends on when you file Form 941-X.",
+        "more_than_90_days_before_expiration": {
+          "condition": "If you're filing Form 941-X MORE THAN 90 days before the period of limitations on credit or refund for Form 941 or Form 941-SS expires...",
+          "action": "Choose either the adjustment process or both the adjustment process and the claim process when you correct both underreported and overreported tax amounts.",
+          "adjustment_process_option": {
+            "description": "Choose the adjustment process if combining your underreported tax amounts and overreported tax amounts results in a balance due or creates a credit that you want applied to Form 941, Form 941-SS, or Form 944.",
+            "steps": [
+              "File one Form 941-X, and",
+              "Check the box on line 1 and follow the instructions on line 27."
+            ]
+          },
+          "or_both_processes_option": {
+            "description": "OR Choose both the adjustment process and the claim process if you want the overreported tax amount refunded to you or abated.",
+            "file_two_separate_forms": true,
+            "steps": [
+              "1. For the adjustment process, file one Form 941-X to correct the underreported tax amounts. Check the box on line 1. Pay the amount you owe from line 27 by the time you file Form 941-X.",
+              "2. For the claim process, file a second Form 941-X to correct the overreported tax amounts. Check the box on line 2."
+            ]
+          }
+        },
+        "within_90_days_of_expiration": {
+          "condition": "If you're filing Form 941-X WITHIN 90 days of the expiration of the period of limitations on credit or refund for Form 941 or Form 941-SS...",
+          "action": "You must use both the adjustment process and the claim process.",
+          "file_two_separate_forms": true,
+          "steps": [
+            "1. For the adjustment process, file one Form 941-X to correct the underreported tax amounts. Check the box on line 1. Pay the amount you owe from line 27 by the time you file Form 941-X.",
+            "2. For the claim process, file a second Form 941-X to correct the overreported tax amounts. Check the box on line 2."
+          ]
+        }
+      }
+    }
+  },
+  "field_count": 32,
+  "non_null_count": 32
+}

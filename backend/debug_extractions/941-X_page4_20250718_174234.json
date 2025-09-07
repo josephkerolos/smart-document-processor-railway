@@ -1,0 +1,64 @@
+{
+  "page": 4,
+  "schema": "941-X",
+  "timestamp": "20250718_174234",
+  "extracted_data": {
+    "form_941x": {
+      "header": {
+        "name_not_trade_name": "AIR TO GROUND SERVICES INC",
+        "employer_identification_number_ein": "35-1927009",
+        "correcting_quarter": "4",
+        "correcting_calendar_year_yyyy": "2020"
+      },
+      "part3": {
+        "line33a": {
+          "col1_total_corrected_amount": "0.00",
+          "col2_amount_originally_reported": "0.00",
+          "col3_difference": "0.00"
+        },
+        "line33b": {
+          "col1_total_corrected_amount": "0.00",
+          "col2_amount_originally_reported": "0.00",
+          "col3_difference": "0.00"
+        },
+        "line34": {
+          "col1_total_corrected_amount": "0.00",
+          "col2_amount_originally_reported": "0.00",
+          "col3_difference": "0.00"
+        },
+        "line35": {
+          "col1_total_corrected_amount": "0.00",
+          "col2_amount_originally_reported": "0.00",
+          "col3_difference": "0.00"
+        },
+        "line36": {
+          "col1_total_corrected_amount": "0.00",
+          "col2_amount_originally_reported": "0.00",
+          "col3_difference": "0.00"
+        },
+        "line37": {
+          "col1_total_corrected_amount": "0.00",
+          "col2_amount_originally_reported": "0.00",
+          "col3_difference": "0.00"
+        },
+        "line38": {
+          "col1_total_corrected_amount": "0.00",
+          "col2_amount_originally_reported": "0.00",
+          "col3_difference": "0.00"
+        },
+        "line39": {
+          "col1_total_corrected_amount": "0.00",
+          "col2_amount_originally_reported": "0.00",
+          "col3_difference": "0.00"
+        },
+        "line40": {
+          "col1_total_corrected_amount": "0.00",
+          "col2_amount_originally_reported": "0.00",
+          "col3_difference": "0.00"
+        }
+      }
+    }
+  },
+  "field_count": 31,
+  "non_null_count": 31
+}

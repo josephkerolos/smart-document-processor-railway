@@ -1,0 +1,85 @@
+{
+  "page": 3,
+  "schema": "941-X",
+  "timestamp": "20250613_031642",
+  "extracted_data": {
+    "nameOfTradeName": "DAVID ANTHONY SALON LLC",
+    "employerIdentificationNumber": "73-1725071",
+    "correctingQuarter": "1",
+    "correctingCalendarYear": "2021",
+    "refundableCredits": {
+      "refundableEmployeeRetention": {
+        "correctedAmount": 14052.88,
+        "originalAmount": 0.0,
+        "difference": 14052.88,
+        "taxCorrection": -14052.88
+      }
+    },
+    "lines": {
+      "line22": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null,
+        "taxCorrection": null
+      },
+      "line23": {
+        "taxCorrection": -4210.94
+      },
+      "line24": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null,
+        "taxCorrection": null
+      },
+      "line25": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null,
+        "taxCorrection": null
+      },
+      "line26b": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null,
+        "taxCorrection": null
+      },
+      "line26c": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null,
+        "taxCorrection": null
+      },
+      "line27": {
+        "taxCorrection": -18263.82
+      },
+      "line28": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null
+      },
+      "line29": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null
+      },
+      "line30": {
+        "correctedAmount": 26091.18,
+        "originalAmount": 0.0,
+        "difference": 26091.18
+      },
+      "line31a": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null
+      },
+      "line31bCheckbox": false,
+      "line32": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null
+      }
+    }
+  },
+  "field_count": 46,
+  "non_null_count": 14
+}

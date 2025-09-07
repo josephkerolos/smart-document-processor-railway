@@ -1,0 +1,60 @@
+{
+  "page": 4,
+  "schema": "941-X",
+  "timestamp": "20250720_124319",
+  "extracted_data": {
+    "name_not_trade_name": "Absolute Lawn and Landscape Management, LLC",
+    "employer_identification_number_ein": "45-4202824",
+    "correcting_quarter": "2",
+    "correcting_calendar_year": "2020",
+    "part_3": {
+      "line_33a": {
+        "total_corrected_amount_col_1": null,
+        "amount_originally_reported_col_2": null,
+        "difference_col_3": null
+      },
+      "line_33b": {
+        "total_corrected_amount_col_1": null,
+        "amount_originally_reported_col_2": null,
+        "difference_col_3": null
+      },
+      "line_34": {
+        "total_corrected_amount_col_1": null,
+        "amount_originally_reported_col_2": null,
+        "difference_col_3": null
+      },
+      "line_35": {
+        "total_corrected_amount_col_1": null,
+        "amount_originally_reported_col_2": null,
+        "difference_col_3": null
+      },
+      "line_36": {
+        "total_corrected_amount_col_1": null,
+        "amount_originally_reported_col_2": null,
+        "difference_col_3": null
+      },
+      "line_37": {
+        "total_corrected_amount_col_1": null,
+        "amount_originally_reported_col_2": null,
+        "difference_col_3": null
+      },
+      "line_38": {
+        "total_corrected_amount_col_1": null,
+        "amount_originally_reported_col_2": null,
+        "difference_col_3": null
+      },
+      "line_39": {
+        "total_corrected_amount_col_1": null,
+        "amount_originally_reported_col_2": null,
+        "difference_col_3": null
+      },
+      "line_40": {
+        "total_corrected_amount_col_1": null,
+        "amount_originally_reported_col_2": null,
+        "difference_col_3": null
+      }
+    }
+  },
+  "field_count": 31,
+  "non_null_count": 4
+}

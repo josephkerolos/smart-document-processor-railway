@@ -1,0 +1,104 @@
+{
+  "page": 3,
+  "schema": "941-X",
+  "timestamp": "20250616_040027",
+  "extracted_data": {
+    "name": "Absolute Lawn and Landscape Management, LLC",
+    "ein": "45-4202824",
+    "correctingQuarter": "4",
+    "correctingCalendarYear": "2020",
+    "part3": {
+      "line22": {
+        "column1": null,
+        "column2": null,
+        "column3": null,
+        "column4": null
+      },
+      "line23": {
+        "column4": null
+      },
+      "line24": {
+        "column1": null,
+        "column2": null,
+        "column3": null,
+        "column4": null
+      },
+      "line25": {
+        "column1": null,
+        "column2": null,
+        "column3": null,
+        "column4": null
+      },
+      "line26a": {
+        "column1": 11251.54,
+        "column2": 0.0,
+        "column3": 11251.54,
+        "column4": -11251.54
+      },
+      "line26b": {
+        "column1": null,
+        "column2": null,
+        "column3": null,
+        "column4": null
+      },
+      "line26c": {
+        "column1": null,
+        "column2": null,
+        "column3": null,
+        "column4": null
+      },
+      "line27": {
+        "column4": -11251.54
+      },
+      "line28": {
+        "column1": null,
+        "column2": null,
+        "column3": null
+      },
+      "line29": {
+        "column1": null,
+        "column2": null,
+        "column3": null
+      },
+      "line30": {
+        "column1": 22503.08,
+        "column2": 0.0,
+        "column3": 22503.08
+      },
+      "line31a": {
+        "column1": null,
+        "column2": null,
+        "column3": null
+      },
+      "line31b": {
+        "checked": false
+      },
+      "line32": {
+        "column1": null,
+        "column2": null,
+        "column3": null
+      }
+    },
+    "refundableCredits": {
+      "refundableEmployeeRetention": {
+        "correctedAmount": 11251.54,
+        "originalAmount": 0.0,
+        "difference": 11251.54
+      }
+    },
+    "lines": {
+      "line30": {
+        "correctedAmount": 22503.08,
+        "originalAmount": 0.0,
+        "difference": 22503.08
+      },
+      "line31a": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null
+      }
+    }
+  },
+  "field_count": 55,
+  "non_null_count": 19
+}

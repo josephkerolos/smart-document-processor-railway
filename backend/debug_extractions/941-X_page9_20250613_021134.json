@@ -1,0 +1,61 @@
+{
+  "page": 9,
+  "schema": "941-X",
+  "timestamp": "20250613_021134",
+  "extracted_data": {
+    "name_not_trade_name": "DAVID ANTHONY SALON LLC",
+    "employer_identification_number_ein": "73-1725071",
+    "correcting_quarter": "4",
+    "correcting_calendar_year_yyyy": "2020",
+    "part3": {
+      "line33a": {
+        "column1_total_corrected_amount": null,
+        "column2_amount_originally_reported_or_previously_corrected": null,
+        "column3_difference": null
+      },
+      "line33b": {
+        "column1_total_corrected_amount": null,
+        "column2_amount_originally_reported_or_previously_corrected": null,
+        "column3_difference": null
+      },
+      "line34": {
+        "column1_total_corrected_amount": null,
+        "column2_amount_originally_reported_or_previously_corrected": null,
+        "column3_difference": null
+      },
+      "line35": {
+        "column1_total_corrected_amount": null,
+        "column2_amount_originally_reported_or_previously_corrected": null,
+        "column3_difference": null
+      },
+      "line36": {
+        "column1_total_corrected_amount": null,
+        "column2_amount_originally_reported_or_previously_corrected": null,
+        "column3_difference": null
+      },
+      "line37": {
+        "column1_total_corrected_amount": null,
+        "column2_amount_originally_reported_or_previously_corrected": null,
+        "column3_difference": null
+      },
+      "line38": {
+        "column1_total_corrected_amount": null,
+        "column2_amount_originally_reported_or_previously_corrected": null,
+        "column3_difference": null
+      },
+      "line39": {
+        "column1_total_corrected_amount": null,
+        "column2_amount_originally_reported_or_previously_corrected": null,
+        "column3_difference": null
+      },
+      "line40": {
+        "column1_total_corrected_amount": null,
+        "column2_amount_originally_reported_or_previously_corrected": null,
+        "column3_difference": null
+      }
+    },
+    "page_number": "4"
+  },
+  "field_count": 32,
+  "non_null_count": 5
+}

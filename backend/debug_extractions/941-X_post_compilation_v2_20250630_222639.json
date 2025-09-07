@@ -1,0 +1,313 @@
+{
+  "stage": "post_compilation_v2",
+  "schema": "941-X",
+  "timestamp": "20250630_222639",
+  "data": {
+    "formMetadata": null,
+    "correctionType": {
+      "isAdjustedReturn": false,
+      "isClaimForRefund": true
+    },
+    "employerInfo": {
+      "ein": "73-1725071",
+      "name": "DAVID ANTHONY SALON LLC",
+      "tradeName": "",
+      "address": {
+        "street": "4025 E CHANDLER BLVD STE 9",
+        "city": "PHOENIX",
+        "state": "AZ",
+        "zipCode": "85048",
+        "foreignCountry": null,
+        "foreignProvince": null,
+        "foreignPostalCode": null
+      }
+    },
+    "quarterBeingCorrected": {
+      "quarter": "1",
+      "year": "2021"
+    },
+    "dateErrorDiscovered": "05/23/2023",
+    "part2Certifications": {
+      "allCorrectionsListed": true,
+      "consentFromEmployees": false,
+      "filedOriginal941": null,
+      "overdueReturn": null
+    },
+    "part3Corrections": {
+      "line1": {
+        "numberOfEmployees": {
+          "correctedAmount": 0,
+          "originalAmount": 0,
+          "difference": 0
+        }
+      },
+      "line2": {
+        "wagesTipsCompensation": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        }
+      },
+      "line3": {
+        "federalIncomeTaxWithheld": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        }
+      },
+      "line5": {
+        "taxableSocialSecurityWages": {
+          "wages": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "tax": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          }
+        }
+      },
+      "line6": {
+        "qualifiedSickLeaveWages": {
+          "wages": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "tax": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          }
+        }
+      },
+      "line7": {
+        "qualifiedFamilyLeaveWages": {
+          "wages": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "tax": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          }
+        }
+      },
+      "line8": {
+        "taxableSocialSecurityTips": {
+          "tips": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "tax": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          }
+        }
+      },
+      "line9": {
+        "taxableMedicareWagesAndTips": {
+          "wagesAndTips": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "tax": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          }
+        }
+      },
+      "line10": {
+        "additionalMedicareWagesAndTips": {
+          "wagesAndTips": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "tax": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          }
+        }
+      },
+      "totalSocialSecurityAndMedicareTaxes": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "section3121qTax": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "totalTaxesBeforeAdjustments": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "currentQuarterAdjustments": {
+        "fractionsOfCents": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        },
+        "sickPay": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        },
+        "tipsAndGroupTermLife": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        }
+      },
+      "totalTaxesAfterAdjustments": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "nonrefundableCredits": {
+        "researchPayrollTaxCredit": null,
+        "nonrefundableSickLeave": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        },
+        "nonrefundableEmployeeRetention": {
+          "correctedAmount": 4210.94,
+          "originalAmount": 0.0,
+          "difference": 4210.94
+        },
+        "nonrefundableFamilyLeave": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        },
+        "cobraPremiumAssistance": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        }
+      },
+      "totalNonrefundableCredits": {
+        "correctedAmount": 4210.94,
+        "originalAmount": 0.0,
+        "difference": 4210.94
+      },
+      "totalTaxesAfterCredits": {
+        "correctedAmount": -4210.94,
+        "originalAmount": 0.0,
+        "difference": -4210.94
+      },
+      "totalDeposits": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "refundableCredits": {
+        "refundableSickLeave": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        },
+        "refundableEmployeeRetention": {
+          "correctedAmount": 14052.88,
+          "originalAmount": 0.0,
+          "difference": 14052.88
+        },
+        "refundableFamilyLeave": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        },
+        "refundableCobraPremiumAssistance": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        }
+      },
+      "totalRefundableCredits": {
+        "correctedAmount": 14052.88,
+        "originalAmount": 0.0,
+        "difference": 14052.88
+      },
+      "totalDepositsAndRefundableCredits": {
+        "correctedAmount": 14052.88,
+        "originalAmount": 0.0,
+        "difference": 14052.88
+      },
+      "advancesFromForm7200": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "totalDepositsCreditsLessAdvances": {
+        "correctedAmount": 14052.88,
+        "originalAmount": 0.0,
+        "difference": 14052.88
+      },
+      "balanceDue": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "overpayment": {
+        "correctedAmount": 18263.82,
+        "originalAmount": 0.0,
+        "difference": 18263.82,
+        "applyToNextReturn": false,
+        "sendRefund": true
+      }
+    },
+    "part4Explanations": {
+      "corrections": [],
+      "detailedExplanation": "This is to apply for the Employee Retention Credit for Q1 2021"
+    },
+    "part5Signature": {
+      "signature": {
+        "name": null,
+        "title": null,
+        "date": null,
+        "phone": null,
+        "bestTimeToCall": null
+      },
+      "paidPreparer": {
+        "isSelfEmployed": false,
+        "name": "Zachary Ormsby",
+        "ptin": "P02158084",
+        "signature": null,
+        "date": "05/23/2023",
+        "firmName": "Pinnacle Minds, Inc.",
+        "firmEIN": "27-0133034",
+        "address": "350 N Lantana St Suite #229, Camarillo, CA 93010",
+        "phone": "(805) 836-9009",
+        "city": "Camarillo",
+        "state": "CA",
+        "zipCode": "93010"
+      }
+    },
+    "supportingStatements": {
+      "qualifiedHealthPlanExpenses": null,
+      "employeeRetentionCredit": {
+        "qualifiedWages": {
+          "correctedAmount": 26091.18,
+          "originalAmount": 0.0,
+          "difference": 26091.18
+        },
+        "qualifiedHealthPlanExpenses": null
+      },
+      "sickLeaveAfterMarch": null,
+      "familyLeaveAfterMarch": null
+    }
+  }
+}

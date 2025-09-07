@@ -1,0 +1,104 @@
+{
+  "page": 3,
+  "schema": "941-X",
+  "timestamp": "20250613_201238",
+  "extracted_data": {
+    "form941x_page3": {
+      "name": "DAVID ANTHONY SALON LLC",
+      "employerIdentificationNumber": "73-1725071",
+      "correctingQuarter": 1,
+      "correctingCalendarYear": 2021,
+      "part3": {
+        "line22": {
+          "column1": null,
+          "column2": null,
+          "column3": null,
+          "column4": null
+        },
+        "line23": {
+          "column4": -4210.94
+        },
+        "line24": {
+          "column1": null,
+          "column2": null,
+          "column3": null,
+          "column4": null
+        },
+        "line25": {
+          "column1": null,
+          "column2": null,
+          "column3": null,
+          "column4": null
+        },
+        "line26a": {
+          "column1": 14052.88,
+          "column2": 0.0,
+          "column3": 14052.88,
+          "column4": -14052.88
+        },
+        "line26b": {
+          "column1": null,
+          "column2": null,
+          "column3": null,
+          "column4": null
+        },
+        "line26c": {
+          "column1": null,
+          "column2": null,
+          "column3": null,
+          "column4": null
+        },
+        "line27": {
+          "column4": -18263.82
+        },
+        "line28": {
+          "column1": null,
+          "column2": null,
+          "column3": null
+        },
+        "line29": {
+          "column1": null,
+          "column2": null,
+          "column3": null
+        },
+        "line30": {
+          "column1": 26091.18,
+          "column2": 0.0,
+          "column3": 26091.18
+        },
+        "line31a": {
+          "column1": null,
+          "column2": null,
+          "column3": null
+        },
+        "line31b_recoveryStartupBusiness": false,
+        "line32": {
+          "column1": null,
+          "column2": null,
+          "column3": null
+        }
+      },
+      "refundableCredits": {
+        "refundableEmployeeRetention": {
+          "correctedAmount": 14052.88,
+          "originalAmount": 0.0,
+          "difference": 14052.88
+        }
+      },
+      "lines": {
+        "line30": {
+          "correctedAmount": 26091.18,
+          "originalAmount": 0.0,
+          "difference": 26091.18
+        },
+        "line31a": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        }
+      }
+    }
+  },
+  "field_count": 55,
+  "non_null_count": 23
+}

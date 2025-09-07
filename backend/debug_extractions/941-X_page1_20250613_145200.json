@@ -1,0 +1,28 @@
+{
+  "page": 1,
+  "schema": "941-X",
+  "timestamp": "20250613_145200",
+  "extracted_data": {
+    "employerInfo": {
+      "ein": "73-1725071",
+      "name": "DAVID ANTHONY SALON LLC",
+      "tradeName": "",
+      "address": {
+        "street": "4025 E CHANDLER BLVD STE 9",
+        "city": "PHOENIX",
+        "state": "AZ",
+        "zipCode": "85048"
+      }
+    },
+    "correctionInfo": {
+      "quarter": 3,
+      "year": "2020"
+    },
+    "correctionType": {
+      "isAdjustedReturn": false,
+      "checkbox_X": true
+    }
+  },
+  "field_count": 11,
+  "non_null_count": 10
+}

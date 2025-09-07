@@ -1,0 +1,97 @@
+{
+  "page": 3,
+  "schema": "941-X",
+  "timestamp": "20250611_003926",
+  "extracted_data": {
+    "form_941x_page3": {
+      "header": {
+        "name": "Absolute Lawn and Landscape Management, LLC",
+        "employer_identification_number_EIN": "45-4202824",
+        "correcting_quarter": "2",
+        "correcting_calendar_year": "2020"
+      },
+      "part3": {
+        "line22": {
+          "column1_total_corrected_amount": "",
+          "column2_amount_originally_reported": "",
+          "column3_difference": "",
+          "column4_tax_correction": ""
+        },
+        "line23": {
+          "column1_total_corrected_amount": "",
+          "column2_amount_originally_reported": "",
+          "column3_difference": "",
+          "column4_tax_correction": ""
+        },
+        "line24": {
+          "column1_total_corrected_amount": "",
+          "column2_amount_originally_reported": "",
+          "column3_difference": "",
+          "column4_tax_correction": ""
+        },
+        "line25": {
+          "column1_total_corrected_amount": "",
+          "column2_amount_originally_reported": "",
+          "column3_difference": "",
+          "column4_tax_correction": ""
+        },
+        "line26a": {
+          "column1_total_corrected_amount": "5,107.23",
+          "column2_amount_originally_reported": "0.00",
+          "column3_difference": "5,107.23",
+          "column4_tax_correction": "(5,107.23)"
+        },
+        "line26b": {
+          "column1_total_corrected_amount": "",
+          "column2_amount_originally_reported": "",
+          "column3_difference": "",
+          "column4_tax_correction": ""
+        },
+        "line26c": {
+          "column1_total_corrected_amount": "",
+          "column2_amount_originally_reported": "",
+          "column3_difference": "",
+          "column4_tax_correction": ""
+        },
+        "line27": {
+          "column4_tax_correction": "(5,107.23)"
+        },
+        "line28": {
+          "column1_total_corrected_amount": "",
+          "column2_amount_originally_reported": "",
+          "column3_difference": ""
+        },
+        "line29": {
+          "column1_total_corrected_amount": "",
+          "column2_amount_originally_reported": "",
+          "column3_difference": ""
+        },
+        "line30": {
+          "column1_total_corrected_amount": "10,214.46",
+          "column2_amount_originally_reported": "0.00",
+          "column3_difference": "10,214.46"
+        },
+        "line31a": {
+          "column1_total_corrected_amount": "",
+          "column2_amount_originally_reported": "",
+          "column3_difference": ""
+        },
+        "line31b_recovery_startup_business_checkbox": false,
+        "line32": {
+          "column1_total_corrected_amount": "",
+          "column2_amount_originally_reported": "",
+          "column3_difference": ""
+        }
+      },
+      "extracted_focus_fields": {
+        "line30_qualified_wages_for_erc": "10,214.46",
+        "line31a_qualified_health_plan_expenses": "",
+        "refundableCredits": {
+          "refundableEmployeeRetention": "5,107.23"
+        }
+      }
+    }
+  },
+  "field_count": 52,
+  "non_null_count": 15
+}

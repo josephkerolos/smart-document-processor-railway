@@ -1,0 +1,67 @@
+{
+  "page": 4,
+  "schema": "941-X",
+  "timestamp": "20250720_231241",
+  "extracted_data": {
+    "form_941x": {
+      "header": {
+        "name_not_trade_name": "Absolute Lawn and Landscape Management, LLC",
+        "employer_identification_number_ein": "45-4202824",
+        "correcting_quarter": "2",
+        "correcting_calendar_year": "2020"
+      },
+      "part3": {
+        "line33a": {
+          "column1_total_corrected_amount": null,
+          "column2_amount_originally_reported": null,
+          "column3_difference": null
+        },
+        "line33b": {
+          "column1_total_corrected_amount": null,
+          "column2_amount_originally_reported": null,
+          "column3_difference": null
+        },
+        "line34": {
+          "column1_total_corrected_amount": null,
+          "column2_amount_originally_reported": null,
+          "column3_difference": null
+        },
+        "line35": {
+          "column1_total_corrected_amount": null,
+          "column2_amount_originally_reported": null,
+          "column3_difference": null
+        },
+        "line36": {
+          "column1_total_corrected_amount": null,
+          "column2_amount_originally_reported": null,
+          "column3_difference": null
+        },
+        "line37": {
+          "column1_total_corrected_amount": null,
+          "column2_amount_originally_reported": null,
+          "column3_difference": null
+        },
+        "line38": {
+          "column1_total_corrected_amount": null,
+          "column2_amount_originally_reported": null,
+          "column3_difference": null
+        },
+        "line39": {
+          "column1_total_corrected_amount": null,
+          "column2_amount_originally_reported": null,
+          "column3_difference": null
+        },
+        "line40": {
+          "column1_total_corrected_amount": null,
+          "column2_amount_originally_reported": null,
+          "column3_difference": null
+        }
+      },
+      "part4": null,
+      "signature_section": null,
+      "paid_preparer_information": null
+    }
+  },
+  "field_count": 34,
+  "non_null_count": 4
+}

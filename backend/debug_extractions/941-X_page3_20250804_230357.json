@@ -1,0 +1,85 @@
+{
+  "page": 3,
+  "schema": "941-X",
+  "timestamp": "20250804_230357",
+  "extracted_data": {
+    "name": "HAVEN OF HOPE INC",
+    "ein": "77-0469172",
+    "correctingQuarter": 4,
+    "correctingCalendarYear": 2020,
+    "refundableCredits": {
+      "refundableEmployeeRetention": {
+        "correctedAmount": 171330.56,
+        "originalAmount": 0.0,
+        "difference": 171330.56,
+        "taxCorrection": -171330.56
+      }
+    },
+    "lines": {
+      "line22": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0,
+        "taxCorrection": 0.0
+      },
+      "line23": {
+        "taxCorrection": -20917.95
+      },
+      "line24": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0,
+        "taxCorrection": 0.0
+      },
+      "line25": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0,
+        "taxCorrection": 0.0
+      },
+      "line26b": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0,
+        "taxCorrection": 0.0
+      },
+      "line26c": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0,
+        "taxCorrection": 0.0
+      },
+      "line27": {
+        "taxCorrection": -192248.51
+      },
+      "line28": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "line29": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "line30": {
+        "correctedAmount": 384497.01,
+        "originalAmount": 0.0,
+        "difference": 384497.01
+      },
+      "line31a": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "line31b": false,
+      "line32": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      }
+    }
+  },
+  "field_count": 46,
+  "non_null_count": 46
+}

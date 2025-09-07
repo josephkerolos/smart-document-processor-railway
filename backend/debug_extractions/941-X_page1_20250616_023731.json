@@ -1,0 +1,43 @@
+{
+  "page": 1,
+  "schema": "941-X",
+  "timestamp": "20250616_023731",
+  "extracted_data": {
+    "employerInfo": {
+      "ein": "45-4202824",
+      "name": "Absolute Lawn and Landscape Management, LLC",
+      "tradeName": "",
+      "address": {
+        "street": "2230 Pierce Road",
+        "city": "Phenix City",
+        "state": "AL",
+        "zipCode": "36867"
+      }
+    },
+    "correctionInfo": {
+      "quarter": 2,
+      "year": "2020"
+    },
+    "correctionType": {
+      "isAdjustedReturn": false,
+      "checkbox_X": true
+    },
+    "returnCorrecting": {
+      "form941": true,
+      "form941SS": false
+    },
+    "dateErrorsDiscovered": "09/15/2022",
+    "part2Certifications": {
+      "checkbox3": true,
+      "checkbox4a": false,
+      "checkbox4b": false,
+      "checkbox4c": false,
+      "checkbox5a": false,
+      "checkbox5b": false,
+      "checkbox5c": true,
+      "checkbox5d": false
+    }
+  },
+  "field_count": 22,
+  "non_null_count": 21
+}

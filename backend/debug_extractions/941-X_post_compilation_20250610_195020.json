@@ -1,0 +1,371 @@
+{
+  "stage": "post_compilation",
+  "schema": "941-X",
+  "timestamp": "20250610_195020",
+  "data": {
+    "formMetadata": {
+      "formNumber": "941-X",
+      "formRevision": "April 2022",
+      "year": 2020,
+      "ombNumber": "1545-0029"
+    },
+    "correctionType": {
+      "isAdjustedReturn": true,
+      "isClaimForRefund": false
+    },
+    "employerInfo": {
+      "ein": "45-4202824",
+      "name": "Absolute Lawn and Landscape Management, LLC",
+      "tradeName": null,
+      "address": {
+        "street": "2230 Pierce Road",
+        "city": "Phenix City",
+        "state": "AL",
+        "zipCode": "36867",
+        "foreignCountry": null,
+        "foreignProvince": null,
+        "foreignPostalCode": null
+      }
+    },
+    "quarterBeingCorrected": {
+      "quarter": 2,
+      "year": 2020
+    },
+    "dateErrorDiscovered": "09/15/2022",
+    "part2Certifications": {
+      "allCorrectionsListed": true,
+      "consentFromEmployees": true,
+      "filedOriginal941": true,
+      "overdueReturn": {
+        "isOverdue": null,
+        "reason": null
+      }
+    },
+    "part3Corrections": {
+      "line1": {
+        "numberOfEmployees": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        }
+      },
+      "line2": {
+        "wagesTipsCompensation": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        }
+      },
+      "line3": {
+        "federalIncomeTaxWithheld": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        }
+      },
+      "line5": {
+        "taxableSocialSecurityWages": {
+          "wages": {
+            "correctedAmount": null,
+            "originalAmount": null,
+            "difference": null
+          },
+          "tax": {
+            "correctedAmount": null,
+            "originalAmount": null,
+            "difference": null
+          }
+        }
+      },
+      "line6": {
+        "qualifiedSickLeaveWages": {
+          "wages": {
+            "correctedAmount": null,
+            "originalAmount": null,
+            "difference": null
+          },
+          "tax": {
+            "correctedAmount": null,
+            "originalAmount": null,
+            "difference": null
+          }
+        }
+      },
+      "line7": {
+        "qualifiedFamilyLeaveWages": {
+          "wages": {
+            "correctedAmount": null,
+            "originalAmount": null,
+            "difference": null
+          },
+          "tax": {
+            "correctedAmount": null,
+            "originalAmount": null,
+            "difference": null
+          }
+        }
+      },
+      "line8": {
+        "taxableSocialSecurityTips": {
+          "tips": {
+            "correctedAmount": null,
+            "originalAmount": null,
+            "difference": null
+          },
+          "tax": {
+            "correctedAmount": null,
+            "originalAmount": null,
+            "difference": null
+          }
+        }
+      },
+      "line9": {
+        "taxableMedicareWagesAndTips": {
+          "wagesAndTips": {
+            "correctedAmount": null,
+            "originalAmount": null,
+            "difference": null
+          },
+          "tax": {
+            "correctedAmount": null,
+            "originalAmount": null,
+            "difference": null
+          }
+        }
+      },
+      "line10": {
+        "additionalMedicareWagesAndTips": {
+          "wagesAndTips": {
+            "correctedAmount": null,
+            "originalAmount": null,
+            "difference": null
+          },
+          "tax": {
+            "correctedAmount": null,
+            "originalAmount": null,
+            "difference": null
+          }
+        }
+      },
+      "totalSocialSecurityAndMedicareTaxes": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null
+      },
+      "section3121qTax": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null
+      },
+      "totalTaxesBeforeAdjustments": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null
+      },
+      "currentQuarterAdjustments": {
+        "fractionsOfCents": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        },
+        "sickPay": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        },
+        "tipsAndGroupTermLife": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        }
+      },
+      "totalTaxesAfterAdjustments": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null
+      },
+      "nonrefundableCredits": {
+        "researchPayrollTaxCredit": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        },
+        "nonrefundableSickLeave": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        },
+        "nonrefundableEmployeeRetention": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        },
+        "nonrefundableFamilyLeave": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        },
+        "cobraPremiumAssistance": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        }
+      },
+      "totalNonrefundableCredits": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null
+      },
+      "totalTaxesAfterCredits": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null
+      },
+      "totalDeposits": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null
+      },
+      "refundableCredits": {
+        "refundableSickLeave": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        },
+        "refundableEmployeeRetention": {
+          "correctedAmount": "5,107.23",
+          "originalAmount": "0.00",
+          "difference": "5,107.23"
+        },
+        "refundableFamilyLeave": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        },
+        "refundableCobraPremiumAssistance": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        }
+      },
+      "totalRefundableCredits": {
+        "correctedAmount": "5107.23",
+        "originalAmount": "0.00",
+        "difference": "5107.23"
+      },
+      "totalDepositsAndRefundableCredits": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null
+      },
+      "advancesFromForm7200": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null
+      },
+      "totalDepositsCreditsLessAdvances": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null
+      },
+      "balanceDue": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null
+      },
+      "overpayment": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null,
+        "applyToNextReturn": null,
+        "sendRefund": null
+      }
+    },
+    "part4Explanations": {
+      "corrections": "Employee Retention Credit",
+      "detailedExplanation": "We are claiming the Employee Retention Credit for the second quarter of 2020.  We originally did not claim this credit because we were unsure of the rules and regulations.  We have since reviewed the rules and regulations and determined that we are eligible for the credit."
+    },
+    "part5Signature": {
+      "signature": {
+        "name": "John Smith",
+        "date": "10/27/2023",
+        "phone": "334-614-7777",
+        "bestTimeToCall": null
+      },
+      "paidPreparer": {
+        "isSelfEmployed": null,
+        "name": null,
+        "ptin": null,
+        "signature": null,
+        "date": null,
+        "firmName": null,
+        "firmEIN": null,
+        "address": null,
+        "phone": null,
+        "city": null,
+        "state": null,
+        "zipCode": null
+      }
+    },
+    "supportingStatements": {
+      "qualifiedHealthPlanExpenses": {
+        "sickLeaveBeforeApril": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        },
+        "familyLeaveBeforeApril": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        }
+      },
+      "employeeRetentionCredit": {
+        "qualifiedWages": {
+          "correctedAmount": "10,214.46",
+          "originalAmount": "0.00",
+          "difference": "10,214.46"
+        },
+        "qualifiedHealthPlanExpenses": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        }
+      },
+      "sickLeaveAfterMarch": {
+        "qualifiedWages": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        },
+        "qualifiedHealthPlanExpenses": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        },
+        "collectivelyBargainedWages": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        }
+      },
+      "familyLeaveAfterMarch": {
+        "qualifiedWages": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        },
+        "qualifiedHealthPlanExpenses": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        },
+        "collectivelyBargainedWages": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        }
+      }
+    }
+  }
+}

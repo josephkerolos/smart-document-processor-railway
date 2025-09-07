@@ -1,0 +1,92 @@
+{
+  "page": 3,
+  "schema": "941-X",
+  "timestamp": "20250804_121022",
+  "extracted_data": {
+    "name": "GOM HOLDINGS, INC.",
+    "employerIdentificationNumber": "26-4370619",
+    "correctingQuarter": 2,
+    "correctingCalendarYear": 2021,
+    "refundableCredits": {
+      "refundableEmployeeRetention": {
+        "correctedAmount": 57656.94,
+        "originalAmount": 0.0,
+        "difference": 57656.94
+      }
+    },
+    "lines": {
+      "line22": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0,
+        "taxCorrection": 0.0
+      },
+      "line23": {
+        "taxCorrection": -21475.05
+      },
+      "line24": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0,
+        "taxCorrection": 0.0
+      },
+      "line25": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0,
+        "taxCorrection": 0.0
+      },
+      "line26a": {
+        "correctedAmount": 57656.94,
+        "originalAmount": 0.0,
+        "difference": 57656.94,
+        "taxCorrection": -57656.94
+      },
+      "line26b": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0,
+        "taxCorrection": 0.0
+      },
+      "line26c": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0,
+        "taxCorrection": 0.0
+      },
+      "line27": {
+        "taxCorrection": -79131.99
+      },
+      "line28": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "line29": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "line30": {
+        "correctedAmount": 113045.7,
+        "originalAmount": 0.0,
+        "difference": 113045.7
+      },
+      "line31a": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "line31b": {
+        "isRecoveryStartupBusiness": false
+      },
+      "line32": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      }
+    }
+  },
+  "field_count": 49,
+  "non_null_count": 49
+}

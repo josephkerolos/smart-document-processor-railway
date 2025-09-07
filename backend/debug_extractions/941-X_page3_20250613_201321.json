@@ -1,0 +1,90 @@
+{
+  "page": 3,
+  "schema": "941-X",
+  "timestamp": "20250613_201321",
+  "extracted_data": {
+    "name": "DAVID ANTHONY SALON LLC",
+    "ein": "73-1725071",
+    "correctingQuarter": 3,
+    "correctingCalendarYear": 2020,
+    "refundableCredits": {
+      "refundableEmployeeRetention": {
+        "correctedAmount": 1864.91,
+        "originalAmount": 0.0,
+        "difference": 1864.91
+      }
+    },
+    "lines": {
+      "line22": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0,
+        "taxCorrection": 0.0
+      },
+      "line23": {
+        "taxCorrection": -6588.92
+      },
+      "line24": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0,
+        "taxCorrection": 0.0
+      },
+      "line25": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0,
+        "taxCorrection": 0.0
+      },
+      "line26a": {
+        "correctedAmount": 1864.91,
+        "originalAmount": 0.0,
+        "difference": 1864.91,
+        "taxCorrection": -1864.91
+      },
+      "line26b": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0,
+        "taxCorrection": 0.0
+      },
+      "line26c": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0,
+        "taxCorrection": 0.0
+      },
+      "line27": {
+        "taxCorrection": -8453.83
+      },
+      "line28": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "line29": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "line30": {
+        "correctedAmount": 16907.65,
+        "originalAmount": 0.0,
+        "difference": 16907.65
+      },
+      "line31a": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "line31b_recoveryStartupBusiness": false,
+      "line32": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      }
+    }
+  },
+  "field_count": 49,
+  "non_null_count": 49
+}

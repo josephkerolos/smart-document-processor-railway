@@ -1,0 +1,310 @@
+{
+  "stage": "post_compilation_v2",
+  "schema": "941-X",
+  "timestamp": "20250731_235030",
+  "data": {
+    "formMetadata": {
+      "formNumber": "941-X",
+      "formRevision": null,
+      "year": "2021",
+      "ombNumber": null
+    },
+    "correctionType": {
+      "isAdjustedReturn": true,
+      "isClaimForRefund": false
+    },
+    "employerInfo": {
+      "ein": "26-4370619",
+      "name": "GOM HOLDINGS, INC.",
+      "tradeName": "VOLTA GUARD-O-MATIC",
+      "address": {
+        "street": "6020 N 55th Ave",
+        "city": "Glendale",
+        "state": "AZ",
+        "zipCode": "85301",
+        "foreignCountry": null,
+        "foreignProvince": null,
+        "foreignPostalCode": null
+      }
+    },
+    "quarterBeingCorrected": {
+      "quarter": "2",
+      "year": "2021"
+    },
+    "dateErrorDiscovered": "2024-05-20",
+    "part2Certifications": {
+      "allCorrectionsListed": true,
+      "consentFromEmployees": false,
+      "filedOriginal941": null,
+      "overdueReturn": null
+    },
+    "part3Corrections": {
+      "line1": {
+        "numberOfEmployees": null
+      },
+      "line2": {
+        "wagesTipsCompensation": null
+      },
+      "line3": {
+        "federalIncomeTaxWithheld": null
+      },
+      "line5": {
+        "taxableSocialSecurityWages": null
+      },
+      "line6": {
+        "qualifiedSickLeaveWages": {
+          "wages": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "tax": null
+        }
+      },
+      "line7": {
+        "qualifiedFamilyLeaveWages": {
+          "wages": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "tax": null
+        }
+      },
+      "line8": {
+        "taxableSocialSecurityTips": {
+          "tips": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "tax": null
+        }
+      },
+      "line9": {
+        "taxableMedicareWagesAndTips": {
+          "wagesAndTips": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "tax": null
+        }
+      },
+      "line10": {
+        "additionalMedicareWagesAndTips": {
+          "wagesAndTips": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "tax": null
+        }
+      },
+      "totalSocialSecurityAndMedicareTaxes": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "section3121qTax": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "totalTaxesBeforeAdjustments": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "currentQuarterAdjustments": {
+        "fractionsOfCents": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        },
+        "sickPay": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        },
+        "tipsAndGroupTermLife": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        }
+      },
+      "totalTaxesAfterAdjustments": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "nonrefundableCredits": {
+        "researchPayrollTaxCredit": null,
+        "nonrefundableSickLeave": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        },
+        "nonrefundableEmployeeRetention": {
+          "correctedAmount": 21475.05,
+          "originalAmount": 0.0,
+          "difference": 21475.05
+        },
+        "nonrefundableFamilyLeave": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        },
+        "cobraPremiumAssistance": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        }
+      },
+      "totalNonrefundableCredits": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "totalTaxesAfterCredits": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "totalDeposits": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "refundableCredits": {
+        "refundableSickLeave": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        },
+        "refundableEmployeeRetention": {
+          "correctedAmount": 57656.94,
+          "originalAmount": 0.0,
+          "difference": 57656.94
+        },
+        "refundableFamilyLeave": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        },
+        "refundableCobraPremiumAssistance": null
+      },
+      "totalRefundableCredits": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": -79131.99
+      },
+      "totalDepositsAndRefundableCredits": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null
+      },
+      "advancesFromForm7200": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null
+      },
+      "totalDepositsCreditsLessAdvances": {
+        "correctedAmount": 113045.7,
+        "originalAmount": 0.0,
+        "difference": 113045.7
+      },
+      "balanceDue": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": -21475.05
+      },
+      "overpayment": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null,
+        "applyToNextReturn": null,
+        "sendRefund": false
+      }
+    },
+    "part4Explanations": {
+      "corrections": [],
+      "detailedExplanation": "This is to applly for the Employee Retention Credit (ERC) Q2 2021.\nQualified under Alternative Gross Receipts test as the business lost more than 20% of their revenue in comparison to the same\nquarter in 2019."
+    },
+    "part5Signature": {
+      "signature": {
+        "name": "",
+        "title": "",
+        "date": "",
+        "phone": "",
+        "bestTimeToCall": null
+      },
+      "paidPreparer": {
+        "isSelfEmployed": false,
+        "name": "Ryan Parr",
+        "ptin": "P0312471",
+        "signature": null,
+        "date": "2024-05-20",
+        "firmName": "Pinnacle Minds, Inc",
+        "firmEIN": "27-0133034",
+        "address": "350 N Lantana St Suite #229",
+        "phone": "(805) 836-9009",
+        "city": "Camarillo",
+        "state": "CA",
+        "zipCode": "93010"
+      }
+    },
+    "supportingStatements": {
+      "qualifiedHealthPlanExpenses": {
+        "sickLeaveBeforeApril": null,
+        "familyLeaveBeforeApril": null
+      },
+      "employeeRetentionCredit": {
+        "qualifiedWages": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        },
+        "qualifiedHealthPlanExpenses": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        }
+      },
+      "sickLeaveAfterMarch": {
+        "qualifiedWages": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        },
+        "qualifiedHealthPlanExpenses": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        },
+        "collectivelyBargainedWages": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        }
+      },
+      "familyLeaveAfterMarch": {
+        "qualifiedWages": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        },
+        "qualifiedHealthPlanExpenses": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        },
+        "collectivelyBargainedWages": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        }
+      }
+    }
+  }
+}

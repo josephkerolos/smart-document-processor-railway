@@ -1,0 +1,44 @@
+{
+  "page": 5,
+  "schema": "941-X",
+  "timestamp": "20250611_003512",
+  "extracted_data": {
+    "form_941x_page_5": {
+      "header_info": {
+        "name_not_trade_name": "Absolute Lawn and Landscape Management, LLC",
+        "employer_identification_number_ein": "45-4202824",
+        "correcting_quarter": "2",
+        "correcting_calendar_year": "2020"
+      },
+      "part_4_explanation_of_corrections": {
+        "line_41_checkbox_underreported_overreported": true,
+        "line_42_checkbox_reclassified_workers": false,
+        "line_43_detailed_explanation": "This is to apply for the employee retention credit for Q2 2020"
+      },
+      "part_5_signature": {
+        "sign_your_name_here": "Traci Warner",
+        "date_signed": "10/31/22",
+        "print_your_name_here": "Traci Warner",
+        "print_your_title_here": "owner",
+        "best_daytime_phone": "706-464-7517"
+      },
+      "paid_preparer_use_only": {
+        "self_employed_checkbox": true,
+        "preparers_name": "Neveen A Mansi",
+        "preparers_signature": "",
+        "firms_name_or_yours_if_self_employed": "Neveen A Mansi",
+        "ptin": "P03007969",
+        "preparers_date": "10/27/2022",
+        "address": "369 Paseo De Playa #109",
+        "ein": "",
+        "city": "Ventura",
+        "phone": "(805) 836-9009",
+        "state": "CA",
+        "zip_code": "93001"
+      },
+      "page_number": "5"
+    }
+  },
+  "field_count": 25,
+  "non_null_count": 23
+}

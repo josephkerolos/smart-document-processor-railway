@@ -1,0 +1,42 @@
+{
+  "page": 4,
+  "schema": "941-X",
+  "timestamp": "20250801_225049",
+  "extracted_data": {
+    "name_not_your_trade_name": "GOM HOLDINGS, INC.",
+    "employer_identification_number_ein": "26-4370619",
+    "correcting_quarter": "1",
+    "correcting_calendar_year_yyyy": "2021",
+    "part_3": {
+      "qualified_wages_paid_march_13_through_march_31_2020_for_the_employee_retention_credit_col_1": null,
+      "qualified_wages_paid_march_13_through_march_31_2020_for_the_employee_retention_credit_col_2": null,
+      "qualified_wages_paid_march_13_through_march_31_2020_for_the_employee_retention_credit_col_3": null,
+      "deferred_amount_of_the_employee_share_of_social_security_tax_col_1": null,
+      "deferred_amount_of_the_employee_share_of_social_security_tax_col_2": null,
+      "deferred_amount_of_the_employee_share_of_social_security_tax_col_3": null,
+      "qualified_health_plan_expenses_allocable_to_wages_reported_on_form_941_or_941_ss_line_24_col_1": null,
+      "qualified_health_plan_expenses_allocable_to_wages_reported_on_form_941_or_941_ss_line_24_col_2": null,
+      "qualified_health_plan_expenses_allocable_to_wages_reported_on_form_941_or_941_ss_line_24_col_3": null,
+      "qualified_sick_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021_col_1": null,
+      "qualified_sick_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021_col_2": null,
+      "qualified_sick_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021_col_3": null,
+      "qualified_health_plan_expenses_allocable_to_qualified_sick_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021_col_1": null,
+      "qualified_health_plan_expenses_allocable_to_qualified_sick_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021_col_2": null,
+      "qualified_health_plan_expenses_allocable_to_qualified_sick_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021_col_3": null,
+      "amounts_under_certain_collectively_bargained_agreements_allocable_to_qualified_sick_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021_col_1": null,
+      "amounts_under_certain_collectively_bargained_agreements_allocable_to_qualified_sick_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021_col_2": null,
+      "amounts_under_certain_collectively_bargained_agreements_allocable_to_qualified_sick_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021_col_3": null,
+      "qualified_family_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021_col_1": null,
+      "qualified_family_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021_col_2": null,
+      "qualified_family_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021_col_3": null,
+      "qualified_health_plan_expenses_allocable_to_qualified_family_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021_col_1": null,
+      "qualified_health_plan_expenses_allocable_to_qualified_family_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021_col_2": null,
+      "qualified_health_plan_expenses_allocable_to_qualified_family_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021_col_3": null,
+      "amounts_under_certain_collectively_bargained_agreements_allocable_to_qualified_family_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021_col_1": null,
+      "amounts_under_certain_collectively_bargained_agreements_allocable_to_qualified_family_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021_col_2": null,
+      "amounts_under_certain_collectively_bargained_agreements_allocable_to_qualified_family_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021_col_3": null
+    }
+  },
+  "field_count": 31,
+  "non_null_count": 4
+}

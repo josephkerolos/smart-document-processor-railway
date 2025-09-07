@@ -1,0 +1,60 @@
+{
+  "page": 4,
+  "schema": "941-X",
+  "timestamp": "20250723_170517",
+  "extracted_data": {
+    "name_not_your_trade_name": "GOM HOLDINGS, INC.",
+    "employer_identification_number_ein": "26-4370619",
+    "correcting_quarter": "3",
+    "correcting_calendar_year_yyyy": "2021",
+    "part_3_continued": {
+      "line_33a": {
+        "column_1_total_corrected_amount_for_all_employees": null,
+        "column_2_amount_originally_reported_or_as_previously_corrected_for_all_employees": null,
+        "column_3_difference": null
+      },
+      "line_33b": {
+        "column_1_total_corrected_amount_for_all_employees": null,
+        "column_2_amount_originally_reported_or_as_previously_corrected_for_all_employees": null,
+        "column_3_difference": null
+      },
+      "line_34": {
+        "column_1_total_corrected_amount_for_all_employees": null,
+        "column_2_amount_originally_reported_or_as_previously_corrected_for_all_employees": null,
+        "column_3_difference": null
+      },
+      "line_35": {
+        "column_1_total_corrected_amount_for_all_employees": null,
+        "column_2_amount_originally_reported_or_as_previously_corrected_for_all_employees": null,
+        "column_3_difference": null
+      },
+      "line_36": {
+        "column_1_total_corrected_amount_for_all_employees": null,
+        "column_2_amount_originally_reported_or_as_previously_corrected_for_all_employees": null,
+        "column_3_difference": null
+      },
+      "line_37": {
+        "column_1_total_corrected_amount_for_all_employees": null,
+        "column_2_amount_originally_reported_or_as_previously_corrected_for_all_employees": null,
+        "column_3_difference": null
+      },
+      "line_38": {
+        "column_1_total_corrected_amount_for_all_employees": null,
+        "column_2_amount_originally_reported_or_as_previously_corrected_for_all_employees": null,
+        "column_3_difference": null
+      },
+      "line_39": {
+        "column_1_total_corrected_amount_for_all_employees": null,
+        "column_2_amount_originally_reported_or_as_previously_corrected_for_all_employees": null,
+        "column_3_difference": null
+      },
+      "line_40": {
+        "column_1_total_corrected_amount_for_all_employees": null,
+        "column_2_amount_originally_reported_or_as_previously_corrected_for_all_employees": null,
+        "column_3_difference": null
+      }
+    }
+  },
+  "field_count": 31,
+  "non_null_count": 4
+}

@@ -1,0 +1,30 @@
+{
+  "extraction_timestamp": "2025-06-13T19:53:13.926386",
+  "total_documents": 4,
+  "documents": [
+    {
+      "filename": "DAVID_ANTHONY_SALON_LLC_941X_Q1_2021.pdf",
+      "data": {
+        "error": "Processing cancelled"
+      }
+    },
+    {
+      "filename": "DAVID_ANTHONY_SALON_LLC_941X_Q4_2020.pdf",
+      "data": {
+        "error": "Processing cancelled"
+      }
+    },
+    {
+      "filename": "DAVID_ANTHONY_SALON_LLC_941X_Q3_2020.pdf",
+      "data": {
+        "error": "Processing cancelled"
+      }
+    },
+    {
+      "filename": "DAVID_ANTHONY_SALON_LLC_941X_Q2_2020.pdf",
+      "data": {
+        "error": "Processing cancelled"
+      }
+    }
+  ]
+}

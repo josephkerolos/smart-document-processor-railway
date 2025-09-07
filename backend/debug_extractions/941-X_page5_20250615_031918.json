@@ -1,0 +1,31 @@
+{
+  "page": 5,
+  "schema": "941-X",
+  "timestamp": "20250615_031918",
+  "extracted_data": {
+    "taxpayer_name": "Omni Eye Care, Inc",
+    "ein": "46-0872603",
+    "correcting_quarter": "3",
+    "correcting_calendar_year": "2020",
+    "part4_line41_checkbox": true,
+    "part4_line42_checkbox": false,
+    "part4_line43_explanation": "This is to apply for the Employee Retention Credit for Q3 2020",
+    "part5_taxpayer_signature_date": "11/29/2022",
+    "part5_taxpayer_printed_name": "Amar Lapsi",
+    "part5_taxpayer_title": "Chief Operating Officer",
+    "part5_taxpayer_phone": "626-823-1535",
+    "part5_self_employed_checkbox": true,
+    "paid_preparer_name": "Neveen A Mansi",
+    "paid_preparer_ptin": "P03007969",
+    "paid_preparer_signature_date": "11/29/2022",
+    "paid_preparer_firm_name": "Neveen A Mansi",
+    "paid_preparer_ein": null,
+    "paid_preparer_address_street": "369 Paseo De Playa #109",
+    "paid_preparer_address_city": "Ventura",
+    "paid_preparer_address_state": "CA",
+    "paid_preparer_address_zip": "93001",
+    "paid_preparer_phone": "(805) 836-9009"
+  },
+  "field_count": 22,
+  "non_null_count": 21
+}

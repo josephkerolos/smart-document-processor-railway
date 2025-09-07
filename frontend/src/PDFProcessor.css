@@ -1,0 +1,112 @@
+/* Centered container with a max width */
+.container {
+    max-width: 600px;
+    margin: 2rem auto;  /* center horizontally and give top/bottom spacing */
+    padding: 1rem;
+  }
+  
+  /* Card with a subtle border and rounded corners */
+  .card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 2rem;
+  }
+  
+  /* Title styling */
+  h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  /* Spacing for form controls */
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #555;
+  }
+  
+  /* File input styling */
+  input[type="file"] {
+    display: block;
+    width: 100%;
+    border: 1px solid #ccc;
+    padding: 0.6rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+  
+  /* General button styling */
+  .btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 0.8rem 1rem;
+    margin-top: 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s ease;
+  }
+  
+  .btn:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Response box (e.g. "Finished processing") */
+  .response {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #e6ffed;
+    border-left: 4px solid #28a745; /* green bar on the left */
+    border-radius: 4px;
+    color: #333;
+    font-size: 1rem;
+  }
+  
+  /* Download section styling */
+  .download {
+    margin-top: 1rem;
+    text-align: center;
+  }
+  
+  .download a {
+    display: inline-block;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background-color 0.2s ease;
+  }
+  
+  .download a:hover {
+    background-color: #218838;
+  }
+  
+  /* Loading indicator styling */
+  .loading-indicator {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #fff3cd;
+    border-left: 4px solid #ffeeba;
+    border-radius: 4px;
+    color: #856404;
+    font-size: 1rem;
+  }
+  

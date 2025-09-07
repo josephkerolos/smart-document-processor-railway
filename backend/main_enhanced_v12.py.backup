@@ -1,0 +1,2383 @@
+"""
+Enhanced Document Processor v12 with File Organizer Integration
+Adds document cleaning, splitting, and organization workflow
+"""
+
+import io
+import asyncio
+import json
+import time
+from datetime import datetime
+from typing import List, Dict, Any, Optional, Set, Tuple
+from fastapi import FastAPI, UploadFile, File, Body, Form, WebSocket, WebSocketDisconnect, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse, StreamingResponse, FileResponse
+from pydantic import BaseModel
+from dotenv import load_dotenv
+import os
+from google import genai
+from google.genai import types
+from PyPDF2 import PdfReader, PdfWriter
+import logging
+import warnings
+
+# Suppress specific warnings
+warnings.filterwarnings("ignore", category=UserWarning, module="pydantic._internal._fields")
+from dataclasses import dataclass
+from enum import Enum
+import re
+from collections import Counter
+import uuid
+import traceback
+from concurrent.futures import ThreadPoolExecutor
+import concurrent.futures
+from pdf_to_png_converter import PDFToPNGConverter
+from json_fixer import parse_json_safely, fix_json_string, extract_json_from_llm_response, advanced_json_reconstruction
+from file_organizer_integration_v2 import FileOrganizerIntegrationV2
+from google_drive_integration import GoogleDriveIntegration
+from google_drive_config import config_manager
+from google_drive_routes import router as gdrive_router
+# import zipfile  # Removed - no longer creating ZIP files
+from db_state_manager import db_state_manager
+
+# Import v11 processor for extraction capabilities
+from main_enhanced_v11 import (
+    DocumentProcessor as V11DocumentProcessor,
+    ProcessingStatus,
+    ProcessingStep,
+    active_connections,
+    active_sessions,
+    session_confirmations,
+    executor,
+    png_converter,
+    DEBUG_MODE
+)
+
+# Load environment variables
+load_dotenv()
+
+app = FastAPI()
+
+# Batch processing tracking - now using database state
+# active_batches = {}  # Replaced by db_state_manager
+active_processors = {}  # session_id -> processor (still in-memory for active processor instances)
+
+# Create a wrapper class for processing_status_db compatibility
+class ProcessingStatusDB:
+    """Wrapper to provide dict-like interface for processing status DB"""
+    def __init__(self):
+        self._cache = {}
+    
+    def __setitem__(self, key, value):
+        # Convert dict assignment to DB save
+        asyncio.create_task(db_state_manager.save_processing_status(
+            key, 
+            value.get('metadata', {}).get('batch_id', ''),
+            value.get('status', 'processing'),
+            value.get('files', []),
+            value.get('extractions', {}),
+            value.get('metadata', {}).get('file_count', 0),
+            value
+        ))
+        self._cache[key] = value
+    
+    def __getitem__(self, key):
+        return self._cache.get(key, {})
+    
+    def __contains__(self, key):
+        return key in self._cache
+    
+    def get(self, key, default=None):
+        return self._cache.get(key, default)
+
+# Global instance for compatibility
+processing_status_db = ProcessingStatusDB()
+
+# Helper functions for batch state management
+async def get_batch_info(batch_id: str) -> Optional[Dict]:
+    """Get batch info from database"""
+    batch_state = await db_state_manager.get_batch_state(batch_id)
+    if batch_state:
+        # Get processing status for all sessions
+        sessions = await db_state_manager.get_batch_processing_status(batch_id)
+        
+        # Calculate totals
+        total_files = sum(s['total_files'] for s in sessions)
+        completed_files = sum(s['processed_count'] for s in sessions)
+        
+        return {
+            "batch_id": batch_id,
+            "total_files": total_files,
+            "completed_files": completed_files,
+            "session_ids": batch_state['session_ids'],
+            "skip_individual_gdrive": batch_state['metadata'].get('skip_individual_gdrive', True),
+            "output_folder": batch_state['metadata'].get('output_folder'),
+            "processing_session_ids": batch_state['metadata'].get('processing_session_ids', []),
+            "created_at": batch_state['created_at']
+        }
+    return None
+
+async def create_batch(batch_id: str, total_files: int, **kwargs):
+    """Create a new batch in database"""
+    metadata = {
+        "total_files": total_files,
+        "skip_individual_gdrive": kwargs.get('skip_individual_gdrive', True),
+        "output_folder": kwargs.get('output_folder'),
+        "case_id": kwargs.get('case_id'),
+        "google_drive_folder_id": kwargs.get('google_drive_folder_id'),
+        "created_at": datetime.now().isoformat()
+    }
+    await db_state_manager.save_batch_state(batch_id, [], 'active', metadata)
+
+async def add_session_to_batch(batch_id: str, session_id: str):
+    """Add a session to a batch"""
+    batch_state = await db_state_manager.get_batch_state(batch_id)
+    if batch_state:
+        session_ids = batch_state['session_ids']
+        if session_id not in session_ids:
+            session_ids.append(session_id)
+            await db_state_manager.save_batch_state(batch_id, session_ids, batch_state['status'], batch_state['metadata'])
+
+async def update_batch_completion(batch_id: str, session_id: str, files_completed: int = 1):
+    """Update batch completion count"""
+    # This is now handled by the processing_status_db updates
+    pass
+
+async def delete_batch(batch_id: str):
+    """Delete batch from database"""
+    await db_state_manager.delete_batch_state(batch_id)
+
+@app.on_event("startup")
+async def startup_event():
+    """Initialize database state manager on startup"""
+    await db_state_manager.initialize()
+    
+    # Recover active batches from database
+    active_batches = await db_state_manager.get_active_batches()
+    logger.info(f"Recovered {len(active_batches)} active batches from database")
+    
+    # Log recovered batches
+    for batch in active_batches:
+        logger.info(f"Recovered batch {batch['batch_id']} with {len(batch['session_ids'])} sessions")
+
+@app.on_event("shutdown")
+async def shutdown_event():
+    """Clean up database connections on shutdown"""
+    await db_state_manager.close()
+
+# Enable CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# Gemini API setup
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+client = genai.Client(api_key=GEMINI_API_KEY)
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('document_processing.log'),
+        logging.StreamHandler()
+    ]
+)
+logger = logging.getLogger(__name__)
+
+# Include Google Drive routes
+app.include_router(gdrive_router)
+
+@app.get("/health")
+async def health_check():
+    """Health check endpoint for load balancers and monitoring"""
+    return {"status": "healthy", "timestamp": datetime.now().isoformat()}
+
+# Helper function for status updates
+async def update_session_status(session_id: str, status_update: Dict[str, Any]):
+    """Update session status via database"""
+    # Get current status from DB
+    current_status = await db_state_manager.get_processing_status(session_id)
+    
+    if not current_status:
+        # Create new status - get batch_id from status_update or metadata
+        batch_id = status_update.get('batch_id', status_update.get('metadata', {}).get('batch_id', ''))
+        await db_state_manager.save_processing_status(
+            session_id, batch_id, 'initialized',
+            metadata={
+                "created_at": datetime.now().isoformat(),
+                "updated_at": datetime.now().isoformat(),
+                "status": "initialized",
+                "progress": 0,
+                "steps_completed": [],
+                "current_step": None,
+                "error": None,
+                "gdrive_folder_id": None,
+                "gdrive_folder_path": None,
+                "files_uploaded": [],
+                **status_update
+            }
+        )
+    else:
+        # Update existing status
+        metadata = current_status.get('metadata', {})
+        for key, value in status_update.items():
+            metadata[key] = value
+        metadata["updated_at"] = datetime.now().isoformat()
+        
+        # Save updated status
+        await db_state_manager.save_processing_status(
+            session_id, 
+            current_status.get('batch_id', ''),
+            metadata.get('status', current_status.get('status', 'processing')),
+            current_status.get('processed_files', []),
+            current_status.get('extractions', {}),
+            current_status.get('total_files', 0),
+            metadata
+        )
+
+class WorkflowStep(Enum):
+    UPLOAD = "upload"
+    CLEAN = "clean"
+    SPLIT = "split"
+    EXTRACT = "extract"
+    ORGANIZE = "organize"
+    COMPRESS = "compress"
+    ARCHIVE = "archive"
+    GOOGLE_DRIVE = "google_drive"
+    COMPLETE = "complete"
+
+class EnhancedDocumentProcessor(V11DocumentProcessor):
+    """Enhanced processor with file organizer integration"""
+    
+    def __init__(self, session_id: str):
+        super().__init__(session_id)
+        self.file_organizer = FileOrganizerIntegrationV2()
+        self.workflow_results = {}
+        self.output_dir = f"processed_documents/{session_id}"
+        os.makedirs(self.output_dir, exist_ok=True)
+        self._timer_task = None
+        self._timer_running = False
+        self.step_timings = {}
+        self.batch_id = None  # Will be set for batch processing
+        
+    async def send_elapsed_time_updates(self, start_time: float):
+        """Send elapsed time updates every second"""
+        self._timer_running = True
+        try:
+            while self._timer_running:
+                elapsed = time.time() - start_time
+                await self.send_update("time_update", {"elapsed_seconds": int(elapsed)})
+                await asyncio.sleep(1)
+        except Exception as e:
+            logger.error(f"Timer error: {e}")
+    
+    def start_step_timer(self, step_name: str):
+        """Start timing a specific step"""
+        self.step_timings[step_name] = {"start": time.time()}
+    
+    def end_step_timer(self, step_name: str):
+        """End timing a specific step"""
+        if step_name in self.step_timings:
+            self.step_timings[step_name]["end"] = time.time()
+            self.step_timings[step_name]["duration"] = self.step_timings[step_name]["end"] - self.step_timings[step_name]["start"]
+            return self.step_timings[step_name]["duration"]
+        return 0
+    
+    async def create_workflow_plan(self, file_count: int, enable_google_drive: bool = True, skip_individual_gdrive: bool = False):
+        """Create enhanced workflow plan including cleaning and organization"""
+        plan_steps = [
+            {"id": "upload", "name": "📤 Upload documents", "status": "completed"},
+            {"id": "clean", "name": "🧹 Clean documents (remove instruction pages)", "status": "pending"},
+            {"id": "split", "name": "✂️ Split into individual documents", "status": "pending"},
+            {"id": "extract", "name": "📊 Extract data from each document", "status": "pending"},
+            {"id": "organize", "name": "📁 Organize by quarter", "status": "pending"},
+            {"id": "compress", "name": "🗜️ Create compressed versions", "status": "pending"},
+            {"id": "archive", "name": "📦 Create archives", "status": "pending"},
+        ]
+        
+        if enable_google_drive and not skip_individual_gdrive:
+            plan_steps.append({"id": "google_drive", "name": "☁️ Upload to Google Drive", "status": "pending"})
+        
+        plan_steps.append({"id": "complete", "name": "✅ Process complete", "status": "pending"})
+        
+        self.current_plan = plan_steps
+        await self.send_update("workflow_plan", {"steps": plan_steps})
+        logger.info(f"Created enhanced workflow plan with {len(plan_steps)} steps")
+        
+    async def process_with_file_organizer(self, pdf_content: bytes, filename: str, 
+                                        selected_schema: str, expected_value: Optional[str] = None,
+                                        target_size_mb: float = 9.0, skip_individual_gdrive: bool = False):
+        """Process document through complete workflow with file organizer"""
+        try:
+            # Start workflow and timer
+            start_time = time.time()
+            await self.create_workflow_plan(1, enable_google_drive=True, skip_individual_gdrive=skip_individual_gdrive)
+            
+            # Send initial timer
+            asyncio.create_task(self.send_elapsed_time_updates(start_time))
+            
+            # Save original upload
+            original_dir = os.path.join(self.output_dir, "original")
+            os.makedirs(original_dir, exist_ok=True)
+            original_path = os.path.join(original_dir, filename)
+            with open(original_path, 'wb') as f:
+                f.write(pdf_content)
+            logger.info(f"Saved original upload: {original_path}")
+            
+            # Use the new integrated workflow
+            async with self.file_organizer:
+                # Step 1 & 2: Clean and analyze the document (combined)
+                self.start_step_timer("cleaning")
+                await self.update_plan_step("clean", "in_progress", "Cleaning and analyzing document...")
+                
+                workflow_result = await self.file_organizer.process_document_workflow(
+                    pdf_content, 
+                    filename, 
+                    self.output_dir,
+                    expected_value
+                )
+                
+                if not workflow_result["success"]:
+                    raise Exception(f"Workflow failed: {workflow_result.get('errors', ['Unknown error'])}")
+                
+                # Update cleaning status
+                cleaning_duration = self.end_step_timer("cleaning")
+                cleaning_report = workflow_result["cleaning_report"]
+                await self.send_update("cleaning_complete", {
+                    "removed_pages": cleaning_report.get("removed_pages", 0),
+                    "total_pages": cleaning_report.get("total_pages", 0),
+                    "kept_pages": cleaning_report.get("kept_pages", 0)
+                })
+                await self.update_plan_step("clean", "completed", 
+                                          f"Removed {cleaning_report.get('removed_pages', 0)} pages ({cleaning_duration:.1f}s)")
+                
+                # Update splitting status
+                self.start_step_timer("splitting")
+                split_documents = workflow_result["documents"]
+                await self.update_plan_step("split", "in_progress", "Analyzing document structure...")
+                await self.send_update("splitting_complete", {
+                    "document_count": len(split_documents),
+                    "documents": [{"filename": doc["filename"]} for doc in split_documents]
+                })
+                splitting_duration = self.end_step_timer("splitting")
+                await self.update_plan_step("split", "completed", 
+                                          f"Split into {len(split_documents)} documents ({splitting_duration:.1f}s)")
+            
+            # Step 3: Extract data from all split documents in parallel
+            self.start_step_timer("extraction")
+            await self.update_plan_step("extract", "in_progress", f"Extracting data from {len(split_documents)} documents in parallel...")
+            
+            # Send initial extraction status with more detail
+            await self.send_update("extraction_started", {
+                "total_documents": len(split_documents),
+                "documents": [{"filename": doc["filename"], "status": "pending"} for doc in split_documents],
+                "message": f"Starting parallel extraction of {len(split_documents)} complete documents"
+            })
+            
+            # Log extraction plan
+            logger.info(f"Extraction plan: {len(split_documents)} documents will be processed in parallel")
+            for idx, doc in enumerate(split_documents):
+                logger.info(f"  Document {idx + 1}: {doc['filename']} ({len(doc['content'])} bytes)")
+            
+            # Create extraction tasks for parallel FULL DOCUMENT processing
+            extraction_tasks = []
+            for idx, split_doc in enumerate(split_documents):
+                # Each task will handle a complete document (all its pages)
+                task = self.extract_document_with_tracking(
+                    split_doc,
+                    selected_schema,
+                    expected_value,
+                    idx
+                )
+                extraction_tasks.append(task)
+            
+            # Run all FULL DOCUMENT extractions in parallel
+            # Each document's pages are extracted in parallel internally
+            # Compilation happens immediately after each document's pages are done
+            logger.info(f"Starting parallel extraction of {len(extraction_tasks)} documents...")
+            extraction_results = await asyncio.gather(*extraction_tasks, return_exceptions=True)
+            
+            # Process results and handle any errors
+            extracted_documents = []
+            failed_count = 0
+            
+            for idx, (split_doc, result) in enumerate(zip(split_documents, extraction_results)):
+                if isinstance(result, Exception):
+                    logger.error(f"Extraction failed for {split_doc['filename']}: {result}")
+                    failed_count += 1
+                    # Add document with error flag
+                    extracted_documents.append({
+                        **split_doc,
+                        "extracted_data": {"error": str(result)},
+                        "extraction_failed": True
+                    })
+                else:
+                    extracted_documents.append({
+                        **split_doc,
+                        "extracted_data": result,
+                        "extraction_failed": False
+                    })
+            
+            # Update final status
+            extraction_duration = self.end_step_timer("extraction")
+            success_count = len(extracted_documents) - failed_count
+            status_message = f"Extracted data from {success_count}/{len(extracted_documents)} documents ({extraction_duration:.1f}s)"
+            if failed_count > 0:
+                status_message += f" ({failed_count} failed)"
+            
+            await self.update_plan_step("extract", "completed", status_message)
+            
+            # Step 4: Organize by quarter with JSON extractions
+            self.start_step_timer("organization")
+            await self.update_plan_step("organize", "in_progress", "Organizing documents by quarter...")
+            
+            # Create raw folder for uncompressed organized documents
+            # Add _cleaned suffix if any pages were removed
+            pages_removed = cleaning_report.get("removed_pages", 0)
+            raw_folder_name = "raw_cleaned" if pages_removed > 0 else "raw"
+            raw_dir = os.path.join(self.output_dir, raw_folder_name)
+            os.makedirs(raw_dir, exist_ok=True)
+            
+            # Pass extracted documents with their extracted data for better organization
+            async with self.file_organizer:
+                # Organize documents in raw folder
+                organized_paths = self.organize_by_quarter_with_metadata(
+                    extracted_documents, 
+                    raw_dir
+                )
+                
+                # Also save JSON extractions in the same quarter folders
+                for doc in extracted_documents:
+                    # Get quarter and year from extracted metadata
+                    extracted_data = doc.get("extracted_data", {})
+                    quarter = None
+                    year = None
+                    company_name = None
+                    form_type = None
+                    
+                    # Extract company name
+                    if "employerInfo" in extracted_data:
+                        company_name = extracted_data["employerInfo"].get("name", "")
+                    
+                    # Detect form type
+                    form_match = re.search(r'941-?X?', doc["filename"], re.IGNORECASE)
+                    if form_match:
+                        form_type = form_match.group(0).upper().replace('-', '')
+                    else:
+                        form_type = "941X"
+                    
+                    # For 941-X forms, check multiple possible locations
+                    if "correctionInfo" in extracted_data:
+                        quarter = extracted_data["correctionInfo"].get("quarter")
+                        year = extracted_data["correctionInfo"].get("year")
+                    elif "quarterBeingCorrected" in extracted_data:
+                        quarter = extracted_data["quarterBeingCorrected"].get("quarter")
+                        year = extracted_data["quarterBeingCorrected"].get("year")
+                    
+                    # Convert to proper format
+                    if quarter:
+                        quarter = f"Q{quarter}"
+                    else:
+                        # Fallback to filename parsing
+                        quarter_match = re.search(r'Q([1-4])', doc["filename"], re.IGNORECASE)
+                        if quarter_match:
+                            quarter = f"Q{quarter_match.group(1)}"
+                        else:
+                            current_month = datetime.now().month
+                            quarter = f"Q{(current_month - 1) // 3 + 1}"
+                    
+                    if year:
+                        year = str(year)
+                    else:
+                        year_match = re.search(r'(20\d{2})', doc["filename"])
+                        if year_match:
+                            year = year_match.group(1)
+                        else:
+                            year = str(datetime.now().year)
+                    
+                    # Generate the same filename as the PDF
+                    if company_name:
+                        clean_company_name = company_name.replace(' ', '_').replace(',', '').replace('.', '')
+                        clean_company_name = re.sub(r'_+', '_', clean_company_name)
+                        json_filename = f"{clean_company_name}_{quarter}_{year}_{form_type}_extraction.json"
+                    else:
+                        json_filename = doc["filename"].replace(".pdf", "_extraction.json")
+                    
+                    # Save JSON extraction in the quarter folder
+                    json_path = os.path.join(raw_dir, year, quarter, json_filename)
+                    with open(json_path, 'w') as f:
+                        json.dump(doc["extracted_data"], f, indent=2)
+                
+            await self.send_update("organization_complete", {
+                "quarters": list(organized_paths.keys()),
+                "document_count": sum(len(files) for files in organized_paths.values())
+            })
+            organization_duration = self.end_step_timer("organization")
+            await self.update_plan_step("organize", "completed", 
+                                      f"Organized into {len(organized_paths)} quarters ({organization_duration:.1f}s)")
+            
+            # Step 5: Create compressed versions in parallel
+            self.start_step_timer("compression")
+            await self.update_plan_step("compress", "in_progress", f"Creating compressed versions for {len(extracted_documents)} documents in parallel...")
+            
+            # Calculate per-document target size based on total target and number of documents
+            # Also check total size to see if compression is needed
+            total_size_mb = sum(len(doc["content"]) / (1024 * 1024) for doc in extracted_documents)
+            per_doc_target_mb = target_size_mb / len(extracted_documents) if extracted_documents else target_size_mb
+            
+            logger.info(f"Total size: {total_size_mb:.2f}MB, Target: {target_size_mb}MB, Per-doc target: {per_doc_target_mb:.2f}MB")
+            
+            # Skip compression if already within target
+            if total_size_mb <= target_size_mb:
+                logger.info(f"Total size {total_size_mb:.2f}MB is already within target {target_size_mb}MB, skipping compression")
+                compressed_documents = [
+                    {
+                        **doc,
+                        "filename": doc["filename"].replace(".pdf", "_compressed.pdf"),
+                        "compression_skipped": True
+                    }
+                    for doc in extracted_documents
+                ]
+                compression_duration = self.end_step_timer("compression")
+                await self.update_plan_step("compress", "completed", 
+                                          f"Compression not needed (already within {target_size_mb}MB target) ({compression_duration:.1f}s)")
+            else:
+                # Send initial compression status
+                await self.send_update("compression_started", {
+                    "total_documents": len(extracted_documents),
+                    "documents": [{"filename": doc["filename"], "status": "pending"} for doc in extracted_documents],
+                    "total_size_mb": round(total_size_mb, 2),
+                    "target_size_mb": target_size_mb,
+                    "per_doc_target_mb": round(per_doc_target_mb, 2)
+                })
+                
+                # Create compression tasks for parallel processing
+                compression_tasks = []
+                async with self.file_organizer:
+                    for idx, doc in enumerate(extracted_documents):
+                        # Check if individual document needs compression
+                        doc_size_mb = len(doc["content"]) / (1024 * 1024)
+                        if doc_size_mb <= per_doc_target_mb:
+                            # Document already within target, skip compression
+                            compression_tasks.append(asyncio.create_task(self._skip_compression(doc, idx, doc_size_mb)))
+                        else:
+                            task = self.compress_document_with_tracking(
+                                doc,
+                                per_doc_target_mb,
+                                idx
+                            )
+                            compression_tasks.append(task)
+                
+                    # Run all compressions in parallel
+                    compression_results = await asyncio.gather(*compression_tasks, return_exceptions=True)
+                
+                # Process results and handle any errors
+                compressed_documents = []
+                failed_count = 0
+                
+                for idx, (doc, result) in enumerate(zip(extracted_documents, compression_results)):
+                    if isinstance(result, Exception):
+                        logger.error(f"Compression failed for {doc['filename']}: {result}")
+                        failed_count += 1
+                        # Use original document if compression failed
+                        compressed_documents.append({
+                            **doc,
+                            "filename": doc["filename"].replace(".pdf", "_compressed.pdf"),
+                            "compression_failed": True
+                        })
+                    else:
+                        compressed_documents.append({
+                            **doc,
+                            "content": result,
+                            "filename": doc["filename"].replace(".pdf", "_compressed.pdf"),
+                            "compression_failed": False
+                        })
+            
+            # Organize compressed versions with JSON extractions
+            compressed_folder_name = "compressed_cleaned" if pages_removed > 0 else "compressed"
+            compressed_dir = os.path.join(self.output_dir, compressed_folder_name)
+            self.organize_by_quarter_with_metadata(compressed_documents, compressed_dir)
+            
+            # Also save JSON extractions in compressed quarter folders
+            for doc in compressed_documents:
+                if not doc.get("compression_failed", False):
+                    # Get quarter and year from extracted metadata
+                    extracted_data = doc.get("extracted_data", {})
+                    quarter = None
+                    year = None
+                    company_name = None
+                    form_type = None
+                    
+                    # Extract company name
+                    if "employerInfo" in extracted_data:
+                        company_name = extracted_data["employerInfo"].get("name", "")
+                    
+                    # Detect form type
+                    form_match = re.search(r'941-?X?', doc["filename"], re.IGNORECASE)
+                    if form_match:
+                        form_type = form_match.group(0).upper().replace('-', '')
+                    else:
+                        form_type = "941X"
+                    
+                    # For 941-X forms, check multiple possible locations
+                    if "correctionInfo" in extracted_data:
+                        quarter = extracted_data["correctionInfo"].get("quarter")
+                        year = extracted_data["correctionInfo"].get("year")
+                    elif "quarterBeingCorrected" in extracted_data:
+                        quarter = extracted_data["quarterBeingCorrected"].get("quarter")
+                        year = extracted_data["quarterBeingCorrected"].get("year")
+                    
+                    # Convert to proper format
+                    if quarter:
+                        quarter = f"Q{quarter}"
+                    else:
+                        # Fallback to filename parsing
+                        quarter_match = re.search(r'Q([1-4])', doc["filename"], re.IGNORECASE)
+                        if quarter_match:
+                            quarter = f"Q{quarter_match.group(1)}"
+                        else:
+                            current_month = datetime.now().month
+                            quarter = f"Q{(current_month - 1) // 3 + 1}"
+                    
+                    if year:
+                        year = str(year)
+                    else:
+                        year_match = re.search(r'(20\d{2})', doc["filename"])
+                        if year_match:
+                            year = year_match.group(1)
+                        else:
+                            year = str(datetime.now().year)
+                    
+                    # Generate the same filename as the PDF
+                    if company_name:
+                        clean_company_name = company_name.replace(' ', '_').replace(',', '').replace('.', '')
+                        clean_company_name = re.sub(r'_+', '_', clean_company_name)
+                        json_filename = f"{clean_company_name}_{quarter}_{year}_{form_type}_extraction.json"
+                    else:
+                        json_filename = doc["filename"].replace("_compressed.pdf", "_extraction.json")
+                    
+                    # Save JSON extraction in the compressed quarter folder
+                    json_path = os.path.join(compressed_dir, year, quarter, json_filename)
+                    with open(json_path, 'w') as f:
+                        json.dump(doc["extracted_data"], f, indent=2)
+            
+            # Update final compression status
+            compression_duration = self.end_step_timer("compression") 
+            success_count = len(compressed_documents) - failed_count
+            status_message = f"Created {success_count}/{len(compressed_documents)} compressed versions ({compression_duration:.1f}s)"
+            if failed_count > 0:
+                status_message += f" ({failed_count} failed)"
+            
+            await self.update_plan_step("compress", "completed", status_message)
+            
+            # Step 6: Prepare files for Google Drive upload (no archives)
+            self.start_step_timer("archiving")
+            await self.update_plan_step("archive", "in_progress", "Preparing files for upload...")
+            
+            # Store file references for later upload
+            files_to_upload = {
+                "individual_uncompressed": [],
+                "individual_compressed": [],
+                "combined_uncompressed": None,
+                "combined_compressed": None
+            }
+            
+            # Individual documents (uncompressed) with JSON extractions
+            for doc in extracted_documents:
+                # Use the organized filename if available, otherwise use original
+                if "organized_filename" in doc:
+                    pdf_filename = doc["organized_filename"]
+                else:
+                    pdf_filename = doc["filename"]
+                
+                # Store PDF reference
+                files_to_upload["individual_uncompressed"].append({
+                    "filename": pdf_filename,
+                    "content": doc["content"],
+                    "type": "pdf"
+                })
+                
+                # Generate JSON filename to match PDF
+                if pdf_filename.endswith("_uncompressed.pdf"):
+                    json_filename = pdf_filename.replace("_uncompressed.pdf", "_extraction.json")
+                else:
+                    json_filename = pdf_filename.replace(".pdf", "_extraction.json")
+                json_content = json.dumps(doc["extracted_data"], indent=2).encode('utf-8')
+                files_to_upload["individual_uncompressed"].append({
+                    "filename": json_filename,
+                    "content": json_content,
+                    "type": "json"
+                })
+            
+            # Individual documents (compressed) with JSON extractions
+            for doc in compressed_documents:
+                # Use the organized filename if available, otherwise use original
+                if "organized_filename" in doc:
+                    pdf_filename = doc["organized_filename"]
+                else:
+                    pdf_filename = doc["filename"]
+                
+                # Store PDF reference
+                files_to_upload["individual_compressed"].append({
+                    "filename": pdf_filename,
+                    "content": doc["content"],
+                    "type": "pdf"
+                })
+                
+                # Generate JSON filename to match PDF
+                if pdf_filename.endswith("_compressed.pdf"):
+                    json_filename = pdf_filename.replace("_compressed.pdf", "_extraction.json")
+                else:
+                    json_filename = pdf_filename.replace(".pdf", "_extraction.json")
+                json_content = json.dumps(doc["extracted_data"], indent=2).encode('utf-8')
+                files_to_upload["individual_compressed"].append({
+                    "filename": json_filename,
+                    "content": json_content,
+                    "type": "json"
+                })
+            
+            # Combined documents
+            if len(extracted_documents) > 1:
+                try:
+                    async with self.file_organizer:
+                        # Combine uncompressed
+                        combined_uncompressed = await self.file_organizer.combine_pdfs(
+                            [(doc["filename"], doc["content"]) for doc in extracted_documents],
+                            compress=False,
+                            target_size_mb=5.0  # Use larger size for uncompressed
+                        )
+                        files_to_upload["combined_uncompressed"] = {
+                            "filename": "combined_uncompressed.pdf",
+                            "content": combined_uncompressed,
+                            "type": "pdf"
+                        }
+                        
+                        # Combine compressed
+                        combined_compressed = await self.file_organizer.combine_pdfs(
+                            [(doc["filename"], doc["content"]) for doc in extracted_documents],
+                            compress=True,
+                            target_size_mb=target_size_mb  # Use user-specified size
+                        )
+                        files_to_upload["combined_compressed"] = {
+                            "filename": "combined_compressed.pdf",
+                            "content": combined_compressed,
+                            "type": "pdf"
+                        }
+                except Exception as e:
+                    logger.warning(f"Failed to combine PDFs: {str(e)[:200]}. Skipping combined versions.")
+                    # Continue without combined versions
+            
+            archiving_duration = self.end_step_timer("archiving")
+            await self.update_plan_step("archive", "completed", f"Prepared files for upload ({archiving_duration:.1f}s)")
+            
+            # Step 7: Complete
+            await self.update_plan_step("complete", "completed", "Workflow complete!")
+            
+            # Stop the timer
+            self._timer_running = False
+            total_elapsed = time.time() - start_time
+            
+            # Step 8: Prepare all files for Google Drive upload
+            self.start_step_timer("master_archive")
+            await self.update_plan_step("archive", "in_progress", "Preparing all files for upload...")
+            
+            # Save extraction data as JSON files
+            extractions_dir = os.path.join(self.output_dir, "extractions")
+            os.makedirs(extractions_dir, exist_ok=True)
+            
+            for doc in extracted_documents:
+                # Save individual extraction JSON
+                json_filename = doc["filename"].replace(".pdf", "_extraction.json")
+                json_path = os.path.join(extractions_dir, json_filename)
+                with open(json_path, 'w') as f:
+                    json.dump(doc["extracted_data"], f, indent=2)
+            
+            # Create combined extractions file
+            all_extractions = {
+                "extraction_timestamp": datetime.now().isoformat(),
+                "total_documents": len(extracted_documents),
+                "documents": [
+                    {
+                        "filename": doc["filename"],
+                        "data": doc["extracted_data"]
+                    }
+                    for doc in extracted_documents
+                ]
+            }
+            
+            all_extractions_path = os.path.join(extractions_dir, "all_extractions.json")
+            with open(all_extractions_path, 'w') as f:
+                json.dump(all_extractions, f, indent=2)
+            
+            # Store all_extractions.json in files_to_upload
+            files_to_upload["all_extractions"] = {
+                "filename": "all_extractions.json",
+                "content": json.dumps(all_extractions, indent=2).encode('utf-8'),
+                "type": "json"
+            }
+            
+            master_archive_duration = self.end_step_timer("master_archive")
+            await self.update_plan_step("archive", "completed", f"Prepared all files for upload ({master_archive_duration:.1f}s)")
+            
+            # Prepare detailed statistics (needed for both batch and individual processing)
+            processing_stats = {
+                "documents_processed": len(extracted_documents),
+                "pages_removed": cleaning_report.get("removed_pages", 0),
+                "total_pages": cleaning_report.get("total_pages", 0),
+                "pages_kept": cleaning_report.get("kept_pages", 0),
+                "compressions_successful": len(compressed_documents) - failed_count,
+                "extractions_successful": len([d for d in extracted_documents if not d.get("extraction_failed", False)]),
+                "total_elapsed_time": round(total_elapsed, 1),
+                "average_time_per_document": round(total_elapsed / len(extracted_documents), 1) if extracted_documents else 0,
+                "start_time": datetime.fromtimestamp(start_time).strftime("%Y-%m-%d %H:%M:%S"),
+                "end_time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                "step_timings": {
+                    step: round(timing.get("duration", 0), 1) 
+                    for step, timing in self.step_timings.items()
+                },
+                "document_details": [
+                    {
+                        "filename": doc["filename"],
+                        "quarter": doc.get("extracted_data", {}).get("correctionInfo", {}).get("quarter") or 
+                                  doc.get("extracted_data", {}).get("quarterInfo", {}).get("quarter", "Unknown"),
+                        "year": doc.get("extracted_data", {}).get("correctionInfo", {}).get("year") or 
+                               doc.get("extracted_data", {}).get("quarterInfo", {}).get("year", "Unknown"),
+                        "extraction_time": doc.get("metadata", {}).get("processing_time", 0)
+                    }
+                    for doc in extracted_documents
+                ]
+            }
+            
+            # Step 8: Upload to Google Drive (skip if part of batch)
+            google_drive_result = None
+            if not skip_individual_gdrive:
+                try:
+                    self.start_step_timer("google_drive_upload")
+                    await self.update_plan_step("google_drive", "in_progress", "Uploading files to Google Drive...")
+                    
+                    # Extract company name and form type for folder organization
+                    company_name = None
+                    form_type = None
+                    if extracted_documents:
+                        first_doc_data = extracted_documents[0].get("extracted_data", {})
+                        if "employerInfo" in first_doc_data:
+                            company_name = first_doc_data["employerInfo"].get("name", "Unknown")
+                        
+                        # Detect form type
+                        form_match = re.search(r'941-?X?', extracted_documents[0]["filename"], re.IGNORECASE)
+                        if form_match:
+                            form_type = form_match.group(0).upper().replace('-', '')
+                        else:
+                            form_type = "941X"
+                    
+                    if not company_name:
+                        company_name = "Unknown_Company"
+                    
+                    # Upload to Google Drive using configuration
+                    async with GoogleDriveIntegration() as google_drive:
+                        # Update status tracking
+                        if config_manager.config.track_processing_status:
+                            await update_session_status(self.session_id, {
+                                "status": "uploading",
+                                "current_step": "google_drive",
+                                "progress": 90,
+                                "metadata": {
+                                    "company_name": company_name,
+                                    "form_type": form_type,
+                                    "documents_count": len(extracted_documents)
+                                }
+                            })
+                                }
+                                for doc in extracted_documents
+                            ]
+                        }
+                        
+                        # Upload files to Google Drive folder structure
+                        google_drive_result = await self.upload_files_to_google_drive(
+                            google_drive,
+                            files_to_upload,
+                            organized_paths,
+                            company_name,
+                            form_type,
+                            processing_stats,
+                            cleaning_report
+                        )
+                    
+                    if google_drive_result and google_drive_result.get("success"):
+                        google_drive_duration = self.end_step_timer("google_drive_upload")
+                        await self.update_plan_step("google_drive", "completed", 
+                                                  f"Uploaded to Google Drive ({google_drive_duration:.1f}s)")
+                        await self.send_update("google_drive_complete", google_drive_result)
+                    else:
+                        raise Exception(google_drive_result.get("error", "Upload failed"))
+                        
+                except Exception as e:
+                    logger.warning(f"Google Drive upload failed: {e}")
+                    await self.update_plan_step("google_drive", "failed", f"Upload failed: {str(e)[:50]}...")
+                    # Continue without failing the entire workflow
+            else:
+                logger.info(f"Skipping Google Drive upload for batch processing (session {self.session_id})")
+            
+            # Prepare final results
+            workflow_results = {
+                "success": True,
+                "cleaning_report": cleaning_report,
+                "split_count": len(split_documents),
+                "extracted_documents": [
+                    {
+                        "filename": doc["filename"],
+                        "metadata": doc["metadata"],
+                        "extracted_data": doc["extracted_data"]
+                    }
+                    for doc in extracted_documents
+                ],
+                "organized_paths": organized_paths,
+                "google_drive_folders": google_drive_result if google_drive_result else None,
+                "output_directory": self.output_dir,
+                "total_elapsed_time": round(total_elapsed, 1),
+                "processing_stats": {
+                    "documents_processed": len(extracted_documents),
+                    "pages_removed": cleaning_report.get("removed_pages", 0),
+                    "compressions_successful": len(compressed_documents) - failed_count,
+                    "average_time_per_document": round(total_elapsed / len(extracted_documents), 1) if extracted_documents else 0
+                },
+                "step_timings": {
+                    step: round(timing.get("duration", 0), 1) 
+                    for step, timing in self.step_timings.items()
+                },
+                "google_drive_upload": google_drive_result
+            }
+            
+            await self.send_update("workflow_complete", workflow_results)
+            
+            # Update session status to completed with processed_count
+            # This is critical for batch processing to track completion
+            await db_state_manager.save_processing_status(
+                self.session_id,
+                self.batch_id or "",  # Use batch_id if part of a batch
+                "completed",
+                [filename],  # processed_files
+                {},  # extractions
+                1,  # total_files
+                {  # metadata
+                    "workflow_complete": True,
+                    "processing_stats": processing_stats,
+                    "google_drive_result": google_drive_result
+                }
+            )
+            
+            return workflow_results
+            
+        except Exception as e:
+            logger.error(f"Error in enhanced workflow: {e}")
+            await self.update_plan_step("complete", "failed", str(e))
+            
+            # Update session status to failed
+            await db_state_manager.save_processing_status(
+                self.session_id,
+                self.batch_id or "",  # Use batch_id if part of a batch
+                "failed",
+                [],  # processed_files
+                {},  # extractions
+                1,  # total_files
+                {"error": str(e)}  # metadata
+            )
+            
+            raise
+            
+    async def extract_document_with_tracking(self, split_doc: Dict[str, Any], selected_schema: str,
+                                           expected_value: Optional[str], doc_index: int) -> Dict[str, Any]:
+        """Extract data from a FULL document (all pages) with real-time progress tracking"""
+        filename = split_doc["filename"]
+        
+        # Send start notification
+        await self.send_update("document_extraction_started", {
+            "index": doc_index,
+            "filename": filename,
+            "status": "extracting",
+            "message": "Starting full document extraction..."
+        })
+        
+        try:
+            # Extract data from the ENTIRE document (not just individual pages)
+            start_time = time.time()
+            
+            # Create a dedicated processor for this specific document
+            # Create a temporary session ID and add it to active sessions
+            temp_session_id = f"{self.session_id}_doc_{doc_index}"
+            active_sessions.add(temp_session_id)
+            
+            doc_processor = V11DocumentProcessor(temp_session_id)
+            doc_processor.expected_value = expected_value
+            
+            # Process the entire document with its own parallel page extraction
+            logger.info(f"Starting full document extraction for {filename} (document {doc_index + 1})")
+            
+            # The V11 processor will handle:
+            # 1. Splitting into pages
+            # 2. Extracting all pages in parallel 
+            # 3. Running compilation immediately after
+            extraction_results = await doc_processor.process_with_parallel_extraction(
+                split_doc["content"],
+                selected_schema,
+                filename
+            )
+            
+            extraction_time = time.time() - start_time
+            
+            # Get the first (and should be only) result
+            if extraction_results and len(extraction_results) > 0:
+                extraction_result = extraction_results[0]
+                
+                # Send completion notification
+                await self.send_update("document_extraction_completed", {
+                    "index": doc_index,
+                    "filename": filename,
+                    "status": "completed",
+                    "extraction_time": extraction_time,
+                    "has_errors": "error" in extraction_result,
+                    "pages_processed": extraction_result.get("compilation_metadata", {}).get("total_pages", 0),
+                    "message": f"Extracted and compiled {extraction_result.get('compilation_metadata', {}).get('total_pages', 0)} pages"
+                })
+                
+                logger.info(f"Document {filename} extraction complete in {extraction_time:.1f}s")
+                return extraction_result
+            else:
+                raise Exception("No extraction results returned")
+            
+        except Exception as e:
+            logger.error(f"Error extracting document {filename}: {e}")
+            # Send error notification
+            await self.send_update("document_extraction_completed", {
+                "index": doc_index,
+                "filename": filename,
+                "status": "failed",
+                "error": str(e)
+            })
+            raise
+        finally:
+            # Clean up temporary session
+            if 'temp_session_id' in locals():
+                active_sessions.discard(temp_session_id)
+    
+    def organize_by_quarter_with_metadata(self, documents: List[Dict[str, Any]], base_path: str) -> Dict[str, List[str]]:
+        """Organize documents by quarter using extracted metadata instead of filename parsing"""
+        organized = {}
+        
+        for doc in documents:
+            original_filename = doc["filename"]
+            extracted_data = doc.get("extracted_data", {})
+            
+            # Try to get quarter and year from extracted data
+            quarter = None
+            year = None
+            company_name = None
+            form_type = None
+            
+            # Extract company name
+            if "employerInfo" in extracted_data:
+                company_name = extracted_data["employerInfo"].get("name", "")
+            
+            # For 941-X forms, check multiple possible locations
+            if "correctionInfo" in extracted_data:
+                quarter = extracted_data["correctionInfo"].get("quarter")
+                year = extracted_data["correctionInfo"].get("year")
+            elif "quarterBeingCorrected" in extracted_data:
+                quarter = extracted_data["quarterBeingCorrected"].get("quarter")
+                year = extracted_data["quarterBeingCorrected"].get("year")
+            
+            # Detect form type from original filename or metadata
+            form_match = re.search(r'941-?X?', original_filename, re.IGNORECASE)
+            if form_match:
+                form_type = form_match.group(0).upper().replace('-', '')  # 941X or 941
+            else:
+                # Default form type
+                form_type = "941X"
+            
+            # Convert quarter number to Q format
+            if quarter:
+                quarter = f"Q{quarter}"
+            else:
+                # Fallback to filename parsing
+                quarter_match = re.search(r'Q([1-4])', original_filename, re.IGNORECASE)
+                if quarter_match:
+                    quarter = f"Q{quarter_match.group(1)}"
+                else:
+                    # Default to current quarter
+                    current_month = datetime.now().month
+                    quarter = f"Q{(current_month - 1) // 3 + 1}"
+            
+            # Ensure year is a string
+            if year:
+                year = str(year)
+            else:
+                # Fallback to filename parsing
+                year_match = re.search(r'(20\d{2})', original_filename)
+                if year_match:
+                    year = year_match.group(1)
+                else:
+                    # Last resort: default to current year
+                    year = str(datetime.now().year)
+                    logger.warning(f"Could not determine year for {original_filename}, defaulting to {year}")
+            
+            # Generate new filename: CompanyName_Quarter_Year_FormType.pdf
+            if company_name:
+                # Clean company name for filename
+                clean_company_name = company_name.replace(' ', '_').replace(',', '').replace('.', '')
+                # Remove any double underscores
+                clean_company_name = re.sub(r'_+', '_', clean_company_name)
+                
+                # Build new filename
+                base_name = f"{clean_company_name}_{quarter}_{year}_{form_type}"
+                
+                # Add appropriate suffix based on document type
+                if "_compressed" in original_filename:
+                    new_filename = f"{base_name}_compressed.pdf"
+                else:
+                    # For raw/uncompressed files
+                    if "raw" in base_path:
+                        new_filename = f"{base_name}_uncompressed.pdf"
+                    else:
+                        new_filename = f"{base_name}.pdf"
+            else:
+                # Fallback to original filename if no company name
+                new_filename = original_filename
+                logger.warning(f"No company name found for {original_filename}, keeping original name")
+            
+            # Create folder structure
+            folder_path = os.path.join(base_path, year, quarter)
+            os.makedirs(folder_path, exist_ok=True)
+            
+            # Save document with new filename
+            file_path = os.path.join(folder_path, new_filename)
+            with open(file_path, 'wb') as f:
+                f.write(doc["content"])
+            
+            # Update the document's filename for later use
+            doc["organized_filename"] = new_filename
+            
+            # Track organization
+            key = f"{year}/{quarter}"
+            if key not in organized:
+                organized[key] = []
+            organized[key].append(file_path)
+            
+            logger.info(f"Organized {original_filename} as {new_filename} in {year}/{quarter}")
+        
+        return organized
+    
+    async def _skip_compression(self, document: Dict[str, Any], doc_index: int, doc_size_mb: float) -> bytes:
+        """Handle documents that don't need compression"""
+        filename = document["filename"]
+        
+        # Send notification that compression is being skipped
+        await self.send_update("document_compression_completed", {
+            "index": doc_index,
+            "filename": filename,
+            "status": "skipped",
+            "compression_time": 0,
+            "original_size_mb": round(doc_size_mb, 2),
+            "compressed_size_mb": round(doc_size_mb, 2),
+            "compression_ratio": 0,
+            "reason": "Already within target size"
+        })
+        
+        # Return original content
+        return document["content"]
+    
+    async def compress_document_with_tracking(self, document: Dict[str, Any], target_size_mb: float,
+                                            doc_index: int) -> bytes:
+        """Compress a document with real-time progress tracking"""
+        filename = document["filename"]
+        
+        # Send start notification
+        await self.send_update("document_compression_started", {
+            "index": doc_index,
+            "filename": filename,
+            "status": "compressing"
+        })
+        
+        try:
+            # Compress the document
+            start_time = time.time()
+            compressed_content = await self.file_organizer.compress_pdf(
+                document["content"], 
+                target_size_mb=target_size_mb
+            )
+            
+            compression_time = time.time() - start_time
+            original_size = len(document["content"]) / (1024 * 1024)
+            compressed_size = len(compressed_content) / (1024 * 1024)
+            compression_ratio = (1 - compressed_size / original_size) * 100 if original_size > 0 else 0
+            
+            # Send completion notification
+            await self.send_update("document_compression_completed", {
+                "index": doc_index,
+                "filename": filename,
+                "status": "completed",
+                "compression_time": compression_time,
+                "original_size_mb": round(original_size, 2),
+                "compressed_size_mb": round(compressed_size, 2),
+                "compression_ratio": round(compression_ratio, 1)
+            })
+            
+            return compressed_content
+            
+        except Exception as e:
+            # Send error notification
+            await self.send_update("document_compression_completed", {
+                "index": doc_index,
+                "filename": filename,
+                "status": "failed",
+                "error": str(e)
+            })
+            raise
+    
+    async def upload_files_to_google_drive(self, google_drive, files_to_upload: Dict[str, Any],
+                                         organized_paths: Dict[str, List[str]], company_name: str,
+                                         form_type: str, processing_stats: Dict[str, Any],
+                                         cleaning_report: Dict[str, Any]) -> Dict[str, Any]:
+        """Upload all files to Google Drive in a folder structure instead of ZIP archives"""
+        try:
+            # Always define processing_datetime for use in summaries
+            processing_datetime = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+            
+            # Use the provided google_drive_folder_id if available (case folder)
+            # Otherwise create a new folder structure
+            if hasattr(self, 'google_drive_folder_id') and self.google_drive_folder_id:
+                # We're processing within a specific case folder
+                case_folder_id = self.google_drive_folder_id
+                logger.info(f"Using provided Google Drive folder ID: {case_folder_id}")
+                
+                # Check if customer_uploaded_docs exists
+                logger.info(f"Searching for customer_uploaded_docs in case folder: {case_folder_id}")
+                customer_docs_folder_id = await google_drive.search_folder('customer_uploaded_docs', case_folder_id)
+                
+                if not customer_docs_folder_id:
+                    logger.info(f"customer_uploaded_docs not found, creating in case folder: {case_folder_id}")
+                    result = await google_drive.create_folder('customer_uploaded_docs', case_folder_id)
+                    customer_docs_folder_id = result['folder']['id']
+                    logger.info(f"Created customer_uploaded_docs folder: {customer_docs_folder_id}")
+                else:
+                    logger.info(f"Found existing customer_uploaded_docs folder: {customer_docs_folder_id}")
+                
+                # Now check if the output folder (e.g., 941x_forms) already exists
+                output_folder_name = getattr(self, 'output_folder', None) or "files_produced"
+                logger.info(f"Looking for output folder '{output_folder_name}' in customer_uploaded_docs folder: {customer_docs_folder_id}")
+                
+                output_folder_id = await google_drive.search_folder(output_folder_name, customer_docs_folder_id)
+                
+                if output_folder_id:
+                    # Use the existing output folder directly - files go here
+                    files_produced_folder_id = output_folder_id
+                    logger.info(f"Found existing {output_folder_name} folder: {output_folder_id} - will use this directly")
+                    # Set flag to skip the folder creation section
+                    self._output_folder_exists = True
+                    # IMPORTANT: Set base_folder_id to None to prevent any confusion
+                    base_folder_id = None
+                else:
+                    # We'll create the output folder in the next section
+                    base_folder_id = customer_docs_folder_id
+                    files_produced_folder_id = None  # Will be set when we create the folder
+                    self._output_folder_exists = False
+                    logger.info(f"Output folder '{output_folder_name}' not found in {customer_docs_folder_id}, will create it")
+            else:
+                # Fallback to creating new structure
+                base_folder_id = await google_drive.create_document_folder_structure(
+                    company_name, 
+                    form_type, 
+                    processing_datetime
+                )
+            
+            # Handle output folder creation if needed
+            if hasattr(self, '_output_folder_exists') and self._output_folder_exists:
+                # We already set files_produced_folder_id above when we found the existing folder
+                logger.info(f"Using existing output folder ID: {files_produced_folder_id}, no creation needed")
+            elif hasattr(self, 'google_drive_folder_id') and self.google_drive_folder_id and base_folder_id:
+                # We're in a case folder and need to create the output folder
+                output_folder_name = getattr(self, 'output_folder', None) or "files_produced"
+                logger.info(f"Creating output folder '{output_folder_name}' in folder ID: {base_folder_id}")
+                
+                files_produced_result = await google_drive.create_folder(output_folder_name, base_folder_id)
+                files_produced_folder_id = files_produced_result["folder"]["id"]
+                logger.info(f"Created {output_folder_name} folder with ID: {files_produced_folder_id}")
+            else:
+                # Using default structure - files go directly in the base folder
+                files_produced_folder_id = base_folder_id
+                logger.info(f"Using base folder {base_folder_id} for file uploads")
+            
+            # Final validation
+            if not files_produced_folder_id:
+                raise Exception("No valid folder ID for file upload - this should not happen!")
+            
+            logger.info(f"Final upload folder determined: {files_produced_folder_id}")
+            
+            uploaded_files = []
+            
+            # Upload all_extractions.json to files_produced
+            if "all_extractions" in files_to_upload:
+                all_extractions_file = files_to_upload["all_extractions"]
+                result = await google_drive.upload_file_content(
+                    all_extractions_file["content"],
+                    all_extractions_file["filename"],
+                    files_produced_folder_id
+                )
+                uploaded_files.append(all_extractions_file["filename"])
+                logger.info(f"Uploaded all_extractions.json to files_produced folder")
+            
+            # Create archives folder structure
+            archives_folder_name = "archives_cleaned" if cleaning_report.get("removed_pages", 0) > 0 else "archives"
+            archives_result = await google_drive.create_folder(archives_folder_name, files_produced_folder_id)
+            archives_folder_id = archives_result["folder"]["id"]
+            
+            # Upload individual uncompressed files
+            if files_to_upload["individual_uncompressed"]:
+                individual_uncomp_result = await google_drive.create_folder("individual_uncompressed", archives_folder_id)
+                individual_uncomp_folder_id = individual_uncomp_result["folder"]["id"]
+                
+                for file_info in files_to_upload["individual_uncompressed"]:
+                    result = await google_drive.upload_file_content(
+                        file_info["content"],
+                        file_info["filename"],
+                        individual_uncomp_folder_id
+                    )
+                    uploaded_files.append(f"individual_uncompressed/{file_info['filename']}")
+                logger.info(f"Uploaded {len(files_to_upload['individual_uncompressed'])} uncompressed files")
+            
+            # Upload individual compressed files
+            if files_to_upload["individual_compressed"]:
+                individual_comp_result = await google_drive.create_folder("individual_compressed", archives_folder_id)
+                individual_comp_folder_id = individual_comp_result["folder"]["id"]
+                
+                for file_info in files_to_upload["individual_compressed"]:
+                    result = await google_drive.upload_file_content(
+                        file_info["content"],
+                        file_info["filename"],
+                        individual_comp_folder_id
+                    )
+                    uploaded_files.append(f"individual_compressed/{file_info['filename']}")
+                logger.info(f"Uploaded {len(files_to_upload['individual_compressed'])} compressed files")
+            
+            # Upload combined files if they exist
+            if files_to_upload["combined_uncompressed"]:
+                file_info = files_to_upload["combined_uncompressed"]
+                result = await google_drive.upload_file_content(
+                    file_info["content"],
+                    file_info["filename"],
+                    archives_folder_id
+                )
+                uploaded_files.append(file_info["filename"])
+                logger.info("Uploaded combined_uncompressed.pdf")
+            
+            if files_to_upload["combined_compressed"]:
+                file_info = files_to_upload["combined_compressed"]
+                result = await google_drive.upload_file_content(
+                    file_info["content"],
+                    file_info["filename"],
+                    archives_folder_id
+                )
+                uploaded_files.append(file_info["filename"])
+                logger.info("Uploaded combined_compressed.pdf")
+            
+            # Upload organized files by quarter
+            for quarter_key, file_paths in organized_paths.items():
+                year, quarter = quarter_key.split('/')
+                
+                logger.info(f"Creating year folder '{year}' in folder ID: {files_produced_folder_id}")
+                # Create year folder
+                year_result = await google_drive.create_folder(year, files_produced_folder_id)
+                year_folder_id = year_result["folder"]["id"]
+                
+                # Create quarter folder
+                quarter_result = await google_drive.create_folder(quarter, year_folder_id)
+                quarter_folder_id = quarter_result["folder"]["id"]
+                
+                # Upload files from this quarter
+                for file_path in file_paths:
+                    if os.path.exists(file_path):
+                        with open(file_path, 'rb') as f:
+                            content = f.read()
+                        filename = os.path.basename(file_path)
+                        result = await google_drive.upload_file_content(
+                            content,
+                            filename,
+                            quarter_folder_id
+                        )
+                        uploaded_files.append(f"{year}/{quarter}/{filename}")
+                
+                # Also upload JSON extractions for this quarter
+                quarter_dir = os.path.dirname(file_paths[0]) if file_paths else None
+                if quarter_dir and os.path.exists(quarter_dir):
+                    for file in os.listdir(quarter_dir):
+                        if file.endswith("_extraction.json"):
+                            json_path = os.path.join(quarter_dir, file)
+                            with open(json_path, 'rb') as f:
+                                content = f.read()
+                            result = await google_drive.upload_file_content(
+                                content,
+                                file,
+                                quarter_folder_id
+                            )
+                            uploaded_files.append(f"{year}/{quarter}/{file}")
+            
+            # Upload processing summary
+            summary_content = self.create_processing_summary(
+                self.session_id, company_name, form_type, processing_stats,
+                cleaning_report, uploaded_files, processing_datetime
+            )
+            
+            summary_result = await google_drive.upload_file_content(
+                summary_content.encode('utf-8'),
+                f"Processing_Summary_{self.session_id}.txt",
+                files_produced_folder_id
+            )
+            
+            # Generate Google Drive folder link - use the actual output folder where files were uploaded
+            folder_link = f"https://drive.google.com/drive/folders/{files_produced_folder_id}"
+            
+            # Determine the actual folder path based on whether we're in a case folder or not
+            if hasattr(self, 'google_drive_folder_id') and self.google_drive_folder_id:
+                output_folder_name = getattr(self, 'output_folder', None) or "files_produced"
+                folder_path = f"Case_{self.case_id}/customer_uploaded_docs/{output_folder_name}"
+            else:
+                folder_path = f"ProcessedDocuments/{company_name}/{form_type}/Processed_{processing_datetime}"
+            
+            return {
+                "success": True,
+                "folder_id": files_produced_folder_id,  # Return the actual folder where files were uploaded
+                "folder_link": folder_link,
+                "folder_path": folder_path,
+                "files_uploaded": len(uploaded_files),
+                "google_drive_url": folder_link,
+                "gdrive_folder_path": folder_path  # Add this for consistency with status updates
+            }
+            
+        except Exception as e:
+            logger.error(f"Error uploading files to Google Drive: {e}")
+            return {
+                "success": False,
+                "error": str(e)
+            }
+    
+    def create_processing_summary(self, session_id: str, company_name: str, form_type: str,
+                                processing_stats: Dict[str, Any], cleaning_report: Dict[str, Any],
+                                uploaded_files: List[str], processing_datetime: str) -> str:
+        """Create a detailed processing summary"""
+        total_seconds = processing_stats.get('total_elapsed_time', 0)
+        minutes = int(total_seconds // 60)
+        seconds = int(total_seconds % 60)
+        formatted_time = f"{minutes}m {seconds}s" if minutes > 0 else f"{seconds}s"
+        
+        # Get the output folder name from instance or default
+        output_folder_name = getattr(self, 'output_folder', None) or "files_produced"
+        
+        # Get current timestamp with timezone
+        import time as time_module
+        timezone = time_module.strftime('%Z')
+        if not timezone:
+            timezone = time_module.tzname[time_module.daylight]
+        timestamp = datetime.now().strftime(f"%Y-%m-%d %H:%M:%S {timezone}")
+        
+        # Get step timings if available
+        step_timings = processing_stats.get('step_timings', {})
+        step_timing_details = ""
+        if step_timings:
+            step_timing_details = "\nDetailed Step Timings:\n"
+            for step, duration in step_timings.items():
+                step_name = step.replace('_', ' ').title()
+                step_timing_details += f"- {step_name}: {duration:.1f}s\n"
+        
+        # Get document details if available
+        document_details = processing_stats.get('document_details', [])
+        doc_details_section = ""
+        if document_details:
+            doc_details_section = "\nProcessed Documents:\n"
+            for doc in document_details:
+                doc_details_section += f"- {doc.get('filename', 'Unknown')}\n"
+                if 'quarter' in doc and 'year' in doc:
+                    doc_details_section += f"  Quarter: {doc['quarter']}, Year: {doc['year']}\n"
+                if 'pages' in doc:
+                    doc_details_section += f"  Pages: {doc['pages']}\n"
+        
+        # List uploaded files
+        files_section = "\nUploaded Files:\n"
+        for file_path in uploaded_files[:50]:  # Limit to first 50 files
+            files_section += f"- {file_path}\n"
+        if len(uploaded_files) > 50:
+            files_section += f"... and {len(uploaded_files) - 50} more files\n"
+        
+        return f"""Document Processing Summary
+=====================================
+Generated: {timestamp}
+Session ID: {session_id}
+
+Company Information:
+-------------------
+Company Name: {company_name}
+Form Type: {form_type}
+
+Processing Information:
+----------------------
+Start Time: {processing_stats.get('start_time', 'N/A')}
+End Time: {processing_stats.get('end_time', 'N/A')}
+Total Duration: {formatted_time} ({total_seconds:.1f} seconds)
+
+Processing Statistics:
+---------------------
+- Documents Processed: {processing_stats.get('documents_processed', 0)}
+- Total Pages Analyzed: {cleaning_report.get('total_pages', 'N/A')}
+- Pages Removed (Instructions): {cleaning_report.get('pages_removed', 0)}
+- Pages Kept: {cleaning_report.get('pages_kept', 'N/A')}
+- Successful Extractions: {processing_stats.get('extractions_successful', processing_stats.get('documents_processed', 0))}
+- Successful Compressions: {processing_stats.get('compressions_successful', 0)}
+- Average Time per Document: {processing_stats.get('average_time_per_document', 0):.1f}s
+{step_timing_details}
+{doc_details_section}
+
+Google Drive Folder Structure:
+-----------------------------
+{output_folder_name}/
+├── all_extractions.json
+├── archives_cleaned/ (or archives/)
+│   ├── individual_uncompressed/
+│   ├── individual_compressed/
+│   ├── combined_uncompressed.pdf (if multiple documents)
+│   └── combined_compressed.pdf (if multiple documents)
+└── [Year]/[Quarter]/
+    ├── [Company]_[Quarter]_[Year]_[FormType]_uncompressed.pdf
+    ├── [Company]_[Quarter]_[Year]_[FormType]_compressed.pdf
+    └── [Company]_[Quarter]_[Year]_[FormType]_extraction.json
+
+Total Files Uploaded: {len(uploaded_files)}
+{files_section}
+
+Processing Features Used:
+------------------------
+- AI-powered page cleaning (removed instruction pages)
+- Intelligent document splitting
+- Parallel data extraction using Gemini AI
+- Metadata-based file organization
+- Smart compression to target size
+- Direct Google Drive folder upload (no ZIP archives)
+
+Upload Information:
+------------------
+Upload Time: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
+Google Drive Path: ProcessedDocuments/{company_name}/{form_type}/Processed_{processing_datetime}/
+
+=====================================
+End of Processing Summary
+"""
+    
+    async def upload_batch_files_to_google_drive(self, google_drive, batch_files: Dict[str, Any],
+                                               all_extractions: List[Dict], company_name: str,
+                                               form_type: str, quarters_str: str, session_ids: List[str],
+                                               processing_stats: Dict[str, Any]) -> Dict[str, Any]:
+        """Upload batch files to Google Drive in a folder structure"""
+        try:
+            # Use the provided google_drive_folder_id if available (case folder)
+            # Otherwise create a new folder structure
+            if hasattr(self, 'google_drive_folder_id') and self.google_drive_folder_id:
+                # We're processing within a specific case folder
+                case_folder_id = self.google_drive_folder_id
+                logger.info(f"[Batch] Using provided Google Drive folder ID: {case_folder_id}")
+                
+                # Check if customer_uploaded_docs exists
+                logger.info(f"[Batch] Searching for customer_uploaded_docs in case folder: {case_folder_id}")
+                customer_docs_folder_id = await google_drive.search_folder('customer_uploaded_docs', case_folder_id)
+                
+                if not customer_docs_folder_id:
+                    logger.info(f"[Batch] customer_uploaded_docs not found, creating in case folder: {case_folder_id}")
+                    result = await google_drive.create_folder('customer_uploaded_docs', case_folder_id)
+                    customer_docs_folder_id = result['folder']['id']
+                    logger.info(f"[Batch] Created customer_uploaded_docs folder: {customer_docs_folder_id}")
+                else:
+                    logger.info(f"[Batch] Found existing customer_uploaded_docs folder: {customer_docs_folder_id}")
+                
+                # Now check if the output folder (e.g., 941x_forms) already exists
+                output_folder_name = getattr(self, 'output_folder', None) or "files_produced"
+                logger.info(f"[Batch] Looking for output folder '{output_folder_name}' in customer_uploaded_docs folder: {customer_docs_folder_id}")
+                
+                output_folder_id = await google_drive.search_folder(output_folder_name, customer_docs_folder_id)
+                
+                if output_folder_id:
+                    # Use the existing output folder for batch
+                    folder_structure = output_folder_id
+                    logger.info(f"[Batch] Found existing {output_folder_name} folder: {output_folder_id} - will use this for batch")
+                else:
+                    # Create the output folder
+                    logger.info(f"[Batch] Creating output folder '{output_folder_name}' in folder: {customer_docs_folder_id}")
+                    result = await google_drive.create_folder(output_folder_name, customer_docs_folder_id)
+                    folder_structure = result['folder']['id']
+                    logger.info(f"[Batch] Created {output_folder_name} folder: {folder_structure}")
+            else:
+                # Fallback to creating new structure
+                # Get date/time strings for folder naming
+                processing_date = datetime.now()
+                date_str = processing_date.strftime("%Y-%m-%d")
+                
+                # Create base folder structure
+                folder_structure = await google_drive.create_document_folder_structure(
+                    company_name,
+                    form_type,
+                    date_str
+                )
+            
+            # Get date/time strings for folder naming
+            processing_date = datetime.now()
+            date_str = processing_date.strftime("%Y-%m-%d")
+            time_str = processing_date.strftime("%H-%M-%S")
+            
+            # Create batch folder with all quarters
+            batch_folder_name = f"Batch_{date_str}_{time_str}"
+            if quarters_str:
+                batch_folder_name += f"_{quarters_str}"
+            
+            # For batch processing in existing output folder, create batch subfolder
+            batch_folder = await google_drive.create_folder(batch_folder_name, folder_structure)
+            batch_folder_id = batch_folder["folder"]["id"]
+            logger.info(f"Created batch folder: {batch_folder_name}")
+            
+            # For batch, files go directly in the batch folder (no additional output folder)
+            files_produced_folder_id = batch_folder_id
+            
+            # Upload all_extractions.json
+            all_extractions_path = batch_files["all_extractions"]
+            if os.path.exists(all_extractions_path):
+                with open(all_extractions_path, 'rb') as f:
+                    content = f.read()
+                
+                await google_drive.upload_file_content(
+                    content,
+                    'all_extractions.json',
+                    files_produced_folder_id
+                )
+                logger.info("Uploaded all_extractions.json")
+            
+            # Upload files from each session
+            uploaded_count = 0
+            for session_info in batch_files["sessions"]:
+                session_id = session_info["session_id"]
+                session_files = session_info["files"]
+                
+                # Create session folder
+                session_folder = await google_drive.create_folder(f"Session_{session_id[:8]}", files_produced_folder_id)
+                session_folder_id = session_folder["folder"]["id"]
+                
+                # Upload files maintaining folder structure
+                for file_path, rel_path in session_files[:50]:  # Limit to prevent timeout
+                    try:
+                        # Create subdirectories if needed
+                        path_parts = rel_path.split(os.sep)
+                        current_folder_id = session_folder_id
+                        
+                        # Create folder structure
+                        for folder_part in path_parts[:-1]:
+                            if folder_part:
+                                sub_folder = await google_drive.create_folder(folder_part, current_folder_id)
+                                current_folder_id = sub_folder["folder"]["id"]
+                        
+                        # Upload file
+                        with open(file_path, 'rb') as f:
+                            content = f.read()
+                        
+                        filename = os.path.basename(file_path)
+                        await google_drive.upload_file_content(
+                            content,
+                            filename,
+                            current_folder_id
+                        )
+                        uploaded_count += 1
+                        
+                    except Exception as e:
+                        logger.warning(f"Failed to upload {file_path}: {e}")
+            
+            # Create and upload batch summary
+            # Get the output folder name
+            output_folder_name = getattr(self, 'output_folder', None) or "files_produced"
+            summary_content = f"""Batch Processing Summary
+========================
+Company: {company_name}
+Form Type: {form_type}
+Quarters: {quarters_str}
+Processing Date: {date_str} {time_str}
+Total Files: {processing_stats.get('total_files', 0)}
+Total Documents: {processing_stats.get('total_documents', 0)}
+Batch ID: {processing_stats.get('batch_id', 'N/A')}
+Files Uploaded: {uploaded_count}
+
+Session IDs:
+{chr(10).join(f'- {sid}' for sid in session_ids)}
+
+Google Drive Folder Structure:
+{output_folder_name}/
+├── all_extractions.json
+└── Session folders with organized documents
+"""
+            
+            await google_drive.upload_file_content(
+                summary_content.encode('utf-8'),
+                f'Batch_Summary_{processing_stats.get("batch_id", "")[:8]}.txt',
+                files_produced_folder_id
+            )
+            
+            # Get shareable link
+            folder_link = f"https://drive.google.com/drive/folders/{batch_folder_id}"
+            
+            # Determine the actual folder path
+            output_folder_name = getattr(self, 'output_folder', None) or "files_produced"
+            if hasattr(self, 'google_drive_folder_id') and self.google_drive_folder_id:
+                folder_path = f"Case_{self.case_id}/customer_uploaded_docs/{output_folder_name}/{batch_folder_name}"
+            else:
+                folder_path = f"ProcessedDocuments/{company_name}/{form_type}/{date_str}/{batch_folder_name}"
+            
+            return {
+                "success": True,
+                "folder_name": batch_folder_name,
+                "folder_id": batch_folder_id,
+                "folder_link": folder_link,
+                "folder_path": folder_path,
+                "files_uploaded": uploaded_count + 2  # +2 for all_extractions.json and summary
+            }
+            
+        except Exception as e:
+            logger.error(f"Error uploading batch to Google Drive: {e}")
+            return {
+                "success": False,
+                "error": str(e)
+            }
+    
+
+# Enhanced API endpoints
+@app.post("/api/process-enhanced")
+async def process_document_enhanced(
+    file: UploadFile = File(...),
+    selected_schema: str = Form(...),
+    expected_value: Optional[str] = Form(None),
+    target_size_mb: float = Form(9.0),
+    batch_id: Optional[str] = Form(None),
+    case_id: Optional[str] = Form(None),
+    google_drive_folder_id: Optional[str] = Form(None),
+    output_folder: Optional[str] = Form(None)
+):
+    """Enhanced document processing with cleaning, splitting, and organization"""
+    session_id = str(uuid.uuid4())
+    active_sessions.add(session_id)
+    
+    # Track batch membership if provided
+    skip_individual_gdrive = False
+    if batch_id:
+        batch_info = await get_batch_info(batch_id)
+        if batch_info:
+            await add_session_to_batch(batch_id, session_id)
+            skip_individual_gdrive = batch_info["skip_individual_gdrive"]
+            # Use batch's output_folder if not provided directly
+            if not output_folder and batch_info.get("output_folder"):
+                output_folder = batch_info["output_folder"]
+            logger.info(f"Processing file {file.filename} as part of batch {batch_id} with output_folder: {output_folder}")
+    
+    try:
+        # Read PDF content
+        pdf_content = await file.read()
+        
+        # Create enhanced processor with custom parameters
+        processor = EnhancedDocumentProcessor(session_id)
+        processor.case_id = case_id
+        processor.google_drive_folder_id = google_drive_folder_id
+        processor.output_folder = output_folder
+        
+        # Process with file organizer workflow
+        result = await processor.process_with_file_organizer(
+            pdf_content,
+            file.filename,
+            selected_schema,
+            expected_value,
+            target_size_mb,
+            skip_individual_gdrive
+        )
+        
+        # Return result with session_id for WebSocket tracking
+        return JSONResponse(content={
+            "session_id": session_id,
+            **result
+        })
+        
+    except Exception as e:
+        logger.error(f"Error in enhanced processing: {e}")
+        return JSONResponse(
+            content={"error": str(e)},
+            status_code=500
+        )
+    finally:
+        active_sessions.discard(session_id)
+        
+        # Update batch completion if part of a batch
+        if batch_id:
+            await update_batch_completion(batch_id, session_id)
+            batch_info = await get_batch_info(batch_id)
+            if batch_info:
+                logger.info(f"Batch {batch_id}: {batch_info['completed_files']}/{batch_info['total_files']} files completed")
+
+@app.get("/api/download-archive/{session_id}/{archive_name:path}")
+async def download_archive(session_id: str, archive_name: str):
+    """Download processed files - redirects to Google Drive folder"""
+    # Since we no longer create local archives, return a message about Google Drive
+    return JSONResponse(content={
+        "message": "Files are now uploaded directly to Google Drive folders instead of ZIP archives.",
+        "info": "Check the google_drive_upload field in the processing response for the folder link.",
+        "deprecated": True
+    })
+
+@app.websocket("/ws/enhanced/{session_id}")
+async def websocket_enhanced_endpoint(websocket: WebSocket, session_id: str):
+    """Enhanced WebSocket endpoint for real-time updates"""
+    logger.info(f"WebSocket connection attempt for session {session_id}")
+    
+    try:
+        await websocket.accept()
+        active_connections[session_id] = websocket
+        logger.info(f"WebSocket connected for session {session_id}")
+        
+        # Send initial connection confirmation
+        await websocket.send_json({
+            "type": "connection_established",
+            "session_id": session_id,
+            "message": "WebSocket connection established"
+        })
+        
+        # If there's already a processor for this session, send current status
+        if session_id in active_processors:
+            processor = active_processors[session_id]
+            if hasattr(processor, 'workflow_steps'):
+                await websocket.send_json({
+                    "type": "workflow_plan",
+                    "data": processor.workflow_steps
+                })
+        
+        while True:
+            # Keep connection alive and handle any incoming messages
+            try:
+                data = await asyncio.wait_for(websocket.receive_text(), timeout=30.0)
+                # Handle ping/pong or other messages if needed
+                if data == "ping":
+                    await websocket.send_text("pong")
+            except asyncio.TimeoutError:
+                # Send periodic ping to keep connection alive
+                try:
+                    await websocket.send_json({"type": "ping"})
+                except:
+                    break
+                    
+    except WebSocketDisconnect:
+        logger.info(f"WebSocket disconnected for session {session_id}")
+    except Exception as e:
+        logger.error(f"WebSocket error for session {session_id}: {str(e)}")
+    finally:
+        active_connections.pop(session_id, None)
+        logger.info(f"WebSocket cleanup completed for session {session_id}")
+
+@app.post("/api/init-batch")
+async def init_batch(request: dict = Body(...)):
+    """Initialize a batch processing session"""
+    file_count = request.get("file_count", 0)
+    
+    if file_count <= 0:
+        return JSONResponse(content={"error": "Invalid file count"}, status_code=400)
+    
+    batch_id = str(uuid.uuid4())
+    await create_batch(batch_id, file_count, skip_individual_gdrive=True)
+    
+    logger.info(f"Initialized batch {batch_id} for {file_count} files")
+    
+    return JSONResponse(content={
+        "success": True,
+        "batch_id": batch_id,
+        "file_count": file_count
+    })
+
+@app.get("/api/download-file")
+async def download_file(path: str):
+    """Download a file by its path"""
+    try:
+        # Security check - ensure path is within processed_documents
+        if not path.startswith("processed_documents/"):
+            raise HTTPException(status_code=403, detail="Access denied")
+        
+        # Check if file exists
+        if not os.path.exists(path):
+            raise HTTPException(status_code=404, detail="File not found")
+        
+        # Get filename
+        filename = os.path.basename(path)
+        
+        # Return file
+        return FileResponse(
+            path,
+            media_type='application/octet-stream',
+            filename=filename,
+            headers={
+                "Content-Disposition": f"attachment; filename={filename}"
+            }
+        )
+    except Exception as e:
+        logger.error(f"Error downloading file: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/api/finalize-batch")
+async def finalize_batch(request: dict = Body(...)):
+    """Finalize batch processing - combine all extractions and upload to Google Drive"""
+    batch_id = request.get("batch_id")
+    
+    batch_info = await get_batch_info(batch_id)
+    if not batch_id or not batch_info:
+        logger.error(f"Invalid batch ID for finalization: {batch_id}")
+        active_batches = await db_state_manager.get_active_batches()
+        logger.info(f"Active batches: {[b['batch_id'] for b in active_batches]}")
+        return JSONResponse(content={"error": f"Invalid batch ID: {batch_id}"}, status_code=400)
+    
+    # Check if all files are completed
+    if batch_info["completed_files"] < batch_info["total_files"]:
+        return JSONResponse(content={
+            "error": f"Batch not complete. {batch_info['completed_files']}/{batch_info['total_files']} files processed"
+        }, status_code=400)
+    
+    # Check if we have the processing session IDs
+    if "processing_session_ids" not in batch_info:
+        logger.error(f"Batch {batch_id} missing processing_session_ids")
+        return JSONResponse(content={"error": "Batch processing not properly completed"}, status_code=400)
+    
+    try:
+        # Get the session IDs from the batch
+        session_ids = batch_info.get("processing_session_ids", [])
+        
+        logger.info(f"Finalizing batch {batch_id} with {len(session_ids)} sessions")
+        
+        # Call combine_results to do the actual combining and Google Drive upload
+        combine_request = {"session_ids": session_ids}
+        combine_response = await combine_results(combine_request)
+        
+        # Extract the response data - combine_results returns a JSONResponse
+        if isinstance(combine_response, JSONResponse):
+            combine_result = json.loads(combine_response.body.decode('utf-8'))
+        else:
+            combine_result = combine_response
+        
+        # Get Google Drive result from the combine response
+        google_drive_result = combine_result.get("google_drive_upload", None)
+        
+        # Clean up batch tracking
+        await delete_batch(batch_id)
+        
+        # Return the combined result with batch info
+        return JSONResponse(content={
+            "success": True,
+            "batch_id": batch_id,
+            "total_files": batch_info["total_files"],
+            "total_documents": combine_result.get("total_documents", 0),
+            "batch_folder": combine_result.get("batch_folder"),
+            "company_names": combine_result.get("company_names", []),
+            "form_types": combine_result.get("form_types", []),
+            "google_drive_upload": google_drive_result,
+            "files_location": combine_result.get("files_location", {})
+        })
+        
+    except Exception as e:
+        logger.error(f"Error finalizing batch: {e}")
+        logger.error(traceback.format_exc())
+        return JSONResponse(
+            content={"error": str(e)},
+            status_code=500
+        )
+
+@app.post("/api/process-gdrive")
+async def process_document_gdrive(request: dict = Body(...)):
+    """Process document directly from Google Drive"""
+    case_id = request.get("case_id")
+    google_drive_folder_id = request.get("google_drive_folder_id")
+    google_drive_file_id = request.get("google_drive_file_id")
+    file_name = request.get("file_name", "document.pdf")
+    selected_schema = request.get("selected_schema", "941-X")
+    target_size_mb = float(request.get("target_size_mb", 9.0))
+    output_folder = request.get("output_folder", "files_produced")
+    process_from_gdrive = request.get("process_from_gdrive", True)
+    
+    session_id = str(uuid.uuid4())
+    active_sessions.add(session_id)
+    
+    try:
+        # Create processor with custom output folder
+        processor = EnhancedDocumentProcessor(session_id)
+        processor.case_id = case_id
+        processor.google_drive_folder_id = google_drive_folder_id
+        processor.output_folder = output_folder
+        
+        # Store in active processors for status tracking
+        active_processors[session_id] = processor
+        
+        # Update status in gdrive router
+        from google_drive_routes import processing_status_db
+        processing_status_db[session_id] = {
+            "created_at": datetime.now().isoformat(),
+            "updated_at": datetime.now().isoformat(),
+            "status": "downloading",
+            "progress": 0,
+            "current_step": "downloading_from_gdrive",
+            "gdrive_folder_id": google_drive_folder_id,
+            "metadata": {
+                "case_id": case_id,
+                "file_name": file_name,
+                "output_folder": output_folder
+            }
+        }
+        
+        # Download file from Google Drive
+        logger.info(f"Downloading file {google_drive_file_id} from Google Drive")
+        async with GoogleDriveIntegration() as google_drive:
+            pdf_content = await google_drive.download_file(google_drive_file_id)
+        
+        # Update status
+        processing_status_db[session_id]["status"] = "processing"
+        processing_status_db[session_id]["current_step"] = "processing_document"
+        processing_status_db[session_id]["progress"] = 10
+        
+        # Process with file organizer workflow
+        result = await processor.process_with_file_organizer(
+            pdf_content,
+            file_name,
+            selected_schema,
+            None,  # expected_value
+            target_size_mb,
+            False  # Don't skip individual gdrive upload
+        )
+        
+        # Return result with session_id for tracking
+        return JSONResponse(content={
+            "session_id": session_id,
+            **result
+        })
+        
+    except Exception as e:
+        logger.error(f"Error processing from gdrive: {e}")
+        active_sessions.discard(session_id)
+        
+        # Update status to failed
+        if session_id in processing_status_db:
+            processing_status_db[session_id]["status"] = "failed"
+            processing_status_db[session_id]["error"] = str(e)
+        
+        return JSONResponse(
+            content={"error": str(e)},
+            status_code=500
+        )
+
+@app.post("/api/process-batch-gdrive")
+async def process_batch_gdrive(request: dict = Body(...)):
+    """Process multiple documents from Google Drive as a batch"""
+    case_id = request.get("case_id")
+    google_drive_folder_id = request.get("google_drive_folder_id")
+    files = request.get("files", [])
+    selected_schema = request.get("selected_schema", "941-X")
+    target_size_mb = float(request.get("target_size_mb", 9.0))
+    output_folder = request.get("output_folder", "files_produced")
+    
+    # Initialize batch
+    batch_id = str(uuid.uuid4())
+    
+    # Create batch tracking
+    await create_batch(batch_id, len(files), 
+                      skip_individual_gdrive=True,
+                      output_folder=output_folder,
+                      case_id=case_id,
+                      google_drive_folder_id=google_drive_folder_id)
+    
+    # Create a session for the batch
+    session_id = str(uuid.uuid4())
+    active_sessions.add(session_id)
+    await add_session_to_batch(batch_id, session_id)
+    
+    # Update status in gdrive router
+    from google_drive_routes import processing_status_db
+    processing_status_db[session_id] = {
+        "created_at": datetime.now().isoformat(),
+        "updated_at": datetime.now().isoformat(),
+        "status": "processing_batch",
+        "progress": 0,
+        "current_step": "downloading_files",
+        "gdrive_folder_id": google_drive_folder_id,
+        "metadata": {
+            "case_id": case_id,
+            "batch_id": batch_id,
+            "file_count": len(files),
+            "output_folder": output_folder
+        }
+    }
+    
+    try:
+        # Create processor for batch
+        processor = EnhancedDocumentProcessor(session_id)
+        processor.case_id = case_id
+        processor.google_drive_folder_id = google_drive_folder_id
+        processor.output_folder = output_folder
+        
+        # Store in active processors
+        active_processors[session_id] = processor
+        
+        # Process files in background to avoid timeout
+        async def process_batch_async():
+            try:
+                session_ids = []
+                
+                async with GoogleDriveIntegration() as google_drive:
+                    for idx, file_info in enumerate(files):
+                        file_id = file_info.get('googleDriveFileId', file_info.get('google_drive_file_id'))
+                        file_name = file_info.get('fileName', file_info.get('file_name', f'document_{idx}.pdf'))
+                        
+                        # Update progress
+                        progress = int((idx / len(files)) * 50)  # 0-50% for downloading
+                        processing_status_db[session_id]["progress"] = progress
+                        processing_status_db[session_id]["current_step"] = f"downloading_file_{idx+1}_of_{len(files)}"
+                        
+                        # Download file
+                        logger.info(f"Downloading file {file_id} ({file_name}) from Google Drive")
+                        pdf_content = await google_drive.download_file(file_id)
+                        
+                        # Create a sub-session for this file
+                        file_session_id = str(uuid.uuid4())
+                        active_sessions.add(file_session_id)
+                        await add_session_to_batch(batch_id, file_session_id)
+                        session_ids.append(file_session_id)
+                        
+                        # Create processor for this file
+                        file_processor = EnhancedDocumentProcessor(file_session_id)
+                        file_processor.case_id = case_id
+                        file_processor.google_drive_folder_id = google_drive_folder_id
+                        file_processor.output_folder = output_folder
+                        file_processor.batch_id = batch_id  # Set batch_id for proper tracking
+                        
+                        # Process file
+                        await file_processor.process_with_file_organizer(
+                            pdf_content,
+                            file_name,
+                            selected_schema,
+                            None,  # expected_value
+                            target_size_mb,
+                            True   # Skip individual gdrive upload for batch
+                        )
+                        
+                        await update_batch_completion(batch_id, file_session_id)
+                
+                # Update status to indicate batch processing is complete
+                # But NOT finalized - that happens in /api/finalize-batch
+                processing_status_db[session_id]["progress"] = 100
+                processing_status_db[session_id]["current_step"] = "batch_processing_complete"
+                processing_status_db[session_id]["status"] = "completed"
+                processing_status_db[session_id]["metadata"]["batch_ready_for_finalization"] = True
+                
+                # Store the session IDs in the batch for finalization
+                batch_state = await db_state_manager.get_batch_state(batch_id)
+                if batch_state:
+                    batch_state['metadata']['processing_session_ids'] = session_ids
+                    await db_state_manager.save_batch_state(batch_id, batch_state['session_ids'], 
+                                                           batch_state['status'], batch_state['metadata'])
+                
+                logger.info(f"Batch {batch_id} processing complete, ready for finalization")
+                
+            except Exception as e:
+                logger.error(f"Batch processing error: {e}")
+                processing_status_db[session_id]["status"] = "failed"
+                processing_status_db[session_id]["error"] = str(e)
+        
+        # Start async processing
+        asyncio.create_task(process_batch_async())
+        
+        return JSONResponse(content={
+            "batch_id": batch_id,
+            "session_id": session_id,
+            "status": "processing",
+            "message": f"Processing {len(files)} files from Google Drive in background",
+            "files": files
+        })
+        
+    except Exception as e:
+        logger.error(f"Error initializing batch: {e}")
+        return JSONResponse(
+            content={"error": str(e)},
+            status_code=500
+        )
+
+@app.post("/api/combine-results")
+async def combine_results(request: dict = Body(...)):
+    """Combine results from multiple processed files"""
+    session_ids = request.get("session_ids", [])
+    
+    if not session_ids:
+        return JSONResponse(content={"error": "No session IDs provided"}, status_code=400)
+    
+    combined_session_id = str(uuid.uuid4())
+    combined_output_dir = f"processed_documents/{combined_session_id}"
+    os.makedirs(combined_output_dir, exist_ok=True)
+    
+    try:
+        # Collect all extracted documents and statistics
+        all_extracted_documents = []
+        total_pages_removed = 0
+        total_documents = 0
+        total_processing_time = 0
+        all_company_names = set()
+        all_form_types = set()
+        
+        # Process each session
+        for session_id in session_ids:
+            session_dir = f"processed_documents/{session_id}"
+            if not os.path.exists(session_dir):
+                continue
+                
+            # Load extraction data
+            extractions_dir = os.path.join(session_dir, "extractions")
+            if os.path.exists(extractions_dir):
+                for extraction_file in os.listdir(extractions_dir):
+                    if extraction_file.endswith("_extraction.json"):
+                        with open(os.path.join(extractions_dir, extraction_file), 'r') as f:
+                            doc_data = json.load(f)
+                            all_extracted_documents.append(doc_data)
+                            
+                            # Extract company name and form type
+                            extracted_data = doc_data.get("extracted_data", {})
+                            company_name = (extracted_data.get("companyInfo", {}).get("name") or
+                                          extracted_data.get("employerInfo", {}).get("name") or
+                                          extracted_data.get("taxpayerInfo", {}).get("businessName"))
+                            if company_name:
+                                all_company_names.add(company_name)
+                                
+                            # Detect form type from filename
+                            filename = doc_data.get("filename", "")
+                            form_match = re.search(r'941-?X?|1040|2848|8821', filename, re.IGNORECASE)
+                            if form_match:
+                                all_form_types.add(form_match.group(0).upper().replace('-', ''))
+        
+        # Create combined all_extractions.json
+        all_extractions_path = os.path.join(combined_output_dir, "all_extractions.json")
+        with open(all_extractions_path, 'w') as f:
+            json.dump(all_extracted_documents, f, indent=2)
+        
+        # Also save in a batch folder with timestamp for easy access
+        batch_timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        batch_dir = f"processed_documents/batch_{batch_timestamp}"
+        os.makedirs(batch_dir, exist_ok=True)
+        
+        # Copy all_extractions.json to batch folder
+        batch_extractions_path = os.path.join(batch_dir, "all_extractions.json")
+        with open(batch_extractions_path, 'w') as f:
+            json.dump(all_extracted_documents, f, indent=2)
+        
+        # Create a summary file
+        summary = {
+            "batch_id": combined_session_id,
+            "timestamp": datetime.now().isoformat(),
+            "total_files": len(session_ids),
+            "successful_extractions": len(all_extracted_documents),
+            "company_names": list(all_company_names),
+            "form_types": list(all_form_types),
+            "session_ids": session_ids,
+            "files": [doc.get("filename", "Unknown") for doc in all_extracted_documents]
+        }
+        
+        summary_path = os.path.join(batch_dir, "batch_summary.json")
+        with open(summary_path, 'w') as f:
+            json.dump(summary, f, indent=2)
+        
+        # Prepare combined files for Google Drive upload (no archive)
+        combined_files_to_upload = {
+            "all_extractions": all_extractions_path,
+            "batch_summary": summary_path,
+            "sessions": []
+        }
+        
+        # Collect files from each session
+        for session_id in session_ids:
+            session_dir = f"processed_documents/{session_id}"
+            if not os.path.exists(session_dir):
+                continue
+                
+            session_files = []
+            # Collect files from raw_cleaned and compressed_cleaned
+            for root_folder in ["raw_cleaned", "compressed_cleaned"]:
+                folder_path = os.path.join(session_dir, root_folder)
+                if os.path.exists(folder_path):
+                    for root, dirs, files in os.walk(folder_path):
+                        for file in files:
+                            file_path = os.path.join(root, file)
+                            rel_path = os.path.relpath(file_path, session_dir)
+                            session_files.append((file_path, rel_path))
+            
+            if session_files:
+                combined_files_to_upload["sessions"].append({
+                    "session_id": session_id,
+                    "files": session_files
+                })
+        
+        # Calculate combined statistics
+        result = {
+            "success": True,
+            "session_id": combined_session_id,
+            "batch_folder": batch_dir,
+            "batch_timestamp": batch_timestamp,
+            "total_files": len(session_ids),
+            "total_documents": len(all_extracted_documents),
+            "total_pages_removed": sum(doc.get("metadata", {}).get("pages_removed", 0) for doc in all_extracted_documents),
+            "total_processing_time": round(sum(doc.get("processing_time", 0) for doc in all_extracted_documents), 1),
+            "files_location": {
+                "all_extractions": f"{combined_session_id}/all_extractions.json",
+                "batch_all_extractions": f"{batch_dir}/all_extractions.json",
+                "batch_summary": f"{batch_dir}/batch_summary.json"
+            },
+            "company_names": list(all_company_names),
+            "form_types": list(all_form_types)
+        }
+        
+        # Upload combined results to Google Drive
+        if all_company_names and all_form_types:
+            try:
+                company_part = "_".join(list(all_company_names)[:2]).replace(" ", "_")[:50] if all_company_names else "Unknown"
+                form_part = "_".join(sorted(all_form_types)) if all_form_types else "Forms"
+                
+                # Create an instance of EnhancedDocumentProcessor to use its upload method
+                processor = EnhancedDocumentProcessor(combined_session_id)
+                
+                async with GoogleDriveIntegration() as google_drive:
+                    google_drive_result = await processor.upload_batch_files_to_google_drive(
+                        google_drive,
+                        combined_files_to_upload,
+                        all_extracted_documents,
+                        company_part,
+                        form_part,
+                        "Combined",  # quarters_str
+                        session_ids,
+                        {
+                            "batch_id": combined_session_id,
+                            "total_files": len(session_ids),
+                            "total_documents": len(all_extracted_documents),
+                            "processing_timestamp": batch_timestamp
+                        }
+                    )
+                    result["google_drive_upload"] = google_drive_result
+            except Exception as e:
+                logger.warning(f"Google Drive upload failed for combined results: {e}")
+        
+        return JSONResponse(content=result)
+        
+    except Exception as e:
+        logger.error(f"Error combining results: {e}")
+        return JSONResponse(
+            content={"error": str(e)},
+            status_code=500
+        )
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=4830)

@@ -1,0 +1,87 @@
+{
+  "page": 3,
+  "schema": "941-X",
+  "timestamp": "20250617_162706",
+  "extracted_data": {
+    "name": "Absolute Lawn and Landscape Management, LLC",
+    "employerIdentificationNumber": "45-4202824",
+    "correctingQuarter": "2",
+    "correctingCalendarYear": "2020",
+    "refundableCredits": {
+      "refundableEmployeeRetention": {
+        "correctedAmount": 5107.23,
+        "originalAmount": 0.0,
+        "difference": 5107.23,
+        "taxCorrection": -5107.23
+      }
+    },
+    "lines": {
+      "line22": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null,
+        "taxCorrection": null
+      },
+      "line23": {
+        "taxCorrection": null
+      },
+      "line24": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null,
+        "taxCorrection": null
+      },
+      "line25": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null,
+        "taxCorrection": null
+      },
+      "line26b": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null,
+        "taxCorrection": null
+      },
+      "line26c": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null,
+        "taxCorrection": null
+      },
+      "line27": {
+        "taxCorrection": -5107.23
+      },
+      "line28": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null
+      },
+      "line29": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null
+      },
+      "line30": {
+        "correctedAmount": 10214.46,
+        "originalAmount": 0.0,
+        "difference": 10214.46
+      },
+      "line31a": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null
+      },
+      "line31b": {
+        "isChecked": false
+      },
+      "line32": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null
+      }
+    }
+  },
+  "field_count": 46,
+  "non_null_count": 13
+}

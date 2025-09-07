@@ -1,0 +1,135 @@
+{
+  "page": 17,
+  "schema": "941-X",
+  "timestamp": "20250613_021152",
+  "extracted_data": {
+    "form941x": {
+      "pre_header": {
+        "name_not_trade_name": "DAVID ANTHONY SALON LLC"
+      },
+      "header": {
+        "employer_identification_number": "73-1725071",
+        "correcting_quarter": "2",
+        "correcting_calendar_year": "2020"
+      },
+      "part3": {
+        "line6": {
+          "column1_total_corrected_amount": "",
+          "column2_amount_originally_reported": "",
+          "column3_difference": "",
+          "column4_tax_correction": ""
+        },
+        "line7": {
+          "column1_total_corrected_amount": "",
+          "column2_amount_originally_reported": "",
+          "column3_difference": "",
+          "column4_tax_correction": ""
+        },
+        "line8": {
+          "column1_total_corrected_amount": "",
+          "column2_amount_originally_reported": "",
+          "column3_difference": "",
+          "column4_tax_correction": ""
+        },
+        "line9": {
+          "column1_total_corrected_amount": "",
+          "column2_amount_originally_reported": "",
+          "column3_difference": "",
+          "column4_tax_correction": ""
+        },
+        "line10": {
+          "column1_total_corrected_amount": "",
+          "column2_amount_originally_reported": "",
+          "column3_difference": "",
+          "column4_tax_correction": ""
+        },
+        "line11": {
+          "column1_total_corrected_amount": "",
+          "column2_amount_originally_reported": "",
+          "column3_difference": "",
+          "column4_tax_correction": ""
+        },
+        "line12": {
+          "column1_total_corrected_amount": "",
+          "column2_amount_originally_reported": "",
+          "column3_difference": "",
+          "column4_tax_correction": ""
+        },
+        "line13": {
+          "column1_total_corrected_amount": "",
+          "column2_amount_originally_reported": "",
+          "column3_difference": "",
+          "column4_tax_correction": ""
+        },
+        "line14": {
+          "column1_total_corrected_amount": "",
+          "column2_amount_originally_reported": "",
+          "column3_difference": "",
+          "column4_tax_correction": ""
+        },
+        "line15": {
+          "column1_total_corrected_amount": "",
+          "column2_amount_originally_reported": "",
+          "column3_difference": "",
+          "column4_tax_correction": ""
+        },
+        "line16": {
+          "column1_total_corrected_amount": "",
+          "column2_amount_originally_reported": "",
+          "column3_difference": "",
+          "column4_tax_correction": ""
+        },
+        "line17": {
+          "column1_total_corrected_amount": "",
+          "column2_amount_originally_reported": "",
+          "column3_difference": "",
+          "column4_tax_correction": ""
+        },
+        "line18a": {
+          "column1_total_corrected_amount": "5855.96",
+          "column2_amount_originally_reported": "0.00",
+          "column3_difference": "5855.96",
+          "column4_tax_correction": "-5855.96"
+        },
+        "line18b": {
+          "column1_total_corrected_amount": "",
+          "column2_amount_originally_reported": "",
+          "column3_difference": "",
+          "column4_tax_correction": ""
+        },
+        "line18c": {
+          "column1_total_corrected_amount": "",
+          "column2_amount_originally_reported": "",
+          "column3_difference": "",
+          "column4_tax_correction": ""
+        },
+        "line18d": {
+          "column1_total_corrected_amount": "",
+          "column2_amount_originally_reported": "",
+          "column3_difference": "",
+          "column4_tax_correction": ""
+        },
+        "line19": {
+          "column1_total_corrected_amount": "",
+          "column2_amount_originally_reported": "",
+          "column3_difference": "",
+          "column4_tax_correction": ""
+        },
+        "line20": {
+          "column1_total_corrected_amount": "",
+          "column2_amount_originally_reported": "",
+          "column3_difference": "",
+          "column4_tax_correction": ""
+        },
+        "line21": {
+          "column1_total_corrected_amount": "",
+          "column2_amount_originally_reported": "",
+          "column3_difference": "",
+          "column4_tax_correction": ""
+        }
+      }
+    }
+  },
+  "field_count": 80,
+  "non_null_count": 8
+}

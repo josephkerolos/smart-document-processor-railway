@@ -1,0 +1,92 @@
+{
+  "page": 3,
+  "schema": "941-X",
+  "timestamp": "20250622_033119",
+  "extracted_data": {
+    "name": "MIDWAY LUMBER CO, INC",
+    "employerIdentificationNumber": "52-0820181",
+    "correctingQuarter": "4",
+    "correctingCalendarYear": "2020",
+    "refundableCredits": {
+      "refundableEmployeeRetention": {
+        "correctedAmount": 33690.92,
+        "originalAmount": 0.0,
+        "difference": 33690.92
+      }
+    },
+    "lines": {
+      "line22": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null,
+        "taxCorrection": null
+      },
+      "line23": {
+        "taxCorrection": -5227.7
+      },
+      "line24": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null,
+        "taxCorrection": null
+      },
+      "line25": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null,
+        "taxCorrection": null
+      },
+      "line26a": {
+        "correctedAmount": 33690.92,
+        "originalAmount": 0.0,
+        "difference": 33690.92,
+        "taxCorrection": -33690.92
+      },
+      "line26b": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null,
+        "taxCorrection": null
+      },
+      "line26c": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null,
+        "taxCorrection": null
+      },
+      "line27": {
+        "taxCorrection": -38918.63
+      },
+      "line28": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null
+      },
+      "line29": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null
+      },
+      "line30": {
+        "correctedAmount": 77837.25,
+        "originalAmount": 0.0,
+        "difference": 77837.25
+      },
+      "line31a": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null
+      },
+      "line31b": {
+        "checked": false
+      },
+      "line32": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null
+      }
+    }
+  },
+  "field_count": 49,
+  "non_null_count": 17
+}

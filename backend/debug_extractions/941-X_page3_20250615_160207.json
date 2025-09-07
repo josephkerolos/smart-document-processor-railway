@@ -1,0 +1,93 @@
+{
+  "page": 3,
+  "schema": "941-X",
+  "timestamp": "20250615_160207",
+  "extracted_data": {
+    "header": {
+      "name": "Absolute Lawn and Landscape Management, LLC",
+      "ein": "45-4202824",
+      "correctingQuarter": "4",
+      "correctingCalendarYear": "2020"
+    },
+    "refundableCredits": {
+      "refundableEmployeeRetention": {
+        "correctedAmount": 11251.54,
+        "originalAmount": 0.0,
+        "difference": 11251.54,
+        "taxCorrection": -11251.54
+      }
+    },
+    "lines": {
+      "line22": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0,
+        "taxCorrection": 0.0
+      },
+      "line23": {
+        "taxCorrection": 0.0
+      },
+      "line24": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0,
+        "taxCorrection": 0.0
+      },
+      "line25": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0,
+        "taxCorrection": 0.0
+      },
+      "line26a": {
+        "correctedAmount": 11251.54,
+        "originalAmount": 0.0,
+        "difference": 11251.54,
+        "taxCorrection": -11251.54
+      },
+      "line26b": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0,
+        "taxCorrection": 0.0
+      },
+      "line26c": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0,
+        "taxCorrection": 0.0
+      },
+      "line27": {
+        "taxCorrection": -11251.54
+      },
+      "line28": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "line29": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "line30": {
+        "correctedAmount": 22503.08,
+        "originalAmount": 0.0,
+        "difference": 22503.08
+      },
+      "line31a": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "line31bCheckbox": false,
+      "line32": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      }
+    }
+  },
+  "field_count": 50,
+  "non_null_count": 50
+}

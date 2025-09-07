@@ -1,0 +1,33 @@
+{
+  "page": 5,
+  "schema": "941-X",
+  "timestamp": "20250613_145058",
+  "extracted_data": {
+    "name_not_trade_name": "DAVID ANTHONY SALON LLC",
+    "employer_identification_number_ein": "73-1725071",
+    "correcting_quarter": "4",
+    "correcting_calendar_year_yyyy": "2020",
+    "part4_line41_checkbox": true,
+    "part4_line42_checkbox": false,
+    "part4_line43_explanation": "This is to apply for the Employee Retention Credit for Q4 2020.",
+    "part5_sign_your_name_here": null,
+    "part5_print_your_name_here": null,
+    "part5_print_your_title_here": null,
+    "part5_date": null,
+    "part5_best_daytime_phone": null,
+    "part5_check_if_self_employed": false,
+    "paid_preparer_name": "Zachary Ormsby",
+    "paid_preparer_ptin": "P02158084",
+    "paid_preparer_signature": null,
+    "paid_preparer_date": "05/23/2023",
+    "paid_preparer_firm_name": "Pinnacle Minds, Inc.",
+    "paid_preparer_ein": "27-0133034",
+    "paid_preparer_address": "350 N Lantana St Suite #229",
+    "paid_preparer_phone": "(805) 836-9009",
+    "paid_preparer_city": "Camarillo",
+    "paid_preparer_state": "CA",
+    "paid_preparer_zip_code": "93010"
+  },
+  "field_count": 24,
+  "non_null_count": 18
+}

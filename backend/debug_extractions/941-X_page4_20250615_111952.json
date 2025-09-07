@@ -1,0 +1,64 @@
+{
+  "page": 4,
+  "schema": "941-X",
+  "timestamp": "20250615_111952",
+  "extracted_data": {
+    "form_941x_page4": {
+      "header": {
+        "name_trade_name": "Absolute Lawn and Landscape Management, LLC",
+        "employer_ein": "45-4202824",
+        "correcting_quarter": "4",
+        "correcting_calendar_year": "2020"
+      },
+      "part3_continued": {
+        "line_33a": {
+          "column1_total_corrected_amount": null,
+          "column2_amount_originally_reported": null,
+          "column3_difference": null
+        },
+        "line_33b": {
+          "column1_total_corrected_amount": null,
+          "column2_amount_originally_reported": null,
+          "column3_difference": null
+        },
+        "line_34": {
+          "column1_total_corrected_amount": null,
+          "column2_amount_originally_reported": null,
+          "column3_difference": null
+        },
+        "line_35": {
+          "column1_total_corrected_amount": null,
+          "column2_amount_originally_reported": null,
+          "column3_difference": null
+        },
+        "line_36": {
+          "column1_total_corrected_amount": null,
+          "column2_amount_originally_reported": null,
+          "column3_difference": null
+        },
+        "line_37": {
+          "column1_total_corrected_amount": null,
+          "column2_amount_originally_reported": null,
+          "column3_difference": null
+        },
+        "line_38": {
+          "column1_total_corrected_amount": null,
+          "column2_amount_originally_reported": null,
+          "column3_difference": null
+        },
+        "line_39": {
+          "column1_total_corrected_amount": null,
+          "column2_amount_originally_reported": null,
+          "column3_difference": null
+        },
+        "line_40": {
+          "column1_total_corrected_amount": null,
+          "column2_amount_originally_reported": null,
+          "column3_difference": null
+        }
+      }
+    }
+  },
+  "field_count": 31,
+  "non_null_count": 4
+}

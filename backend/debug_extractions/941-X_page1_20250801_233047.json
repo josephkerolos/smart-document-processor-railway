@@ -1,0 +1,28 @@
+{
+  "page": 1,
+  "schema": "941-X",
+  "timestamp": "20250801_233047",
+  "extracted_data": {
+    "employerInfo": {
+      "ein": "26-4370619",
+      "name": "GOM HOLDINGS, INC.",
+      "tradeName": "VOLTA GUARD-O-MATIC",
+      "address": {
+        "street": "6020 N 55th Ave",
+        "city": "Glendale",
+        "state": "AZ",
+        "zipCode": "85301"
+      }
+    },
+    "correctionInfo": {
+      "quarter": 1,
+      "year": "2021"
+    },
+    "correctionType": {
+      "isAdjustedReturn": true,
+      "checkbox_X": true
+    }
+  },
+  "field_count": 11,
+  "non_null_count": 11
+}

@@ -1,0 +1,110 @@
+{
+  "page": 2,
+  "schema": "941-X",
+  "timestamp": "20250611_005233",
+  "extracted_data": {
+    "name": "Absolute Lawn and Landscape Management, LLC",
+    "ein": "45-4202824",
+    "correcting_quarter": "2",
+    "correcting_calendar_year": "2020",
+    "part_3_corrections": {
+      "line_6_wages_tips_compensation": {
+        "corrected_amount": 0.0,
+        "amount_originally_reported": 0.0,
+        "difference": 0.0
+      },
+      "line_7_federal_income_tax_withheld": {
+        "corrected_amount": 0.0,
+        "amount_originally_reported": 0.0,
+        "difference": 0.0
+      },
+      "line_8_taxable_social_security_wages": {
+        "corrected_amount": 0.0,
+        "amount_originally_reported": 0.0,
+        "difference": 0.0
+      },
+      "line_9_qualified_sick_leave_wages": {
+        "corrected_amount": 0.0,
+        "amount_originally_reported": 0.0,
+        "difference": 0.0
+      },
+      "line_10_qualified_family_leave_wages": {
+        "corrected_amount": 0.0,
+        "amount_originally_reported": 0.0,
+        "difference": 0.0
+      },
+      "line_11_taxable_social_security_tips": {
+        "corrected_amount": 0.0,
+        "amount_originally_reported": 0.0,
+        "difference": 0.0
+      },
+      "line_12_taxable_medicare_wages_tips": {
+        "corrected_amount": 0.0,
+        "amount_originally_reported": 0.0,
+        "difference": 0.0
+      },
+      "line_13_taxable_wages_tips_subject_to_additional_medicare_tax_withholding": {
+        "corrected_amount": 0.0,
+        "amount_originally_reported": 0.0,
+        "difference": 0.0
+      },
+      "line_14_section_3121q_notice_demand_tax_due_on_unreported_tips": {
+        "corrected_amount": 0.0,
+        "amount_originally_reported": 0.0,
+        "difference": 0.0
+      },
+      "line_15_tax_adjustments": {
+        "corrected_amount": 0.0,
+        "amount_originally_reported": 0.0,
+        "difference": 0.0
+      },
+      "line_16_qualified_small_business_payroll_tax_credit_for_increasing_research_activities": {
+        "corrected_amount": 0.0,
+        "amount_originally_reported": 0.0,
+        "difference": 0.0
+      },
+      "line_17_nonrefundable_portion_of_credit_for_qualified_sick_and_family_leave_wages_before_april_1_2021": {
+        "corrected_amount": 0.0,
+        "amount_originally_reported": 0.0,
+        "difference": 0.0
+      },
+      "line_18a_nonrefundable_portion_of_employee_retention_credit": {
+        "corrected_amount": 0.0,
+        "amount_originally_reported": 0.0,
+        "difference": 0.0
+      },
+      "line_18b_nonrefundable_portion_of_credit_for_qualified_sick_and_family_leave_wages_after_march_31_2021_before_october_1_2021": {
+        "corrected_amount": 0.0,
+        "amount_originally_reported": 0.0,
+        "difference": 0.0
+      },
+      "line_18c_nonrefundable_portion_of_cobra_premium_assistance_credit": {
+        "corrected_amount": 0.0,
+        "amount_originally_reported": 0.0,
+        "difference": 0.0
+      },
+      "line_18d_number_of_individuals_provided_cobra_premium_assistance": {
+        "corrected_amount": 0.0,
+        "amount_originally_reported": 0.0,
+        "difference": 0.0
+      },
+      "line_19_special_addition_to_wages_for_federal_income_tax": {
+        "corrected_amount": 0.0,
+        "amount_originally_reported": 0.0,
+        "difference": 0.0
+      },
+      "line_20_special_addition_to_wages_for_social_security_taxes": {
+        "corrected_amount": 0.0,
+        "amount_originally_reported": 0.0,
+        "difference": 0.0
+      },
+      "line_21_special_addition_to_wages_for_medicare_taxes": {
+        "corrected_amount": 0.0,
+        "amount_originally_reported": 0.0,
+        "difference": 0.0
+      }
+    }
+  },
+  "field_count": 61,
+  "non_null_count": 61
+}

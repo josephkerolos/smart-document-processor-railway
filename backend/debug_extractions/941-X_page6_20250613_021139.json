@@ -1,0 +1,58 @@
+{
+  "page": 6,
+  "schema": "941-X",
+  "timestamp": "20250613_021139",
+  "extracted_data": {
+    "form941X_page1": {
+      "employerInformation": {
+        "ein": "73-1725071",
+        "nameNotTradeName": "DAVID ANTHONY SALON LLC",
+        "tradeName": null,
+        "address": {
+          "numberAndStreet": "4025 E CHANDLER BLVD STE 9",
+          "suiteOrRoomNumber": null,
+          "city": "PHOENIX",
+          "state": "AZ",
+          "zipCode": "85048",
+          "foreignCountryName": null,
+          "foreignProvinceCounty": null,
+          "foreignPostalCode": null
+        }
+      },
+      "returnYouAreCorrecting": {
+        "typeOfReturn": {
+          "form941": true,
+          "form941SS": false
+        },
+        "quarterCorrecting": {
+          "q1_janFebMar": false,
+          "q2_aprMayJun": false,
+          "q3_julAugSep": false,
+          "q4_octNovDec": true
+        },
+        "calendarYearCorrecting": "2020",
+        "dateErrorsDiscovered": "05/15/2023"
+      },
+      "part1_selectOnlyOneProcess": {
+        "line1_adjustedEmploymentTaxReturn": false,
+        "line2_claim": true
+      },
+      "part2_completeCertifications": {
+        "line3_certifyW2Filed": true,
+        "line4_ifCheckedLine1": {
+          "a_repaidReimbursedEmployee": false,
+          "b_adjustmentsEmployerShareOnly": false,
+          "c_adjustmentNotWithheld": false
+        },
+        "line5_ifCheckedLine2": {
+          "a_repaidReimbursedEmployee": false,
+          "b_writtenConsentEmployeeShare": false,
+          "c_claimEmployerShareOnly": true,
+          "d_claimNotWithheld": false
+        }
+      }
+    }
+  },
+  "field_count": 29,
+  "non_null_count": 24
+}

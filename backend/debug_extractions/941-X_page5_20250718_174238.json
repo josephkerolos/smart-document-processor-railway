@@ -1,0 +1,41 @@
+{
+  "page": 5,
+  "schema": "941-X",
+  "timestamp": "20250718_174238",
+  "extracted_data": {
+    "form_941x": {
+      "header": {
+        "name_not_trade_name": "AIR TO GROUND SERVICES INC",
+        "employer_identification_number_ein": "35-1927009",
+        "correcting_quarter": "4",
+        "correcting_calendar_year": "2020"
+      },
+      "part4_explanation_of_corrections": {
+        "line41_checkbox_underreported_overreported": false,
+        "line42_checkbox_reclassified_workers": false,
+        "line43_detailed_explanation": "Amending 941-X return to apply for ERC Credits. Please send the refund check to address on file:\nAIR TO GROUND SERVICES INC\n3401 FERN VALLEY ROAD\nLOUISVILLE KY 40213\nUnder 26 U.S.C. \u00a7 3134(c)(2)(A)(ii)(I), this business qualifies as partially suspended during calendar quarters in 2020 and 2021 due to orders from governmental authorities limiting commerce, travel, or group meetings due to the coronavirus disease 2019 (COVID-19)"
+      },
+      "part5_sign_here": {
+        "taxpayer_signature_date": "02/27/2024",
+        "taxpayer_print_name": "Roger W. Graham",
+        "taxpayer_print_title": "President /CEO",
+        "taxpayer_best_daytime_phone": "(502)966-0364"
+      },
+      "paid_preparer_use_only": {
+        "preparer_name": "Samuel Shu",
+        "preparer_self_employed_checkbox": false,
+        "preparer_ptin": "P03113993",
+        "preparer_date": "01/16/24",
+        "preparer_firm_name": "Pinnacle Minds, Inc.",
+        "preparer_ein": "27-0133034",
+        "preparer_phone": "805-836-9009",
+        "preparer_address": "350 N Lantana St. Suite #229",
+        "preparer_city": "Camarillo",
+        "preparer_state": "CA",
+        "preparer_zip_code": "93010"
+      }
+    }
+  },
+  "field_count": 22,
+  "non_null_count": 22
+}

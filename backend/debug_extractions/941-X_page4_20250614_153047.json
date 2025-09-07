@@ -1,0 +1,67 @@
+{
+  "page": 4,
+  "schema": "941-X",
+  "timestamp": "20250614_153047",
+  "extracted_data": {
+    "form_941x": {
+      "header": {
+        "name_not_trade_name": "DAVID ANTHONY SALON LLC",
+        "employer_identification_number_ein": "73-1725071",
+        "correcting_quarter": "3",
+        "correcting_calendar_year": "2020"
+      },
+      "part3": {
+        "line33a_qualified_wages_march13_march31_2020": {
+          "column1_total_corrected_amount": "",
+          "column2_amount_originally_reported": "",
+          "column3_difference": ""
+        },
+        "line33b_deferred_employee_social_security_tax": {
+          "column1_total_corrected_amount": "",
+          "column2_amount_originally_reported": "",
+          "column3_difference": ""
+        },
+        "line34_qualified_health_plan_expenses_wages_reported": {
+          "column1_total_corrected_amount": "",
+          "column2_amount_originally_reported": "",
+          "column3_difference": ""
+        },
+        "line35_qualified_sick_leave_wages_after_march31_2021_before_oct1_2021": {
+          "column1_total_corrected_amount": "",
+          "column2_amount_originally_reported": "",
+          "column3_difference": ""
+        },
+        "line36_qualified_health_plan_expenses_sick_leave_wages_after_march31_2021_before_oct1_2021": {
+          "column1_total_corrected_amount": "",
+          "column2_amount_originally_reported": "",
+          "column3_difference": ""
+        },
+        "line37_amounts_collectively_bargained_sick_leave_wages_after_march31_2021_before_oct1_2021": {
+          "column1_total_corrected_amount": "",
+          "column2_amount_originally_reported": "",
+          "column3_difference": ""
+        },
+        "line38_qualified_family_leave_wages_after_march31_2021_before_oct1_2021": {
+          "column1_total_corrected_amount": "",
+          "column2_amount_originally_reported": "",
+          "column3_difference": ""
+        },
+        "line39_qualified_health_plan_expenses_family_leave_wages_after_march31_2021_before_oct1_2021": {
+          "column1_total_corrected_amount": "",
+          "column2_amount_originally_reported": "",
+          "column3_difference": ""
+        },
+        "line40_amounts_collectively_bargained_family_leave_wages_after_march31_2021_before_oct1_2021": {
+          "column1_total_corrected_amount": "",
+          "column2_amount_originally_reported": "",
+          "column3_difference": ""
+        }
+      },
+      "part4": null,
+      "signature": null,
+      "paid_preparer": null
+    }
+  },
+  "field_count": 34,
+  "non_null_count": 4
+}

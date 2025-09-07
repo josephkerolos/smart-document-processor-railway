@@ -1,0 +1,366 @@
+{
+  "stage": "post_compilation_v2",
+  "schema": "941-X",
+  "timestamp": "20250614_001647",
+  "data": {
+    "formMetadata": {
+      "formNumber": "941-X"
+    },
+    "correctionType": {
+      "isAdjustedReturn": false,
+      "isClaimForRefund": true
+    },
+    "employerInfo": {
+      "ein": "45-4202824",
+      "name": "Absolute Lawn and Landscape Management, LLC",
+      "tradeName": "",
+      "address": {
+        "street": "2230 Pierce Road",
+        "city": "Phenix City",
+        "state": "AL",
+        "zipCode": "36867",
+        "foreignCountry": null,
+        "foreignProvince": null,
+        "foreignPostalCode": null
+      }
+    },
+    "quarterBeingCorrected": {
+      "quarter": "2",
+      "year": "2020"
+    },
+    "dateErrorDiscovered": null,
+    "part2Certifications": {
+      "allCorrectionsListed": true,
+      "consentFromEmployees": false,
+      "filedOriginal941": null,
+      "overdueReturn": null
+    },
+    "part3Corrections": {
+      "line1": {
+        "numberOfEmployees": {
+          "correctedAmount": 0,
+          "originalAmount": 0,
+          "difference": 0
+        }
+      },
+      "line2": {
+        "wagesTipsCompensation": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        }
+      },
+      "line3": {
+        "federalIncomeTaxWithheld": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        }
+      },
+      "line5": {
+        "taxableSocialSecurityWages": {
+          "wages": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "tax": {
+            "correctedAmount": null,
+            "originalAmount": null,
+            "difference": null
+          }
+        }
+      },
+      "line6": {
+        "qualifiedSickLeaveWages": {
+          "wages": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "tax": {
+            "correctedAmount": null,
+            "originalAmount": null,
+            "difference": null
+          }
+        }
+      },
+      "line7": {
+        "qualifiedFamilyLeaveWages": {
+          "wages": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "tax": {
+            "correctedAmount": null,
+            "originalAmount": null,
+            "difference": null
+          }
+        }
+      },
+      "line8": {
+        "taxableSocialSecurityTips": {
+          "tips": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "tax": {
+            "correctedAmount": null,
+            "originalAmount": null,
+            "difference": null
+          }
+        }
+      },
+      "line9": {
+        "taxableMedicareWagesAndTips": {
+          "wagesAndTips": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "tax": {
+            "correctedAmount": null,
+            "originalAmount": null,
+            "difference": null
+          }
+        }
+      },
+      "line10": {
+        "additionalMedicareWagesAndTips": {
+          "wagesAndTips": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "tax": {
+            "correctedAmount": null,
+            "originalAmount": null,
+            "difference": null
+          }
+        }
+      },
+      "totalSocialSecurityAndMedicareTaxes": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "section3121qTax": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "totalTaxesBeforeAdjustments": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "currentQuarterAdjustments": {
+        "fractionsOfCents": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        },
+        "sickPay": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        },
+        "tipsAndGroupTermLife": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        }
+      },
+      "totalTaxesAfterAdjustments": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "nonrefundableCredits": {
+        "researchPayrollTaxCredit": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        },
+        "nonrefundableSickLeave": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        },
+        "nonrefundableEmployeeRetention": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        },
+        "nonrefundableFamilyLeave": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        },
+        "cobraPremiumAssistance": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        }
+      },
+      "totalNonrefundableCredits": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "totalTaxesAfterCredits": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "totalDeposits": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "refundableCredits": {
+        "refundableSickLeave": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        },
+        "refundableEmployeeRetention": {
+          "correctedAmount": 5107.23,
+          "originalAmount": 0.0,
+          "difference": 5107.23
+        },
+        "refundableFamilyLeave": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        },
+        "refundableCobraPremiumAssistance": {
+          "correctedAmount": 0.0,
+          "originalAmount": 0.0,
+          "difference": 0.0
+        }
+      },
+      "totalRefundableCredits": {
+        "correctedAmount": 5107.23,
+        "originalAmount": 0.0,
+        "difference": 5107.23
+      },
+      "totalDepositsAndRefundableCredits": {
+        "correctedAmount": 5107.23,
+        "originalAmount": 0.0,
+        "difference": 5107.23
+      },
+      "advancesFromForm7200": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "totalDepositsCreditsLessAdvances": {
+        "correctedAmount": 5107.23,
+        "originalAmount": 0.0,
+        "difference": 5107.23
+      },
+      "balanceDue": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "overpayment": {
+        "correctedAmount": 5107.23,
+        "originalAmount": 0.0,
+        "difference": 5107.23,
+        "applyToNextReturn": false,
+        "sendRefund": true
+      }
+    },
+    "part4Explanations": {
+      "corrections": [],
+      "detailedExplanation": "This is to apply for the employee retention credit for Q2 2020"
+    },
+    "part5Signature": {
+      "signature": {
+        "name": "Traci Warner",
+        "title": "owner",
+        "date": "2022-10-31",
+        "phone": "706-4647517",
+        "bestTimeToCall": null
+      },
+      "paidPreparer": {
+        "isSelfEmployed": true,
+        "name": "Neveen A Mansi",
+        "ptin": "P03007969",
+        "signature": null,
+        "date": "2022-10-27",
+        "firmName": "Neveen A Mansi",
+        "firmEIN": null,
+        "address": "369 Paseo De Playa #109",
+        "phone": "(805) 836-9009",
+        "city": "Ventura",
+        "state": "CA",
+        "zipCode": "93001"
+      }
+    },
+    "supportingStatements": {
+      "qualifiedHealthPlanExpenses": {
+        "sickLeaveBeforeApril": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        },
+        "familyLeaveBeforeApril": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        }
+      },
+      "employeeRetentionCredit": {
+        "qualifiedWages": {
+          "correctedAmount": 10214.46,
+          "originalAmount": 0.0,
+          "difference": 10214.46
+        },
+        "qualifiedHealthPlanExpenses": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        }
+      },
+      "sickLeaveAfterMarch": {
+        "qualifiedWages": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        },
+        "qualifiedHealthPlanExpenses": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        },
+        "collectivelyBargainedWages": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        }
+      },
+      "familyLeaveAfterMarch": {
+        "qualifiedWages": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        },
+        "qualifiedHealthPlanExpenses": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        },
+        "collectivelyBargainedWages": {
+          "correctedAmount": null,
+          "originalAmount": null,
+          "difference": null
+        }
+      }
+    }
+  }
+}

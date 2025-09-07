@@ -1,0 +1,92 @@
+{
+  "page": 3,
+  "schema": "941-X",
+  "timestamp": "20250613_002100",
+  "extracted_data": {
+    "name": "Absolute Lawn and Landscape Management, LLC",
+    "employerIdentificationNumber": "45-4202824",
+    "correctingQuarter": 2,
+    "correctingCalendarYear": 2020,
+    "refundableCredits": {
+      "refundableEmployeeRetention": {
+        "correctedAmount": 5107.23,
+        "originalAmount": 0.0,
+        "difference": 5107.23
+      }
+    },
+    "lines": {
+      "line22": {
+        "column1": null,
+        "column2": null,
+        "column3": null,
+        "column4": null
+      },
+      "line23": {
+        "column4": null
+      },
+      "line24": {
+        "column1": null,
+        "column2": null,
+        "column3": null,
+        "column4": null
+      },
+      "line25": {
+        "column1": null,
+        "column2": null,
+        "column3": null,
+        "column4": null
+      },
+      "line26a": {
+        "column1": 5107.23,
+        "column2": 0.0,
+        "column3": 5107.23,
+        "column4": -5107.23
+      },
+      "line26b": {
+        "column1": null,
+        "column2": null,
+        "column3": null,
+        "column4": null
+      },
+      "line26c": {
+        "column1": null,
+        "column2": null,
+        "column3": null,
+        "column4": null
+      },
+      "line27": {
+        "column4": -5107.23
+      },
+      "line28": {
+        "column1": null,
+        "column2": null,
+        "column3": null
+      },
+      "line29": {
+        "column1": null,
+        "column2": null,
+        "column3": null
+      },
+      "line30": {
+        "correctedAmount": 10214.46,
+        "originalAmount": 0.0,
+        "difference": 10214.46
+      },
+      "line31a": {
+        "correctedAmount": null,
+        "originalAmount": null,
+        "difference": null
+      },
+      "line31b": {
+        "checkbox": false
+      },
+      "line32": {
+        "column1": null,
+        "column2": null,
+        "column3": null
+      }
+    }
+  },
+  "field_count": 49,
+  "non_null_count": 16
+}

@@ -1,0 +1,45 @@
+{
+  "page": 5,
+  "schema": "941-X",
+  "timestamp": "20250621_234950",
+  "extracted_data": {
+    "form_941x": {
+      "header": {
+        "name_not_trade_name": "MIDWAY LUMBER CO, INC",
+        "employer_identification_number_ein": "52-0820181",
+        "correcting_quarter": "4",
+        "correcting_calendar_year": "2020"
+      },
+      "part_4_explain_your_corrections": {
+        "line_41_checkbox": false,
+        "line_42_checkbox": false,
+        "line_43_explanation": "Amending 941-X return to apply for ERC Credits. Please send the refund check to address on file:\nMIDWAY LUMBER CO, INC\n4400 NORTH POINT BLVD\nBALTIMORE MD 21219"
+      },
+      "part_5_sign_here": {
+        "taxpayer_signature_section": {
+          "sign_your_name_here_signature": null,
+          "print_your_name_here": null,
+          "print_your_title_here": null,
+          "date": null,
+          "best_daytime_phone": null
+        },
+        "paid_preparer_use_only": {
+          "preparer_name": "Samuel Shu",
+          "preparer_signature": null,
+          "firm_name_or_yours_if_self_employed": "Pinnacle Minds, Inc.",
+          "check_if_self_employed": false,
+          "ptin": "P03113993",
+          "date": "08/28/23",
+          "ein": "27-0133034",
+          "phone": "805-836-9009",
+          "address": "350 N Lantana St. Suite #229",
+          "city": "Camarillo",
+          "state": "CA",
+          "zip_code": "93010"
+        }
+      }
+    }
+  },
+  "field_count": 24,
+  "non_null_count": 18
+}

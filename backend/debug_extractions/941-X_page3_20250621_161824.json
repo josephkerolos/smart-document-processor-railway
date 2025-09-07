@@ -1,0 +1,89 @@
+{
+  "page": 3,
+  "schema": "941-X",
+  "timestamp": "20250621_161824",
+  "extracted_data": {
+    "name": "MIDWAY LUMBER CO, INC",
+    "employerIdentificationNumber": "52-0820181",
+    "correctingQuarter": "1",
+    "correctingCalendarYear": "2021",
+    "refundableCredits": {
+      "refundableEmployeeRetention": {
+        "correctedAmount": 30825.08,
+        "originalAmount": 0.0,
+        "difference": 30825.08
+      }
+    },
+    "lines": {
+      "line22": {
+        "column1": 0.0,
+        "column2": 0.0,
+        "column3": 0.0,
+        "column4": 0.0
+      },
+      "line23": {
+        "column4": -4475.22
+      },
+      "line24": {
+        "column1": 0.0,
+        "column2": 0.0,
+        "column3": 0.0,
+        "column4": 0.0
+      },
+      "line25": {
+        "column1": 0.0,
+        "column2": 0.0,
+        "column3": 0.0,
+        "column4": 0.0
+      },
+      "line26a": {
+        "column4": -30825.08
+      },
+      "line26b": {
+        "column1": 0.0,
+        "column2": 0.0,
+        "column3": 0.0,
+        "column4": 0.0
+      },
+      "line26c": {
+        "column1": 0.0,
+        "column2": 0.0,
+        "column3": 0.0,
+        "column4": 0.0
+      },
+      "line27": {
+        "column4": -35300.3
+      },
+      "line28": {
+        "column1": 0.0,
+        "column2": 0.0,
+        "column3": 0.0
+      },
+      "line29": {
+        "column1": 0.0,
+        "column2": 0.0,
+        "column3": 0.0
+      },
+      "line30": {
+        "correctedAmount": 50429.0,
+        "originalAmount": 0.0,
+        "difference": 50429.0
+      },
+      "line31a": {
+        "correctedAmount": 0.0,
+        "originalAmount": 0.0,
+        "difference": 0.0
+      },
+      "line31b": {
+        "isChecked": false
+      },
+      "line32": {
+        "column1": 0.0,
+        "column2": 0.0,
+        "column3": 0.0
+      }
+    }
+  },
+  "field_count": 46,
+  "non_null_count": 46
+}

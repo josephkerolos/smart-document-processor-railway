@@ -1,0 +1,64 @@
+{
+  "page": 4,
+  "schema": "941-X",
+  "timestamp": "20250613_033404",
+  "extracted_data": {
+    "form_941x": {
+      "pre_header": {
+        "name_not_trade_name": "DAVID ANTHONY SALON LLC",
+        "employer_identification_number_ein": "73-1725071",
+        "correcting_quarter": "3",
+        "correcting_calendar_year_yyyy": "2020"
+      },
+      "part_3_continued": {
+        "line_33a_qualified_wages_paid_march_13_through_march_31_2020_for_employee_retention_credit": {
+          "column_1_total_corrected_amount": null,
+          "column_2_amount_originally_reported_or_as_previously_corrected": null,
+          "column_3_difference": null
+        },
+        "line_33b_deferred_amount_of_employee_share_of_social_security_tax": {
+          "column_1_total_corrected_amount": null,
+          "column_2_amount_originally_reported_or_as_previously_corrected": null,
+          "column_3_difference": null
+        },
+        "line_34_qualified_health_plan_expenses_allocable_to_wages_reported_on_form_941_or_941_ss_line_24": {
+          "column_1_total_corrected_amount": null,
+          "column_2_amount_originally_reported_or_as_previously_corrected": null,
+          "column_3_difference": null
+        },
+        "line_35_qualified_sick_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021": {
+          "column_1_total_corrected_amount": null,
+          "column_2_amount_originally_reported_or_as_previously_corrected": null,
+          "column_3_difference": null
+        },
+        "line_36_qualified_health_plan_expenses_allocable_to_qualified_sick_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021": {
+          "column_1_total_corrected_amount": null,
+          "column_2_amount_originally_reported_or_as_previously_corrected": null,
+          "column_3_difference": null
+        },
+        "line_37_amounts_under_certain_collectively_bargained_agreements_allocable_to_qualified_sick_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021": {
+          "column_1_total_corrected_amount": null,
+          "column_2_amount_originally_reported_or_as_previously_corrected": null,
+          "column_3_difference": null
+        },
+        "line_38_qualified_family_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021": {
+          "column_1_total_corrected_amount": null,
+          "column_2_amount_originally_reported_or_as_previously_corrected": null,
+          "column_3_difference": null
+        },
+        "line_39_qualified_health_plan_expenses_allocable_to_qualified_family_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021": {
+          "column_1_total_corrected_amount": null,
+          "column_2_amount_originally_reported_or_as_previously_corrected": null,
+          "column_3_difference": null
+        },
+        "line_40_amounts_under_certain_collectively_bargained_agreements_allocable_to_qualified_family_leave_wages_for_leave_taken_after_march_31_2021_and_before_october_1_2021": {
+          "column_1_total_corrected_amount": null,
+          "column_2_amount_originally_reported_or_as_previously_corrected": null,
+          "column_3_difference": null
+        }
+      }
+    }
+  },
+  "field_count": 31,
+  "non_null_count": 4
+}

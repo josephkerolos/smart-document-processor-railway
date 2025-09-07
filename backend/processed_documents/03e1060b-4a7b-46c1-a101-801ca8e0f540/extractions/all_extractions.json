@@ -1,0 +1,286 @@
+{
+  "extraction_timestamp": "2025-06-14T00:39:03.273223",
+  "total_documents": 1,
+  "documents": [
+    {
+      "filename": "cleaned_941-X_ Adjusted Employer\u2019s QTR. Federal Tax Return copy.pdf",
+      "data": {
+        "formMetadata": {
+          "formNumber": "941-X"
+        },
+        "correctionType": {
+          "isAdjustedReturn": false,
+          "isClaimForRefund": true
+        },
+        "employerInfo": {
+          "ein": "46-0872603",
+          "name": "Omni Eye Care, Inc",
+          "tradeName": "",
+          "address": {
+            "street": "554 E San Bernadino Rd, Ste 102",
+            "city": "Covina",
+            "state": "CA",
+            "zipCode": "91723"
+          }
+        },
+        "quarterBeingCorrected": {
+          "quarter": "3",
+          "year": "2020"
+        },
+        "dateErrorDiscovered": "2022-11-29",
+        "part2Certifications": {
+          "allCorrectionsListed": true,
+          "consentFromEmployees": false
+        },
+        "part3Corrections": {
+          "line1": {
+            "numberOfEmployees": {
+              "correctedAmount": 0,
+              "originalAmount": 0,
+              "difference": 0
+            }
+          },
+          "line2": {
+            "wagesTipsCompensation": {
+              "correctedAmount": 0.0,
+              "originalAmount": 0.0,
+              "difference": 0.0
+            }
+          },
+          "line3": {
+            "federalIncomeTaxWithheld": {
+              "correctedAmount": 0.0,
+              "originalAmount": 0.0,
+              "difference": 0.0
+            }
+          },
+          "line5": {
+            "taxableSocialSecurityWages": {
+              "wages": {
+                "correctedAmount": 0.0,
+                "originalAmount": 0.0,
+                "difference": 0.0
+              }
+            }
+          },
+          "line6": {
+            "qualifiedSickLeaveWages": {
+              "wages": {
+                "correctedAmount": 0.0,
+                "originalAmount": 0.0,
+                "difference": 0.0
+              }
+            }
+          },
+          "line7": {
+            "qualifiedFamilyLeaveWages": {
+              "wages": {
+                "correctedAmount": 0.0,
+                "originalAmount": 0.0,
+                "difference": 0.0
+              }
+            }
+          },
+          "line8": {
+            "taxableSocialSecurityTips": {
+              "tips": {
+                "correctedAmount": 0.0,
+                "originalAmount": 0.0,
+                "difference": 0.0
+              }
+            }
+          },
+          "line9": {
+            "taxableMedicareWagesAndTips": {
+              "wagesAndTips": {
+                "correctedAmount": 0.0,
+                "originalAmount": 0.0,
+                "difference": 0.0
+              }
+            }
+          },
+          "line10": {
+            "additionalMedicareWagesAndTips": {
+              "wagesAndTips": {
+                "correctedAmount": 0.0,
+                "originalAmount": 0.0,
+                "difference": 0.0
+              }
+            }
+          },
+          "totalSocialSecurityAndMedicareTaxes": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "section3121qTax": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "totalTaxesBeforeAdjustments": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "currentQuarterAdjustments": {
+            "fractionsOfCents": {
+              "correctedAmount": 0.0,
+              "originalAmount": 0.0,
+              "difference": 0.0
+            },
+            "sickPay": {
+              "correctedAmount": 0.0,
+              "originalAmount": 0.0,
+              "difference": 0.0
+            },
+            "tipsAndGroupTermLife": {
+              "correctedAmount": 0.0,
+              "originalAmount": 0.0,
+              "difference": 0.0
+            }
+          },
+          "totalTaxesAfterAdjustments": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "nonrefundableCredits": {
+            "researchPayrollTaxCredit": {
+              "correctedAmount": 0.0,
+              "originalAmount": 0.0,
+              "difference": 0.0
+            },
+            "nonrefundableSickLeave": {
+              "correctedAmount": 0.0,
+              "originalAmount": 0.0,
+              "difference": 0.0
+            },
+            "nonrefundableEmployeeRetention": {
+              "correctedAmount": 0.0,
+              "originalAmount": 0.0,
+              "difference": 0.0
+            },
+            "nonrefundableFamilyLeave": {
+              "correctedAmount": 0.0,
+              "originalAmount": 0.0,
+              "difference": 0.0
+            }
+          },
+          "totalNonrefundableCredits": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "totalTaxesAfterCredits": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "totalDeposits": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "refundableCredits": {
+            "refundableSickLeave": {
+              "correctedAmount": 0.0,
+              "originalAmount": 0.0,
+              "difference": 0.0
+            },
+            "refundableEmployeeRetention": {
+              "correctedAmount": 18609.64,
+              "originalAmount": 0.0,
+              "difference": 18609.64
+            },
+            "refundableFamilyLeave": {
+              "correctedAmount": 0.0,
+              "originalAmount": 0.0,
+              "difference": 0.0
+            }
+          },
+          "totalRefundableCredits": {
+            "correctedAmount": 18609.64,
+            "originalAmount": 0.0,
+            "difference": 18609.64
+          },
+          "totalDepositsAndRefundableCredits": {
+            "correctedAmount": 18609.64,
+            "originalAmount": 0.0,
+            "difference": 18609.64
+          },
+          "advancesFromForm7200": {
+            "correctedAmount": 0.0,
+            "originalAmount": 0.0,
+            "difference": 0.0
+          },
+          "totalDepositsCreditsLessAdvances": {
+            "correctedAmount": 18609.64,
+            "originalAmount": 0.0,
+            "difference": 18609.64
+          },
+          "balanceDue": {
+            "correctedAmount": -18609.64,
+            "originalAmount": 0.0,
+            "difference": -18609.64
+          },
+          "overpayment": {
+            "correctedAmount": 18609.64,
+            "originalAmount": 0.0,
+            "difference": 18609.64,
+            "applyToNextReturn": true,
+            "sendRefund": false
+          }
+        },
+        "part4Explanations": {
+          "corrections": [],
+          "detailedExplanation": "This is to apply for the Employee Retention Credit for Q3 2020"
+        },
+        "part5Signature": {
+          "signature": {
+            "name": "Amar Lapsi",
+            "title": "Chief Operating Officer",
+            "date": "2022-11-29",
+            "phone": "626-823-1535"
+          },
+          "paidPreparer": {
+            "isSelfEmployed": true,
+            "name": "Neveen A Mansi",
+            "ptin": "P03007969",
+            "date": "2022-11-29",
+            "firmName": "Neveen A Mansi",
+            "firmEIN": null,
+            "address": "369 Paseo De Playa #109, Ventura, CA 93001",
+            "phone": "(805) 836-9009",
+            "city": "Ventura",
+            "state": "CA",
+            "zipCode": "93001"
+          }
+        },
+        "supportingStatements": {
+          "employeeRetentionCredit": {
+            "qualifiedWages": {
+              "correctedAmount": 37219.28,
+              "originalAmount": 0.0,
+              "difference": 37219.28
+            }
+          }
+        },
+        "_metadata": {
+          "filename": "cleaned_941-X_ Adjusted Employer\u2019s QTR. Federal Tax Return copy.pdf",
+          "total_pages": 5,
+          "extracted_pages": 5,
+          "selected_schema": "941-X",
+          "quality_score": 31.818181818181817,
+          "populated_fields": 42,
+          "total_fields": 132,
+          "expected_nulls": 0,
+          "math_validation_passed": true,
+          "processing_time": 106.71418118476868,
+          "extraction_method": "direct_pdf",
+          "pages_converted_to_images": 0
+        }
+      }
+    }
+  ]
+}
