@@ -6,7 +6,8 @@ from datetime import datetime
 from typing import List, Dict, Any, Optional, Set, Tuple
 from fastapi import FastAPI, UploadFile, File, Body, Form, WebSocket, WebSocketDisconnect, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, FileResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from dotenv import load_dotenv
 import os
@@ -43,6 +44,14 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Serve static files from React build
+frontend_build_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "frontend", "build")
+if os.path.exists(frontend_build_path):
+    app.mount("/static", StaticFiles(directory=frontend_build_path, html=False), name="static")
+    logger.info(f"Serving static files from {frontend_build_path}")
+else:
+    logger.warning(f"Frontend build directory not found at {frontend_build_path}")
 
 # Gemini API setup
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
@@ -4379,6 +4388,22 @@ async def png_converter_status():
         "fallback_method": "pdf2image (local)" if not external_available else "external service",
         "note": "PNG conversion is used as a last resort when PDF extraction fails"
     }
+
+# Catch-all route for React app - must be last!
+@app.get("/{full_path:path}")
+async def serve_react_app(full_path: str):
+    """Serve React app for any unmatched routes"""
+    # Skip API and WebSocket routes
+    if full_path.startswith("api/") or full_path.startswith("ws/"):
+        raise HTTPException(status_code=404, detail="Not found")
+    
+    # Serve index.html for client-side routing
+    index_path = os.path.join(frontend_build_path, "index.html")
+    if os.path.exists(index_path):
+        return FileResponse(index_path)
+    else:
+        # Fallback response if frontend not built
+        return JSONResponse({"message": "Frontend not built. Please build the React app first."}, status_code=404)
 
 if __name__ == "__main__":
     import uvicorn

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './PDFProcessorWorkflow.css';
+import apiConfig, { buildApiUrl, buildWsUrl } from './config';
 
 const PDFProcessorWorkflow_MultiFile = () => {
   const [selectedFiles, setSelectedFiles] = useState([]);
@@ -84,7 +85,7 @@ const PDFProcessorWorkflow_MultiFile = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:4830/api/process-enhanced', {
+      const response = await fetch('${apiConfig.API_BASE_URL}/api/process-enhanced', {
         method: 'POST',
         body: formData
       });
@@ -108,7 +109,7 @@ const PDFProcessorWorkflow_MultiFile = () => {
           
           // Add a small initial delay to ensure server is ready
           setTimeout(() => {
-            const ws = new WebSocket(`ws://localhost:4830/ws/enhanced/${result.session_id}`);
+            const ws = new WebSocket(`${apiConfig.WS_BASE_URL}/ws/enhanced/${result.session_id}`);
             wsRefs.current[fileId] = ws;
             
             // Track if we should keep the WebSocket open
@@ -277,7 +278,7 @@ const PDFProcessorWorkflow_MultiFile = () => {
       
       // Initialize batch only if multiple files (2 or more)
       if (selectedFiles.length > 1) {
-        const batchResponse = await fetch('http://localhost:4830/api/init-batch', {
+        const batchResponse = await fetch('${apiConfig.API_BASE_URL}/api/init-batch', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ file_count: selectedFiles.length })
@@ -317,7 +318,7 @@ const PDFProcessorWorkflow_MultiFile = () => {
 
   const finalizeBatch = async (batchId) => {
     try {
-      const response = await fetch('http://localhost:4830/api/finalize-batch', {
+      const response = await fetch('${apiConfig.API_BASE_URL}/api/finalize-batch', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ batch_id: batchId })
@@ -340,7 +341,7 @@ const PDFProcessorWorkflow_MultiFile = () => {
 
 
   const downloadArchive = (sessionId, archiveName) => {
-    const downloadUrl = `http://localhost:4830/api/download-archive/${sessionId}/${archiveName}`;
+    const downloadUrl = `${apiConfig.API_BASE_URL}/api/download-archive/${sessionId}/${archiveName}`;
     window.open(downloadUrl, '_blank');
   };
 
@@ -622,7 +623,7 @@ const PDFProcessorWorkflow_MultiFile = () => {
                   <button
                     className="download-button"
                     onClick={() => {
-                      const url = `http://localhost:4830/api/download-file?path=${encodeURIComponent(combinedResults.all_extractions_path)}`;
+                      const url = `${apiConfig.API_BASE_URL}/api/download-file?path=${encodeURIComponent(combinedResults.all_extractions_path)}`;
                       window.open(url, '_blank');
                     }}
                   >
@@ -640,7 +641,7 @@ const PDFProcessorWorkflow_MultiFile = () => {
                   <button
                     className="download-button"
                     onClick={() => {
-                      const url = `http://localhost:4830/api/download-file?path=${encodeURIComponent(combinedResults.master_archive)}`;
+                      const url = `${apiConfig.API_BASE_URL}/api/download-file?path=${encodeURIComponent(combinedResults.master_archive)}`;
                       window.open(url, '_blank');
                     }}
                   >

@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./PDFProcessorEnhanced_v8.css";
 import SchemaSelector from "./SchemaSelector";
+import apiConfig, { buildApiUrl, buildWsUrl } from './config';
 
 const PDFProcessorEnhanced = () => {
   // File queue states
@@ -100,7 +101,7 @@ const PDFProcessorEnhanced = () => {
     const maxReconnectAttempts = 5;
     
     const connectWebSocket = () => {
-      const wsUrl = `ws://localhost:4830/ws/${sessionId}`;
+      const wsUrl = `${apiConfig.WS_BASE_URL}/ws/${sessionId}`;
       console.log('Attempting WebSocket connection to:', wsUrl);
       websocket = new WebSocket(wsUrl);
     
@@ -419,7 +420,7 @@ const PDFProcessorEnhanced = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:4830/process-documents-v3", {
+      const response = await fetch("${apiConfig.API_BASE_URL}/process-documents-v3", {
         method: "POST",
         body: formData,
       });
@@ -497,7 +498,7 @@ const PDFProcessorEnhanced = () => {
     if (!sessionId) return;
     
     try {
-      await fetch(`http://localhost:4830/cancel-processing/${sessionId}`, {
+      await fetch(`${apiConfig.API_BASE_URL}/cancel-processing/${sessionId}`, {
         method: "POST"
       });
       
@@ -539,7 +540,7 @@ const PDFProcessorEnhanced = () => {
     }
     
     try {
-      await fetch("http://localhost:4830/confirm-form-selection", {
+      await fetch("${apiConfig.API_BASE_URL}/confirm-form-selection", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

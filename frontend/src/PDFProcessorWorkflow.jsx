@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './PDFProcessorWorkflow.css';
+import apiConfig, { buildApiUrl, buildWsUrl } from './config';
 
 const PDFProcessorWorkflow = () => {
   const [selectedFiles, setSelectedFiles] = useState([]);
@@ -31,7 +32,7 @@ const PDFProcessorWorkflow = () => {
   // WebSocket connection management
   useEffect(() => {
     if (sessionId && !wsRef.current) {
-      const wsUrl = `ws://localhost:4830/ws/enhanced/${sessionId}`;
+      const wsUrl = `${apiConfig.WS_BASE_URL}/ws/enhanced/${sessionId}`;
       wsRef.current = new WebSocket(wsUrl);
 
       wsRef.current.onopen = () => {
@@ -249,7 +250,7 @@ const PDFProcessorWorkflow = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:4830/api/process-enhanced', {
+      const response = await fetch('${apiConfig.API_BASE_URL}/api/process-enhanced', {
         method: 'POST',
         body: formData
       });
@@ -280,7 +281,7 @@ const PDFProcessorWorkflow = () => {
   const downloadArchive = (archiveName) => {
     if (!currentResults || !sessionId) return;
     
-    const downloadUrl = `http://localhost:4830/api/download-archive/${sessionId}/${archiveName}`;
+    const downloadUrl = `${apiConfig.API_BASE_URL}/api/download-archive/${sessionId}/${archiveName}`;
     window.open(downloadUrl, '_blank');
   };
 
