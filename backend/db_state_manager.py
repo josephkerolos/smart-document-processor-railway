@@ -15,6 +15,8 @@ logger = logging.getLogger(__name__)
 class DBStateManager:
     def __init__(self):
         self.pool = None
+        self.use_sqlite = False
+        self.sqlite_manager = None
         self.db_config = {
             'host': os.getenv('DB_HOST', 'localhost'),
             'port': int(os.getenv('DB_PORT', 5432)),
@@ -24,15 +26,30 @@ class DBStateManager:
         }
     
     async def initialize(self):
-        """Initialize database connection pool"""
+        """Initialize database connection pool with SQLite fallback"""
+        # First try PostgreSQL
+        if not os.getenv('USE_SQLITE', 'false').lower() == 'true':
+            try:
+                self.pool = await asyncpg.create_pool(**self.db_config, min_size=2, max_size=10)
+                logger.info("PostgreSQL connection pool initialized")
+                
+                # Create tables if they don't exist
+                await self.create_tables()
+                return
+            except Exception as e:
+                logger.warning(f"Failed to initialize PostgreSQL pool: {e}")
+                logger.info("Falling back to SQLite...")
+        
+        # Fallback to SQLite
         try:
-            self.pool = await asyncpg.create_pool(**self.db_config, min_size=2, max_size=10)
-            logger.info("Database connection pool initialized")
-            
-            # Create tables if they don't exist
-            await self.create_tables()
+            from db_state_manager_sqlite import db_state_manager_sqlite
+            self.sqlite_manager = db_state_manager_sqlite
+            await self.sqlite_manager.initialize()
+            self.use_sqlite = True
+            self.pool = True  # Set to True to indicate initialization
+            logger.info("Using SQLite state manager as fallback")
         except Exception as e:
-            logger.error(f"Failed to initialize database pool: {e}")
+            logger.error(f"Failed to initialize SQLite fallback: {e}")
             raise
     
     async def create_tables(self):
@@ -47,13 +64,18 @@ class DBStateManager:
     
     async def close(self):
         """Close database connection pool"""
-        if self.pool:
+        if self.use_sqlite and self.sqlite_manager:
+            await self.sqlite_manager.close()
+        elif self.pool and not self.use_sqlite:
             await self.pool.close()
     
     # Batch Processing State Management
     
     async def save_batch_state(self, batch_id: str, session_ids: List[str], status: str = 'active', metadata: Dict = None):
         """Save or update batch processing state"""
+        if self.use_sqlite:
+            return await self.sqlite_manager.save_batch_state(batch_id, session_ids, status, metadata)
+        
         async with self.pool.acquire() as conn:
             await conn.execute("""
                 INSERT INTO batch_processing_state (batch_id, session_ids, status, metadata)
@@ -66,6 +88,9 @@ class DBStateManager:
     
     async def get_batch_state(self, batch_id: str) -> Optional[Dict]:
         """Get batch processing state"""
+        if self.use_sqlite:
+            return await self.sqlite_manager.get_batch_state(batch_id)
+        
         async with self.pool.acquire() as conn:
             row = await conn.fetchrow("""
                 SELECT batch_id, session_ids, status, metadata, created_at, updated_at
@@ -86,6 +111,9 @@ class DBStateManager:
     
     async def get_active_batches(self) -> List[Dict]:
         """Get all active batch states"""
+        if self.use_sqlite:
+            return await self.sqlite_manager.get_active_batches()
+        
         async with self.pool.acquire() as conn:
             rows = await conn.fetch("""
                 SELECT batch_id, session_ids, status, metadata, created_at, updated_at
@@ -105,6 +133,9 @@ class DBStateManager:
     
     async def update_batch_status(self, batch_id: str, status: str):
         """Update batch status"""
+        if self.use_sqlite:
+            return await self.sqlite_manager.update_batch_status(batch_id, status)
+        
         async with self.pool.acquire() as conn:
             await conn.execute("""
                 UPDATE batch_processing_state
@@ -114,6 +145,9 @@ class DBStateManager:
     
     async def delete_batch_state(self, batch_id: str):
         """Delete batch state (cascades to processing status)"""
+        if self.use_sqlite:
+            return await self.sqlite_manager.delete_batch_state(batch_id)
+        
         async with self.pool.acquire() as conn:
             await conn.execute("DELETE FROM batch_processing_state WHERE batch_id = $1", batch_id)
     
@@ -123,6 +157,11 @@ class DBStateManager:
                                    processed_files: List[str] = None, extractions: Dict = None,
                                    total_files: int = 0, metadata: Dict = None):
         """Save or update processing session status"""
+        if self.use_sqlite:
+            return await self.sqlite_manager.save_processing_status(
+                session_id, batch_id, status, processed_files, extractions, total_files, metadata
+            )
+        
         if self.pool is None:
             logger.warning(f"Database pool not initialized, skipping status save for session {session_id}")
             return
@@ -144,6 +183,9 @@ class DBStateManager:
     
     async def get_processing_status(self, session_id: str) -> Optional[Dict]:
         """Get processing session status"""
+        if self.use_sqlite:
+            return await self.sqlite_manager.get_processing_status(session_id)
+        
         async with self.pool.acquire() as conn:
             row = await conn.fetchrow("""
                 SELECT session_id, batch_id, status, processed_files, extractions, 
@@ -169,6 +211,9 @@ class DBStateManager:
     
     async def get_batch_processing_status(self, batch_id: str) -> List[Dict]:
         """Get all processing sessions for a batch"""
+        if self.use_sqlite:
+            return await self.sqlite_manager.get_batch_processing_status(batch_id)
+        
         async with self.pool.acquire() as conn:
             rows = await conn.fetch("""
                 SELECT session_id, status, processed_count, total_files, created_at, updated_at

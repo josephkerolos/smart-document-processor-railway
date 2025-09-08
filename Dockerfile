@@ -42,8 +42,8 @@ COPY backend/ ./backend/
 # Copy built frontend from builder stage
 COPY --from=frontend-builder /app/frontend/build ./frontend/build
 
-# Create directories for processing
-RUN mkdir -p /app/processed_documents /app/temp /app/logs
+# Create directories for processing and SQLite database
+RUN mkdir -p /app/processed_documents /app/temp /app/logs /app/data
 
 # Copy startup script
 COPY start.sh ./
